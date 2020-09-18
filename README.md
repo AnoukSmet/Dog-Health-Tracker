@@ -13,8 +13,34 @@ By adding a daily log on the topics previously mentioned, you can easily track t
 Next time you go to the veterinarian, you choose nicely the progress you and your dog have made! 
 And you will finally be able to answer all those questions they are asking! 
 
-Thank you for visiting my project!
+Thank you for visiting my project!  
 If you have any feedback or questions, head over to my GitHub contact details and feel free to reach out to me.
 
-
 --- 
+
+<a></a>
+## Table of contents 
+* [UX](#ux)
+    * [User Goals](#user-goals)
+    * [User Stories](#user-stories)
+    * [Site Owners Goals](#site-owners-goals)
+    * [User Requirements and Expectations](#user-requirements-and-expectations)
+        * [Requirements](#requirements)
+        * [Expectations](#expectations)
+    * [Design Choices](#design-choices)
+        * [Fonts](#fonts)
+        * [Colors](#colors)
+        * [Structure](#structure)
+* [Wireframes](#wireframes)
+* [Features](#features)
+    * [Existing Features](#existing-features)
+    * [Features to be implemented](#features-to-be-implemented)
+* [Technologies used](#technologies-used)
+    * [Languages](#languages)
+    * [Libraries and Frameworks](#libraries-and-frameworks)
+    * [Tools](#tools)
+* [Testing](#testing)
+* [Deployment](#deployment)
+* [Credits](#credits)
+* [Closing Note](#closing-note)
+
