@@ -44,3 +44,19 @@ If you have any feedback or questions, head over to my GitHub contact details an
 * [Credits](#credits)
 * [Closing Note](#closing-note)
 
+--- 
+
+<a name="ux"></a>
+## **UX**
+<a></a>
+### **User Goals**
+
+* The website has to work well on all kind of devices like mobile phones, tables and desktops.
+* I want to have a clear dashboard where I can see all the different logs I have created. 
+* The log should appear with the most recent one on top to be relevant. 
+* I would like to have the option to add my both dog.
+* I want to have a profile for my dog where I can enter information like the name, breed etc. 
+* The website has to be easy to use and update
+* Visually appealing website
+
+[Back to Top](#table-of-contents)
