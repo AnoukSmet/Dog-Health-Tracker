@@ -1,39 +1,20 @@
-<img src="https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png" style="margin: 0;">
+# **Dog Health Tracker**
 
-Welcome USER_NAME,
+## **Goal for this project**
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. You can safely delete this README.md file, or change it for your own project.
+Have you ever gone to the veterinarian with your dog and they ask all kind of questions that you don't really know the answer to...
+How much activity does your dog have? Have much does he/she eats? Is her weight stable? 
+And on top of this, they tell you that your dog should actually lose some weight... Where to start?
 
-## Gitpod Reminders
+The Dog Health Tracker will make you're life much easier! 
+Instead writing down all the information about the activity, food, weigth etc. on paper, you can use DHT to track! 
+By adding a daily log on the topics previously mentioned, you can easily track the progress of your dog. 
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+Next time you go to the veterinarian, you choose nicely the progress you and your dog have made! 
+And you will finally be able to answer all those questions they are asking! 
 
-`python3 -m http.server`
+Thank you for visiting my project!
+If you have any feedback or questions, head over to my GitHub contact details and feel free to reach out to me.
 
-A blue button should appear to click: *Make Public*,
 
-Another blue button should appear to click: *Open Browser*.
-
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
-
-A blue button should appear to click: *Make Public*,
-
-Another blue button should appear to click: *Open Browser*.
-
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the backend lessons.
-
-## Updates Since The Instructional Video
-
-We continually tweak and adjust this template to help give you the best experience. Here are the updates since the original video was made:
-
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
-
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
-
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
-
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
-
---------
-
-Happy coding!
+--- 
