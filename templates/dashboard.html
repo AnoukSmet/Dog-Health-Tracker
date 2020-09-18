@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {% for dog in dogs %}
+        {{ dog.dog_name }}
+        {{ dog.dog_breed }}
+        {{ dog.date_of_birth }}
+        {{ dog.dog_description }}
+        {{ dog.image_url }}
+    {% endfor %}
+
+    <button>Add Dog</button>
+
+
+{% endblock %}
