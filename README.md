@@ -150,3 +150,20 @@ In order to find appropriate fonts for my website, I have visited [Google Fonts]
 For the titles and subtitles, I have used the font [Play](https://fonts.google.com/specimen/Play "Play") 
 and for the main text I have used [Cormorant Garamond](https://fonts.google.com/specimen/Cormorant+Garamond "Cormorant Garamond"). 
 
+<a></a>
+
+#### Colors
+
+Like I mentioned before, I have decided to use some colors that fit well with the feeling of a Health Tracker.
+Below I will explain more why I choose the various colors and for what I will be using them.
+
+![Color Palette](wireframes/color-palette.png)
+
+* #ffffff: I have decided to keep the background of the overall website white in order give the clean look. I will also use this color as text color for the nav bar and buttons.
+* #F5F5F5: This color I will use as a background color for the logs on the dashboard in order to have a small contract versus the white background.
+* #D9D9D9: This color I will use as a background color for the profile, to stand out a bit more and to make a clear difference between profile and logs.
+* #284B63: This will be the color that I will use for my navigation bar and buttons in order to give a bit of color to the website.
+* #000000: I will use the standard black color as my text color in order to keep the simple / clean look. 
+
+I have used a contract checker in order to make sure that the contract is sufficient.
+This way my content will be easily readable. 
