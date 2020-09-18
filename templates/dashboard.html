@@ -10,7 +10,8 @@
         {{ dog.image_url }}
     {% endfor %}
 
-    <button>Add Dog</button>
+    <a href="{{ url_for('add_dog') }}">Add Dog</a>
+    
 
 
 {% endblock %}

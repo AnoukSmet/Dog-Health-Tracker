@@ -21,6 +21,10 @@ def view_profile():
     return render_template("dashboard.html", dogs=mongo.db.dogs.find())
 
 
+@app.route('/add_dog')
+def add_dog():
+    return render_template("adddog.html")
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
