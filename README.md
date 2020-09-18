@@ -167,3 +167,15 @@ Below I will explain more why I choose the various colors and for what I will be
 
 I have used a contract checker in order to make sure that the contract is sufficient.
 This way my content will be easily readable. 
+
+<a></a>
+
+#### Structure
+I have chosen to use [Bootstrap](https://getbootstrap.com/) to create an overall structure for my website. 
+Bootstrap provides various elements of CSS and Javascript which is very helpful to keep a good structure on your page. 
+As Bootstrap is designed for mobile first, I will be certain that my website functions well on mobile.
+
+[Back to Top](#table-of-contents)
+
+--- 
+<a></a>
