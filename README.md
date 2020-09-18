@@ -134,3 +134,19 @@ If you have any feedback or questions, head over to my GitHub contact details an
 * To be able to filter on the logs in order to get specific information
 
 [Back to Top](#table-of-contents)
+
+<a></a>
+
+### **Design Choices**
+
+I have used [Coolors](https://coolors.co/ "Coolors.co") to come up with a color scheme that matches the atmosphere of a Health Tracker.
+For this website I have deciced to keep design simple, meaning I opted for a white background color with some light gray for the profile and logs.
+I have added some color for the buttons to make the design more visually appealing to the user. 
+
+<a></a>
+
+#### Fonts
+In order to find appropriate fonts for my website, I have visited [Google Fonts](https://fonts.google.com/ "Google Fonts") to explore the various options.
+For the titles and subtitles, I have used the font [Play](https://fonts.google.com/specimen/Play "Play") 
+and for the main text I have used [Cormorant Garamond](https://fonts.google.com/specimen/Cormorant+Garamond "Cormorant Garamond"). 
+
