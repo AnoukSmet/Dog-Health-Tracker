@@ -77,3 +77,28 @@ If you have any feedback or questions, head over to my GitHub contact details an
 * As a user, I want the website to be easy to use. 
 * As a user, I want the process to add a log to be simple to not loose too much time. 
 
+
+<a></a>
+
+### **User Stories**
+
+* As a user, I would like to be able to pick a category
+* As a user, I would like to track my score during the game. 
+* As a user, I expect a variety of questions so no questions get repeated.
+* As a user, I would like to know the correct answer when answered incorrectly.
+* As a user, I expect that the game has a nice visually appealing lay out to be in line with the game.
+* As a user of a game, the first impression is very important. 
+* As a user you already want to get the happy feeling as of the moment you open the website.
+* As a user, I expect all the different pages to be in the same style to make it as a whole.
+* As a user I want to learn something new while playing a game. 
+* As a user, I want the webiste to be easy to use. I prefer not to have too many buttons or options. 
+* As a user, I want some extra information on how to play the game in case I don't understand it. 
+* As a user, I want to know where I am in the game, to know how many questions I still have left. 
+* As a user, I want to be able to restart the game if I don't like the questions in the category.
+
+<a></a>
+
+### **Site owners Goals**
+* To have an appealing website that dog owners use to track their dog.
+* To have a great functionality so the user feels like this website helps them in their day-to-day life. 
+* To make the website as personal as possible by giving the user the possibility to add information about their dog in the profile.
