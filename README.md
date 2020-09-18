@@ -60,3 +60,20 @@ If you have any feedback or questions, head over to my GitHub contact details an
 * Visually appealing website
 
 [Back to Top](#table-of-contents)
+
+<a></a>
+
+### **User Stories**
+
+* As a user, I would like to have a personal profile for my dog. 
+* As a user, I would like to track activity, food and weigth. 
+* As a user, I want to be able to add a log on a daily basis. 
+* As a user, I would like to have a dashboard where I can have a good overview. 
+* As a user, I want to be able to search on date to get specific data. 
+* As a user, I want to be able to add special notes to the log whenever relevant. 
+* As a user, I want to be able to add another dog.
+* As a user, I want to have the possibility to edit a log when I made a mistake or want to add some info. 
+* As a user, I want to have the possibiltiy to delete a log as well when no longer relevant. 
+* As a user, I want the website to be easy to use. 
+* As a user, I want the process to add a log to be simple to not loose too much time. 
+
