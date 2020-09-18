@@ -20,10 +20,15 @@ mongo = PyMongo(app)
 def view_profile():
     return render_template("dashboard.html", dogs=mongo.db.dogs.find())
 
-
 @app.route('/add_dog')
 def add_dog():
     return render_template("adddog.html")
+
+@app.route('/insert_dog', methods=['POST'])
+def insert_dog():
+    dogs = mongo.db.dogs
+    dogs.insert_one(request.form.to_dict())
+    return redirect(url_for('view_profile'))
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),

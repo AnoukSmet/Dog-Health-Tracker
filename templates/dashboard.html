@@ -3,11 +3,11 @@
 {% block content %}
 
     {% for dog in dogs %}
-        {{ dog.dog_name }}
-        {{ dog.dog_breed }}
-        {{ dog.date_of_birth }}
-        {{ dog.dog_description }}
-        {{ dog.image_url }}
+        <p>{{ dog.dog_name }}</p>
+        <p>{{ dog.dog_breed }}</p>
+        <p>{{ dog.date_of_birth }}</p>
+        <p>{{ dog.dog_description }}</p>
+        <p>{{ dog.image_url }}</p>
     {% endfor %}
 
     <a href="{{ url_for('add_dog') }}">Add Dog</a>
