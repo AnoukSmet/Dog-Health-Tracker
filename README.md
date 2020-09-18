@@ -19,6 +19,7 @@ If you have any feedback or questions, head over to my GitHub contact details an
 --- 
 
 <a></a>
+
 ## Table of contents 
 * [UX](#ux)
     * [User Goals](#user-goals)
@@ -47,8 +48,11 @@ If you have any feedback or questions, head over to my GitHub contact details an
 --- 
 
 <a name="ux"></a>
+
 ## **UX**
+
 <a></a>
+
 ### **User Goals**
 
 * The website has to work well on all kind of devices like mobile phones, tables and desktops.
@@ -77,7 +81,6 @@ If you have any feedback or questions, head over to my GitHub contact details an
 * As a user, I want the website to be easy to use. 
 * As a user, I want the process to add a log to be simple to not loose too much time. 
 
-
 <a></a>
 
 ### **User Stories**
@@ -102,3 +105,32 @@ If you have any feedback or questions, head over to my GitHub contact details an
 * To have an appealing website that dog owners use to track their dog.
 * To have a great functionality so the user feels like this website helps them in their day-to-day life. 
 * To make the website as personal as possible by giving the user the possibility to add information about their dog in the profile.
+
+
+[Back to Top](#table-of-contents)
+
+<a></a>
+
+### **User Requirements and Expectations**
+
+<a></a>
+
+#### Requirements
+
+* Easy to navigate by using the few buttons
+* Appealing dashboard with a functional overview
+* Easy way to add a log to the dashboard
+* Easy way to add another dog to the profile
+* Ability to edit and delete existing logs
+
+<a></a>
+
+#### Expectations
+
+* When you have multiple dogs, it should be easy to navigate between them
+* To have a dashboard where all the necessary information is visible
+* It should be easy to add another log 
+* Personalised profile with information about the dog and an image
+* To be able to filter on the logs in order to get specific information
+
+[Back to Top](#table-of-contents)
