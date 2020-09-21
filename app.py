@@ -30,6 +30,12 @@ def insert_dog():
     dogs.insert_one(request.form.to_dict())
     return redirect(url_for('view_profile'))
 
+@app.route('/edit_profile/<dog_id>')
+def edit_profile(dog_id):
+    profile_to_update = mongo.db.dogs.find_one({"_id": ObjectId(dog_id)})
+    return render_template('editprofile.html', profile=profile_to_update)
+
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),

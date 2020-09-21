@@ -5,17 +5,17 @@
 <h2>Add dog</h2>
 
 <form action="{{ url_for('insert_dog') }}" method="POST"> 
-    <label for="name">Name: </label>
-    <input type="text" id="name" name="name">
+    <label for="dog_name">Name: </label>
+    <input type="text" id="dog_name" name="dog_name">
 
-    <label for="breed">Breed: </label>
-    <input type="text" id="breed" name="breed">
+    <label for="dog_breed">Breed: </label>
+    <input type="text" id="dog_breed" name="dog_breed">
 
-    <label for="dob">Day of Birth: </label>
-    <input type="text" id="dob" name="dob">
+    <label for="date_of_birth">Day of Birth: </label>
+    <input type="text" id="date_of_birth" name="date_of_birth">
 
-    <label for="description">Description: </label>
-    <textarea name="description" id="description" cols="30" rows="10"></textarea>
+    <label for="dog_description">Description: </label>
+    <textarea name="dog_description" id="dog_description" cols="30" rows="10"></textarea>
 
     <button type="submit" name="action">Add dog</button>
 </form>
