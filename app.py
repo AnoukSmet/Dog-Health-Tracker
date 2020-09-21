@@ -36,6 +36,19 @@ def edit_profile(dog_id):
     return render_template('editprofile.html', profile=profile_to_update)
 
 
+@app.route('/update_profile/<dog_id>', methods=["POST"])
+def update_profile(dog_id):
+    dogs = mongo.db.dogs
+    dogs.update({'_id': ObjectId(dog_id)}, 
+    {
+        'dog_name': request.form.get('dog_name'),
+        'dog_breed': request.form.get('dog_breed'), 
+        'date_of_birth': request.form.get('date_of_birth'), 
+        'dog_description': request.form.get('dog_description')
+    })
+    return redirect(url_for('view_profile'))
+
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),

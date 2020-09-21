@@ -5,7 +5,8 @@
 
 <h2>Edit profile</h2>
 
-<form action="" method="POST"> 
+
+<form action="{{ url_for('update_profile', dog_id=profile._id) }}" method="POST"> 
     <label for="dog_name">Name: </label>
     <input type="text" id="dog_name" name="dog_name" value="{{ profile.dog_name }}">
 
