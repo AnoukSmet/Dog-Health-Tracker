@@ -10,6 +10,7 @@
         <p>{{ dog.dog_description }}</p>
         <p>{{ dog.image_url }}</p>
         <a href="{{ url_for('edit_profile', dog_id = dog._id) }}">Edit profile</a>
+        <a href="{{ url_for('delete_profile', dog_id = dog._id) }}">Delete profile</a>
     
     {% endfor %}
     <div>
@@ -23,7 +24,7 @@
         <p>{{ log.dog_food }}</p>
         <p>{{ log.other_notes }}</p>
         <a href="{{ url_for('edit_log', log_id = log._id) }}">Edit log</a>
-        
+        <a href="{{ url_for('delete_log', log_id = log._id) }}">Delete log</a>
     {% endfor %}
 
     <div>

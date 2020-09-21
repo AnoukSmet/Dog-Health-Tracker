@@ -49,6 +49,14 @@ def update_profile(dog_id):
     return redirect(url_for('view_profile'))
 
 
+@app.route('/delete_profile/<dog_id>')
+def delete_profile(dog_id):
+    dogs = mongo.db.dogs
+    dogs.remove({'_id': ObjectId(dog_id)})
+    return redirect(url_for('view_profile'))
+
+
+
 @app.route('/add_log')
 def add_log():
     return render_template("addlog.html")
@@ -81,6 +89,11 @@ def update_log(log_id):
     })
     return redirect(url_for('view_profile'))
 
+@app.route('/delete_log/<log_id>')
+def delete_log(log_id):
+    logs = mongo.db.logs
+    logs.remove({'_id': ObjectId(log_id)})
+    return redirect(url_for('view_profile'))
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
