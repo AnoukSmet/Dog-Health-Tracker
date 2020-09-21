@@ -9,13 +9,25 @@
         <p>{{ dog.date_of_birth }}</p>
         <p>{{ dog.dog_description }}</p>
         <p>{{ dog.image_url }}</p>
-
-    
-    <a href="{{ url_for('edit_profile', dog_id = dog._id) }}">Edit profile</a>
-    <a href="{{ url_for('add_dog')}}">Add Dog</a>
+        <a href="{{ url_for('edit_profile', dog_id = dog._id) }}">Edit profile</a>
     
     {% endfor %}
+    <div>
+        <a href="{{ url_for('add_dog')}}">Add Dog</a>
+    </div>
 
+    {% for log in logs %}
+        <p>{{ log.log_date }}</p>
+        <p>{{ log.dog_weigth }}</p>
+        <p>{{ log.dog_activity }}</p>
+        <p>{{ log.dog_food }}</p>
+        <p>{{ log.other_notes }}</p>
+        <a href="{{ url_for('edit_log', log_id = log._id) }}">Edit log</a>
+        
+    {% endfor %}
 
+    <div>
+        <a href="{{ url_for('add_log')}}">Add Log</a>
+    </div>
 
 {% endblock %}

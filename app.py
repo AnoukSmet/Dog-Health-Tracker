@@ -18,7 +18,7 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route('/view_profile')
 def view_profile():
-    return render_template("dashboard.html", dogs=mongo.db.dogs.find())
+    return render_template("dashboard.html", dogs=mongo.db.dogs.find(), logs=mongo.db.logs.find())
 
 @app.route('/add_dog')
 def add_dog():
@@ -45,6 +45,39 @@ def update_profile(dog_id):
         'dog_breed': request.form.get('dog_breed'), 
         'date_of_birth': request.form.get('date_of_birth'), 
         'dog_description': request.form.get('dog_description')
+    })
+    return redirect(url_for('view_profile'))
+
+
+@app.route('/add_log')
+def add_log():
+    return render_template("addlog.html")
+
+
+@app.route('/insert_log', methods=['POST'])
+def insert_log():
+    logs = mongo.db.logs
+    logs.insert_one(request.form.to_dict())
+    return redirect(url_for('view_profile'))
+
+
+@app.route('/edit_log/<log_id>')
+def edit_log(log_id):
+    log_to_update = mongo.db.logs.find_one({"_id": ObjectId(log_id)})
+    return render_template('editlog.html', log=log_to_update)
+
+
+
+@app.route('/update_log/<log_id>', methods=["POST"])
+def update_log(log_id):
+    logs = mongo.db.logs
+    logs.update({'_id': ObjectId(log_id)}, 
+    {
+        'log_date': request.form.get('log_date'),
+        'dog_weigth': request.form.get('dog_weigth'), 
+        'dog_activity': request.form.get('dog_activity'), 
+        'dog_food': request.form.get('dog_food'),
+        'other_notes': request.form.get('other_notes')
     })
     return redirect(url_for('view_profile'))
 

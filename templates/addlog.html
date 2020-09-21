@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Add log</h2>
+
+<form action="{{ url_for('insert_log') }}" method="POST"> 
+    <label for="log_date">Date: </label>
+    <input type="text" id="log_date" name="log_date">
+
+    <label for="dog_weigth">Weigth: </label>
+    <input type="text" id="dog_weigth" name="dog_weigth">
+
+    <label for="dog_activity">Activity </label>
+    <input type="text" id="dog_activity" name="dog_activity">
+
+    <label for="dog_food">Food:</label>
+    <input type="text" id="dog_food" name="dog_food">
+
+    <label for="other_notes">Other notes:</label>
+    <textarea name="other_notes" id="other_notes" cols="30" rows="10"></textarea>
+
+    <button type="submit" name="action">Add log</button>
+</form>
+
+{% endblock %}
