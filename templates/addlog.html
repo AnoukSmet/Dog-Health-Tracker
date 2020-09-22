@@ -5,6 +5,12 @@
 <h2>Add log</h2>
 
 <form action="{{ url_for('insert_log') }}" method="POST"> 
+    <select>
+        {% for dog in dogs %}
+        <option value="{{ dog.dog_name }}"> {{ dog.dog_name }}</option>
+        {% endfor %}
+    </select>
+
     <label for="log_date">Date: </label>
     <input type="text" id="log_date" name="log_date" class="datepicker">
 

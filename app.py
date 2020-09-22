@@ -16,9 +16,10 @@ mongo = PyMongo(app)
 
 
 @app.route('/')
-@app.route('/view_profile')
-def view_profile():
+@app.route('/view_dashboard', methods = ['POST'])
+def view_dashboard():
     return render_template("dashboard.html", dogs=mongo.db.dogs.find(), logs=mongo.db.logs.find())
+
 
 @app.route('/add_dog')
 def add_dog():
@@ -28,7 +29,7 @@ def add_dog():
 def insert_dog():
     dogs = mongo.db.dogs
     dogs.insert_one(request.form.to_dict())
-    return redirect(url_for('view_profile'))
+    return redirect(url_for('view_dashboard'))
 
 @app.route('/edit_profile/<dog_id>')
 def edit_profile(dog_id):
@@ -46,27 +47,27 @@ def update_profile(dog_id):
         'date_of_birth': request.form.get('date_of_birth'), 
         'dog_description': request.form.get('dog_description')
     })
-    return redirect(url_for('view_profile'))
+    return redirect(url_for('view_dashboard'))
 
 
 @app.route('/delete_profile/<dog_id>')
 def delete_profile(dog_id):
     dogs = mongo.db.dogs
     dogs.remove({'_id': ObjectId(dog_id)})
-    return redirect(url_for('view_profile'))
+    return redirect(url_for('view_dashboard'))
 
 
 
 @app.route('/add_log')
 def add_log():
-    return render_template("addlog.html")
+    return render_template("addlog.html", dogs=mongo.db.dogs.find())
 
 
 @app.route('/insert_log', methods=['POST'])
 def insert_log():
     logs = mongo.db.logs
     logs.insert_one(request.form.to_dict())
-    return redirect(url_for('view_profile'))
+    return redirect(url_for('view_dashboard'))
 
 
 @app.route('/edit_log/<log_id>')
@@ -87,13 +88,13 @@ def update_log(log_id):
         'dog_food': request.form.get('dog_food'),
         'other_notes': request.form.get('other_notes')
     })
-    return redirect(url_for('view_profile'))
+    return redirect(url_for('view_dashboard'))
 
 @app.route('/delete_log/<log_id>')
 def delete_log(log_id):
     logs = mongo.db.logs
     logs.remove({'_id': ObjectId(log_id)})
-    return redirect(url_for('view_profile'))
+    return redirect(url_for('view_dashboard'))
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),

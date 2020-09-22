@@ -2,17 +2,28 @@
 
 {% block content %}
 
+<div class="row">
+    <div class="input-field col s3">
+        <select>
+            {% for dog in dogs %}
+            <option value="{{ dog.dog_name }}"> {{ dog.dog_name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+</div>
+
     <div class="row">
         <div class="col m3">
 
         {% for dog in dogs %}
             <div class="dog-profile">
-                <h2>{{ dog.dog_name }} </h2>
-                <h4>Breed:</h4>
+            
+                <h2>{{ dog.dog_name }}</h2>
+                <h5>Breed:</h5>
                 <p>{{ dog.dog_breed }}</p>
-                <h4>Date of birth:</h4>
+                <h5>Date of birth:</h5>
                 <p>{{ dog.date_of_birth }}</p>
-                <h4>Description:</h4>
+                <h5>Description:</h5>
                 <p>{{ dog.dog_description }}</p>
                 <p>{{ dog.image_url }}</p>
                 <a href="{{ url_for('edit_profile', dog_id = dog._id) }}">Edit profile</a>
