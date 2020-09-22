@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+<div class="container">
 <h2>Add log</h2>
 
 <form action="{{ url_for('insert_log') }}" method="POST"> 
     <label for="log_date">Date: </label>
-    <input type="text" id="log_date" name="log_date">
+    <input type="text" id="log_date" name="log_date" class="datepicker">
 
     <label for="dog_weigth">Weigth: </label>
     <input type="text" id="dog_weigth" name="dog_weigth">
@@ -22,5 +22,6 @@
 
     <button type="submit" name="action">Add log</button>
 </form>
-
+</div>
 {% endblock %}
+

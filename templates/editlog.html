@@ -7,7 +7,7 @@
 
 <form action="{{ url_for('update_log', log_id=log._id) }}" method="POST"> 
     <label for="log_date">Date: </label>
-    <input type="text" id="log_date" name="log_date" value="{{ log.log_date }}">
+    <input type="text" id="log_date" name="log_date" value="{{ log.log_date }}" class="datepicker">
 
     <label for="dog_weigth">Weigth: </label>
     <input type="text" id="dog_weigth" name="dog_weigth" value="{{ log.dog_weigth }}">

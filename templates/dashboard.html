@@ -2,10 +2,9 @@
 
 {% block content %}
 
-    
 <div class="container">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col m3">
 
         {% for dog in dogs %}
             <div class="dog-profile">
@@ -25,17 +24,18 @@
                 <a href="{{ url_for('add_dog')}}">Add Dog</a>
             </div>
         </div>
-        <div class="col-md-9">
+        <div class="col m9">
         
         {% for log in logs %}
+        
             <div class="log">
                 <div class="row">
-                    <div class="col-3">
+                    <div class="col m3">
                         <p>{{ log.log_date }}</p>
                         <a href="{{ url_for('edit_log', log_id = log._id) }}">Edit log</a>
                         <a href="{{ url_for('delete_log', log_id = log._id) }}">Delete log</a>
                     </div>
-                    <div class="col-9">
+                    <div class="col m9">
                         <p>Weight: {{ log.dog_weigth }}</p>
                         <p>Activity: {{ log.dog_activity }}</p>
                         <p>Food: {{ log.dog_food }}</p>
@@ -43,6 +43,7 @@
                     </div>
                 </div>
             </div>
+
         {% endfor %}
             
             <div>
