@@ -2,33 +2,48 @@
 
 {% block content %}
 
-    {% for dog in dogs %}
-
-        <p>{{ dog.dog_name }}</p>
-        <p>{{ dog.dog_breed }}</p>
-        <p>{{ dog.date_of_birth }}</p>
-        <p>{{ dog.dog_description }}</p>
-        <p>{{ dog.image_url }}</p>
-        <a href="{{ url_for('edit_profile', dog_id = dog._id) }}">Edit profile</a>
-        <a href="{{ url_for('delete_profile', dog_id = dog._id) }}">Delete profile</a>
     
-    {% endfor %}
-    <div>
-        <a href="{{ url_for('add_dog')}}">Add Dog</a>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3" id="dog-profile">
+
+        {% for dog in dogs %}
+        
+            <h2>{{ dog.dog_name }} </h2>
+            <h6>Breed:</h6>
+            <p>{{ dog.dog_breed }}</p>
+            <h6>Date of birth:</h6>
+            <p>{{ dog.date_of_birth }}</p>
+            <h6>Description:</h6>
+            <p>{{ dog.dog_description }}</p>
+            <p>{{ dog.image_url }}</p>
+            <a href="{{ url_for('edit_profile', dog_id = dog._id) }}">Edit profile</a>
+            <a href="{{ url_for('delete_profile', dog_id = dog._id) }}">Delete profile</a>
+
+        {% endfor %}
+            <div>
+                <a href="{{ url_for('add_dog')}}">Add Dog</a>
+            </div>
+        </div>
+        <div class="col-md-9">
+        
+        {% for log in logs %}
+
+            <p>{{ log.log_date }}</p>
+            <p>{{ log.dog_weigth }}</p>
+            <p>{{ log.dog_activity }}</p>
+            <p>{{ log.dog_food }}</p>
+            <p>{{ log.other_notes }}</p>
+            <a href="{{ url_for('edit_log', log_id = log._id) }}">Edit log</a>
+            <a href="{{ url_for('delete_log', log_id = log._id) }}">Delete log</a>
+
+        {% endfor %}
+            
+            <div>
+                <a href="{{ url_for('add_log')}}">Add Log</a>
+            </div>
+        </div>
     </div>
-
-    {% for log in logs %}
-        <p>{{ log.log_date }}</p>
-        <p>{{ log.dog_weigth }}</p>
-        <p>{{ log.dog_activity }}</p>
-        <p>{{ log.dog_food }}</p>
-        <p>{{ log.other_notes }}</p>
-        <a href="{{ url_for('edit_log', log_id = log._id) }}">Edit log</a>
-        <a href="{{ url_for('delete_log', log_id = log._id) }}">Delete log</a>
-    {% endfor %}
-
-    <div>
-        <a href="{{ url_for('add_log')}}">Add Log</a>
-    </div>
-
+</div>
+    
 {% endblock %}
