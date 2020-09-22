@@ -10,19 +10,14 @@ body {
 
 /* Navigation */
 
-#navigation {
-    background-color: #284B63;
+.navigation {
+    background-color: #284B63 !important;
 }
 
-#navigation a {
+.navigation a {
     text-decoration: none;
     color: #fff;
 }
-
-.navbar-brand {
-    font-size: 3rem;
-}
-
 
 /* Container */
 
