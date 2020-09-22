@@ -16,9 +16,18 @@ mongo = PyMongo(app)
 
 
 @app.route('/')
-@app.route('/view_dashboard', methods = ['POST'])
+@app.route('/view_dashboard', methods=['GET', 'POST'])
 def view_dashboard():
-    return render_template("dashboard.html", dogs=mongo.db.dogs.find(), logs=mongo.db.logs.find())
+    if request.method == 'POST':
+        selected_profile = request.form.get('dog_name')
+        dog = mongo.db.dogs.find_one({"dog_name": selected_profile})
+    else:
+        dog = mongo.db.dogs.find().limit(1)
+    
+    return render_template("dashboard.html", 
+                           dog=dog,
+                           dogs=mongo.db.dogs.find(),
+                           logs=mongo.db.logs.find())
 
 
 @app.route('/add_dog')
@@ -73,7 +82,7 @@ def insert_log():
 @app.route('/edit_log/<log_id>')
 def edit_log(log_id):
     log_to_update = mongo.db.logs.find_one({"_id": ObjectId(log_id)})
-    return render_template('editlog.html', log=log_to_update)
+    return render_template('editlog.html', log=log_to_update, dogs=mongo.db.dogs.find())
 
 
 

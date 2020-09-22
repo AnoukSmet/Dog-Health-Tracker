@@ -4,34 +4,37 @@
 
 <div class="row">
     <div class="input-field col s3">
-        <select>
-            {% for dog in dogs %}
-            <option value="{{ dog.dog_name }}"> {{ dog.dog_name }}</option>
-            {% endfor %}
-        </select>
+        <div id="floating-action-button">
+            <a class="btn-floating" href="{{ url_for('add_dog') }}">
+                <i class="material-icons ">add</i>
+            </a>
+        </div>
+        <form action="{{ url_for('view_dashboard') }}" method="POST">
+            <select name="dog_name">
+                {% for dog in dogs %}
+                <option value="{{ dog.dog_name }}"> {{ dog.dog_name }}</option>
+                {% endfor %}
+            </select>
+            <button>Filter Results</button>
+        </form>
     </div>
 </div>
 
     <div class="row">
         <div class="col m3">
 
-        {% for dog in dogs %}
+        
             <div class="dog-profile">
-            
-                <h2>{{ dog.dog_name }}</h2>
-                <h5>Breed:</h5>
-                <p>{{ dog.dog_breed }}</p>
-                <h5>Date of birth:</h5>
-                <p>{{ dog.date_of_birth }}</p>
-                <h5>Description:</h5>
-                <p>{{ dog.dog_description }}</p>
-                <p>{{ dog.image_url }}</p>
-                <a href="{{ url_for('edit_profile', dog_id = dog._id) }}">Edit profile</a>
-                <a href="{{ url_for('delete_profile', dog_id = dog._id) }}">Delete profile</a>
-            </div>
-        {% endfor %}
-            <div>
-                <a href="{{ url_for('add_dog')}}">Add Dog</a>
+                    <h2>{{ dog.dog_name }}</h2>
+                    <h5>Breed:</h5>
+                    <p>{{ dog.dog_breed }}</p>
+                    <h5>Date of birth:</h5>
+                    <p>{{ dog.date_of_birth }}</p>
+                    <h5>Description:</h5>
+                    <p>{{ dog.dog_description }}</p>
+                    <p>{{ dog.image_url }}</p>
+                    <a href="{{ url_for('edit_profile', dog_id = dog._id) }}">Edit profile</a>
+                    <a href="{{ url_for('delete_profile', dog_id = dog._id) }}">Delete profile</a>
             </div>
         </div>
         <div class="col m9">

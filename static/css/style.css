@@ -36,11 +36,21 @@ body {
 /* Dog Profile */
 
 .dog-profile {
+
     background-color: #D9D9D9;
     padding: 1rem;
     border: 0.3rem solid #c7c7c7;
     margin-top: 1rem;
-    
+}
+
+#floating-action-button {
+    position: relative;
+    top: 16rem;
+    left: 13rem;
+}
+
+.btn-floating {
+    background-color: #284B63;
 }
 
 .log {
