@@ -43,6 +43,16 @@ body {
     margin-top: 1rem;
 }
 
+.profile-icons {
+float: right;
+margin-top: 1rem;
+}
+
+#add-dog {
+    float: right;
+    vertical-align: middle;
+    line-height: 5rem;
+}
 
 .bg-color {
     background-color: #284B63;
@@ -56,6 +66,7 @@ body {
 
 .icons {
     color: #284B63;
+    font-size: 2.5rem;
 }
 
 .icons:hover{
@@ -65,7 +76,7 @@ body {
 .log {
     background-color: #F5F5F5   ;
     padding: 1rem;
-    margin-top: 1rem;
+    margin-top: 1rem 0 0;
     box-shadow: 0.2rem -0.3rem 0.2rem #c7c7c7;
 }
 
@@ -75,6 +86,10 @@ body {
 
 .log-icons {
     float: right;
+}
+
+.log-date {
+    text-align: center;
 }
 
 #log-day {
@@ -87,5 +102,5 @@ body {
 #log-month-year {
     font-size: 1.6rem;
     text-align: center;
-    margin: 0;
+
 }
