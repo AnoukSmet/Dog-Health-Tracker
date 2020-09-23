@@ -10,7 +10,12 @@
         <option value="{{ dog.dog_name }}"> {{ dog.dog_name }}</option>
         {% endfor %}
     </select>
-
+    <!-- <select>
+        {% for day in days %}
+        <option value="{{ day.log_day}}"> {{ day.log_day}} </option>
+        {% endfor %}
+    </select> -->
+   
     <label for="log_date">Date: </label>
     <input type="text" id="log_date" name="log_date" class="datepicker">
 

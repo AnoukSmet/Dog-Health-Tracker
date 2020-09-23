@@ -34,6 +34,7 @@ def view_dashboard():
 def add_dog():
     return render_template("adddog.html")
 
+
 @app.route('/insert_dog', methods=['POST'])
 def insert_dog():
     dogs = mongo.db.dogs
@@ -91,6 +92,7 @@ def update_log(log_id):
     logs = mongo.db.logs
     logs.update({'_id': ObjectId(log_id)}, 
     {
+        'dog_name': request.form.get('dog_name'),
         'log_date': request.form.get('log_date'),
         'dog_weigth': request.form.get('dog_weigth'), 
         'dog_activity': request.form.get('dog_activity'), 

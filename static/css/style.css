@@ -43,19 +43,49 @@ body {
     margin-top: 1rem;
 }
 
-#floating-action-button {
-    position: relative;
-    top: 16rem;
-    left: 13rem;
+
+.bg-color {
+    background-color: #284B63;
+    color: #4e88af;
 }
 
-.btn-floating {
-    background-color: #284B63;
+.bg-color:hover {
+    background-color: #4e88af;
+    color: #284b63;
+}
+
+.icons {
+    color: #284B63;
+}
+
+.icons:hover{
+    color: #4e88af;
 }
 
 .log {
     background-color: #F5F5F5   ;
     padding: 1rem;
-    border: 0.3rem solid #ececec;
     margin-top: 1rem;
+    box-shadow: 0.2rem -0.3rem 0.2rem #c7c7c7;
+}
+
+.log-element {
+    margin: 0.5rem 0;
+}
+
+.log-icons {
+    float: right;
+}
+
+#log-day {
+    font-size: 7rem;
+    margin: 0;
+    text-align: center;
+    line-height: 9rem;
+}
+
+#log-month-year {
+    font-size: 1.6rem;
+    text-align: center;
+    margin: 0;
 }
