@@ -109,6 +109,10 @@ body {
     color: #000000;
 }
 
+#profile-selection {
+    margin-bottom: 2rem;
+}
+
 @media (min-width: 1200px) {
     #log-day {
         margin: 0 3rem;
