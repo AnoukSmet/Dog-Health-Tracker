@@ -44,8 +44,7 @@ body {
 }
 
 .profile-icons {
-float: right;
-margin-top: 1rem;
+    margin-top: 1rem;
 }
 
 #add-dog {
@@ -66,7 +65,7 @@ margin-top: 1rem;
 
 .icons {
     color: #284B63;
-    font-size: 2.5rem;
+    font-size: 3rem;
 }
 
 .icons:hover{
@@ -75,7 +74,7 @@ margin-top: 1rem;
 
 .log {
     background-color: #F5F5F5   ;
-    padding: 1rem;
+    padding: 1rem 1rem 0 1rem;
     margin-top: 1rem 0 0;
     box-shadow: 0.2rem -0.3rem 0.2rem #c7c7c7;
 }
@@ -103,4 +102,15 @@ margin-top: 1rem;
     font-size: 1.6rem;
     text-align: center;
 
+}
+
+.labels {
+    font-size: 1.6rem;
+    color: #000000;
+}
+
+@media (min-width: 1200px) {
+    #log-day {
+        margin: 0 3rem;
+    }
 }

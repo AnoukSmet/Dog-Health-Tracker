@@ -10,26 +10,21 @@
         <option value="{{ dog.dog_name }}"> {{ dog.dog_name }}</option>
         {% endfor %}
     </select>
-    <!-- <select>
-        {% for day in days %}
-        <option value="{{ day.log_day}}"> {{ day.log_day}} </option>
-        {% endfor %}
-    </select> -->
    
-    <label for="log_date">Date: </label>
+    <label class="labels" for="log_date">Date: </label>
     <input type="text" id="log_date" name="log_date" class="datepicker">
 
-    <label for="dog_weigth">Weigth: </label>
+    <label class="labels" for="dog_weigth">Weigth: </label>
     <input type="text" id="dog_weigth" name="dog_weigth">
 
-    <label for="dog_activity">Activity </label>
+    <label class="labels" for="dog_activity">Activity </label>
     <input type="text" id="dog_activity" name="dog_activity">
 
-    <label for="dog_food">Food:</label>
+    <label class="labels" for="dog_food">Food:</label>
     <input type="text" id="dog_food" name="dog_food">
 
     <label for="other_notes">Other notes:</label>
-    <textarea name="other_notes" id="other_notes" cols="30" rows="10"></textarea>
+    <textarea name="other_notes" id="other_notes" class="materialize-textarea"></textarea>
 
     <button type="submit" name="action">Add log</button>
 </form>
