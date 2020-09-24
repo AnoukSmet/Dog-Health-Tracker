@@ -3,13 +3,14 @@
 {% block content %}
 <div class="container">
 <h2>Add log</h2>
+<select>
+    {% for dog in dogs %}
+    <option value="{{ dog.dog_name }}"> {{ dog.dog_name }}</option>
+    {% endfor %}
+</select>
 
 <form action="{{ url_for('insert_log') }}" method="POST"> 
-    <select>
-        {% for dog in dogs %}
-        <option value="{{ dog.dog_name }}"> {{ dog.dog_name }}</option>
-        {% endfor %}
-    </select>
+    
    
     <label class="labels" for="log_date">Date: </label>
     <input type="text" id="log_date" name="log_date" class="datepicker">
@@ -23,7 +24,7 @@
     <label class="labels" for="dog_food">Food:</label>
     <input type="text" id="dog_food" name="dog_food">
 
-    <label for="other_notes">Other notes:</label>
+    <label class="labels" for="other_notes">Other notes:</label>
     <textarea name="other_notes" id="other_notes" class="materialize-textarea"></textarea>
 
     <button type="submit" name="action">Add log</button>

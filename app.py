@@ -55,7 +55,8 @@ def update_profile(dog_id):
         'dog_name': request.form.get('dog_name'),
         'dog_breed': request.form.get('dog_breed'), 
         'date_of_birth': request.form.get('date_of_birth'), 
-        'dog_description': request.form.get('dog_description')
+        'dog_description': request.form.get('dog_description'),
+        'image_url': request.form.get('image_url')
     })
     return redirect(url_for('view_dashboard'))
 
@@ -97,7 +98,7 @@ def update_log(log_id):
         'dog_weigth': request.form.get('dog_weigth'), 
         'dog_activity': request.form.get('dog_activity'), 
         'dog_food': request.form.get('dog_food'),
-        'other_notes': request.form.get('other_notes')
+        'other_notes': request.form.get('other_notes'),
     })
     return redirect(url_for('view_dashboard'))
 
