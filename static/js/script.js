@@ -9,9 +9,6 @@
       });
    })
 
-
-
-
 /**
  * Function to enable dropdown select box
  */
@@ -19,3 +16,5 @@
     $(document).ready(function(){
     $('select').formSelect();
   });
+
+

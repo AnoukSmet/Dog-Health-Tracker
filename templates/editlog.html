@@ -29,17 +29,16 @@
 
             <div class="col s12">
                 <div class="row">
-                    <label class="labels col s12" for="dog_weigth">Weigth: </label>
+                    <label class="labels col s12" for="dog_weight">Weight: </label>
                     <div class="col s8" > 
-                        <input type="text" id="dog_weigth" name="dog_weigth" value="{{ log.dog_weigth }}">
+                        <input type="text" id="dog_weight" name="dog_weight" value="{{ log.dog_weight }}">
                     </div>
                     <div class="col s4">
-                        <select name="weigth_metric">
-                            <option value="kg">kg</option>
-                            <option value="pounds">pounds</option>
-                            <option value="ounces">ounces</option>
-                            <option value="grams">grams</option>
-                        </select>
+                        <select name="weight_metric">
+                            {% for metric in weight_metrics %}
+                            <option value="{{metric.metric_name}}">{{metric.metric_name}}</option>
+                            {% endfor %}
+                    </select>
                     </div>
                 </div>
             </div> 
@@ -57,10 +56,33 @@
                     </div>
                     <div class="col s4">
                         <select name="food_metric">
-                            <option value="kg">kg</option>
-                            <option value="pounds">pounds</option>
-                            <option value="ounces">ounces</option>
-                            <option value="grams">grams</option>
+                            {% for metric in food_metrics %}
+                                {% if metric.metric_name == 'kg' %}
+                                <option value="kg" selected>kg</option>
+                                <option value="pounds">Pounds</option>
+                                <option value="ounces">Ounces</option>
+                                <option value="grams">grams</option>
+                                
+                                {% elif metric.metric_name == "pounds" %}
+                                <option value="kg">kg</option>
+                                <option value="pounds" selected>Pounds</option>
+                                <option value="ounces">Ounces</option>
+                                <option value="grams">grams</option>
+
+                                {% elif metric.metric_name == "ounces" %}
+                                <option value="kg">kg</option>
+                                <option value="pounds">Pounds</option>
+                                <option value="ounces" selected>Ounces</option>
+                                <option value="grams">grams</option>
+
+                                {% elif metric.metric_name == "grams" %}
+                                <option value="kg">kg</option>
+                                <option value="pounds">Pounds</option>
+                                <option value="ounces">Ounces</option>
+                                <option value="grams" selected>grams</option>
+                                                      
+                                {% endif %}
+                          {% endfor %}
                         </select>
                     </div>
                 </div> 

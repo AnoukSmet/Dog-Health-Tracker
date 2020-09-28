@@ -71,7 +71,9 @@ def delete_profile(dog_id):
 
 @app.route('/add_log')
 def add_log():
-    return render_template("addlog.html", dogs=mongo.db.dogs.find())
+    return render_template("addlog.html", dogs=mongo.db.dogs.find(), 
+    weight_metrics = mongo.db.weight_metrics.find(),
+    food_metrics = mongo.db.food_metrics.find())
 
 
 @app.route('/insert_log', methods=['POST'])
@@ -84,7 +86,11 @@ def insert_log():
 @app.route('/edit_log/<log_id>')
 def edit_log(log_id):
     log_to_update = mongo.db.logs.find_one({"_id": ObjectId(log_id)})
-    return render_template('editlog.html', log=log_to_update, dogs=mongo.db.dogs.find())
+    return render_template('editlog.html', 
+    log=log_to_update, 
+    dogs=mongo.db.dogs.find(), 
+    weight_metrics = mongo.db.weight_metrics.find(),
+    food_metrics = mongo.db.food_metrics.find())
 
 
 
@@ -95,8 +101,8 @@ def update_log(log_id):
     {
         'dog_name': request.form.get('dog_name'),
         'log_date': request.form.get('log_date'),
-        'dog_weigth': request.form.get('dog_weigth'),
-        'weigth_metric': request.form.get('weigth_metric'), 
+        'dog_weight': request.form.get('dog_weight'),
+        'weight_metric': request.form.get('weight_metric'), 
         'dog_activity': request.form.get('dog_activity'), 
         'dog_food': request.form.get('dog_food'),
         'food_metric': request.form.get('food_metric'),
