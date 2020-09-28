@@ -2,35 +2,77 @@
 
 {% block content %}
 <div class="container">
-<h2>Add log</h2>
+    <div class="row">
+        <div class="col s12">
+            <h2>Add log</h2>
+        </div>
 
-<form action="{{ url_for('insert_log') }}" method="POST"> 
-    <div id="profile-selection">
-        <label class="labels" for="select-dog">Name:</label>
-        <select id="select-dog">
-            {% for dog in dogs %}
-            <option id="dog_name" value="{{ dog.dog_name }}"> {{ dog.dog_name }}</option>
-            {% endfor %}
-        </select>
-    </div>
+        <form action="{{ url_for('insert_log') }}" method="POST"> 
+
+            <div class="col s12">
+                    <div id="profile-selection">
+                        <label class="labels" for="select-dog">Name:</label>
+                        <select id="select-dog">
+                            {% for dog in dogs %}
+                            <option id="dog_name" value="{{ dog.dog_name }}"> {{ dog.dog_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+            </div>
+
+        <div class="col s12">
+            <label class="labels" for="log_date">Date: </label>
+            <input type="text" id="log_date" name="log_date" class="datepicker">
+        </div>
+
+        <div class="col s12">
+            <div class="row" id="weigth-section">
+                <label class="labels col s12" for="dog_weigth">Weigth: </label>
+                <div class="col s8" > 
+                    <input type="text" id="dog_weigth" name="dog_weigth">
+                </div>
+                <div class="col s4">
+                    <select name="weigth_metric">
+                        <option value="kg">kg</option>
+                        <option value="pounds">pounds</option>
+                        <option value="ounces">ounces</option>
+                        <option value="grams">grams</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="col s12">
+            <label class="labels" for="dog_activity">Activity </label>
+            <input type="text" id="dog_activity" name="dog_activity">
+        </div>
+
+        <div class="col s12">  
+                <div class="row">
+                    <label class="labels col s12" for="dog_food">Food:</label>
+                    <div class="col s8">
+                        <input type="text" id="dog_food" name="dog_food">
+                    </div>
+                    <div class="col s4">
+                        <select name="food_metric">
+                            <option value="kg">kg</option>
+                            <option value="pounds">pounds</option>
+                            <option value="ounces">ounces</option>
+                            <option value="grams">grams</option>
+                        </select>
+                    </div>
+                </div> 
+            </div>
     
-    <label class="labels" for="log_date">Date: </label>
-    <input type="text" id="log_date" name="log_date" class="datepicker">
 
-    <label class="labels" for="dog_weigth">Weigth: </label>
-    <input type="text" id="dog_weigth" name="dog_weigth">
+        <div class="col s12">
+            <label class="labels" for="other_notes">Other notes:</label>
+            <textarea name="other_notes" id="other_notes" class="materialize-textarea"></textarea>
+        </div>
 
-    <label class="labels" for="dog_activity">Activity </label>
-    <input type="text" id="dog_activity" name="dog_activity">
-
-    <label class="labels" for="dog_food">Food:</label>
-    <input type="text" id="dog_food" name="dog_food">
-
-    <label class="labels" for="other_notes">Other notes:</label>
-    <textarea name="other_notes" id="other_notes" class="materialize-textarea"></textarea>
-
-    <button type="submit" name="action">Add log</button>
+        <button type="submit" name="action">Add log</button>
 </form>
+</div>
 </div>
 {% endblock %}
 

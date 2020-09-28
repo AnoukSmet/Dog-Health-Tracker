@@ -37,14 +37,17 @@ body {
 
 
 
-#dog-profile {
+#dashboard {
 
     background-color: #D9D9D9;
     padding: 2rem;
     margin-top: 1rem;
     margin-left: 0;
     box-shadow: 0.2rem -0.3rem 0.2rem #c7c7c7;
+}
 
+#dog-profile {
+    padding-right: 2rem;
 }
 
 .profile-icons {
@@ -105,7 +108,10 @@ body {
 #log-month-year {
     font-size: 1.6rem;
     text-align: center;
+}
 
+#weigth-section {
+    padding: 0;
 }
 
 .labels {
@@ -121,11 +127,4 @@ body {
     #log-day {
         margin: 0 3rem;
     }
-}
-
-@media (min-width: 600px) {
-    .profile {
-    display: flex;
-    justify-content: center;
-}
 }

@@ -95,9 +95,11 @@ def update_log(log_id):
     {
         'dog_name': request.form.get('dog_name'),
         'log_date': request.form.get('log_date'),
-        'dog_weigth': request.form.get('dog_weigth'), 
+        'dog_weigth': request.form.get('dog_weigth'),
+        'weigth_metric': request.form.get('weigth_metric'), 
         'dog_activity': request.form.get('dog_activity'), 
         'dog_food': request.form.get('dog_food'),
+        'food_metric': request.form.get('food_metric'),
         'other_notes': request.form.get('other_notes'),
     })
     return redirect(url_for('view_dashboard'))
