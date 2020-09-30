@@ -12,6 +12,7 @@ body {
 
 .navigation {
     background-color: #284B63 !important;
+    margin-bottom: 2rem;
 }
 
 .navigation a {
@@ -59,6 +60,12 @@ body {
     color: #fff;
     font-weight: 400;
     font-size: 2rem;
+}
+
+/* Register */
+
+.sub-heading {
+    margin-bottom: 3rem;
 }
 
 /* Container */

@@ -1,7 +1,8 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for
+from flask import (Flask, render_template, redirect, request, url_for, session, flash)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
 
@@ -11,16 +12,46 @@ app = Flask(__name__)
 
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
+app.secret_key = os.environ.get("SECRET_KEY")
+
 
 mongo = PyMongo(app)
-
 
 @app.route('/')
 @app.route('/home')
 def home ():
     return render_template('home.html')
 
-    
+@app.route("/register", methods=["GET", "POST"])
+def register():
+
+    if request.method == "POST":
+        #check if user already exists in db
+        existing_user = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
+
+        if existing_user:
+            flash("Username already exists")
+            return redirect(url_for("register"))
+
+        register = {
+            "first_name": request.form.get("first_name"),
+            "last_name": request.form.get("last_name"),
+            "username": request.form.get("username").lower(),
+            "password": generate_password_hash(request.form.get("password"))
+        }
+ 
+        mongo.db.users.insert_one(register)
+
+        #put the new user into 'session' cookie
+
+        session["users"] = request.form.get("username").lower()
+        flash("Registration Successful!")
+        return redirect(url_for("view_dashboard", username=session["users"]))
+
+    return render_template("register.html")
+
+
 @app.route('/view_dashboard', methods=['GET', 'POST'])
 def view_dashboard():
     if request.method == 'POST':
