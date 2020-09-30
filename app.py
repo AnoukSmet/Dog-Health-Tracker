@@ -16,6 +16,11 @@ mongo = PyMongo(app)
 
 
 @app.route('/')
+@app.route('/home')
+def home ():
+    return render_template('home.html')
+
+    
 @app.route('/view_dashboard', methods=['GET', 'POST'])
 def view_dashboard():
     if request.method == 'POST':

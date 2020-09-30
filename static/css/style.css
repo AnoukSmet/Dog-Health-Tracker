@@ -19,6 +19,48 @@ body {
     color: #fff;
 }
 
+/* Home page */
+
+#dog-image {
+    background: url('../images/dog-image.jpg') ;
+    background-position: center center;
+    background-repeat: no-repeat; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    filter:opacity(70%);
+    height: 100vh;
+}
+
+#hero-container {
+    position: relative;
+    text-align: center;
+}
+
+#welcome-text {
+    position: absolute;
+    top: 0%;
+    left: 50%; 
+    transform: translate(-50%); 
+    font-size: 3rem;
+    font-weight: 600;
+    color: #284B63;
+    text-align: center;
+    width: 90%;
+}
+
+.homepage-buttons {
+    text-decoration: none;
+    background-color: #284B63;
+    border-radius: 2rem;
+    padding: 1rem;
+    margin: 2rem;
+    color: #fff;
+    font-weight: 400;
+    font-size: 2rem;
+}
+
 /* Container */
 
 .container {
