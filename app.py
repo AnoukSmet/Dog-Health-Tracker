@@ -96,11 +96,13 @@ def view_dashboard(user_id):
     if session.get('user_id'):
         if session['user_id'] == str(user["_id"]):
             dog = mongo.db.dogs.find_one({"user_id": user_id})
+            logs = mongo.db.logs.find()
 
     return render_template("dashboard.html",
                            user=user,
                            dog=dog,
-                           user_id=user_id)
+                           user_id=user_id,
+                           logs=logs)
 
 
 @app.route('/add_dog/<user_id>')
@@ -145,7 +147,7 @@ def delete_profile(dog_id):
 def add_log(user_id, dog_id):
     user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
     dog = mongo.db.dogs.find_one({"user_id": user_id})
-
+    
     if session.get('user_id'):
         if session['user_id'] == str(user["_id"]):
             dog = mongo.db.dogs.find_one({"user_id": user_id})
