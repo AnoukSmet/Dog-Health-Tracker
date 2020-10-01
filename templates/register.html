@@ -2,6 +2,7 @@
 
 {% block content %}
 <div class="container">
+    <h2>Register here to start tracking your dog's health!</h2>
     <div class="row">
         <h4 class="sub-heading">Please tell us a bit more about you:</h4>
         <form action="{{ url_for('register') }}" method="POST"> 
@@ -21,14 +22,11 @@
                 <div class="row">
                     <div class="col s6">                
                         <label class="labels" for="email">Email</label>
-                        <input id="email" type="email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
-
+                        <input id="email" type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
                     </div>
                     <div class="col s6">
                         <label class="labels" for="password">Password</label>
-                        <input id="password" name="password" type="password" class="validate"
-                        minlength="5" maxlength="15" required pattern=".{6,}" title="six or more characters">
-
+                        <input id="password" name="password" type="password" class="validate" minlength="5" maxlength="15" required pattern=".{6,}" title="six or more characters">
                     </div>
                 </div>
             </div>

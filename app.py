@@ -45,11 +45,37 @@ def register():
 
         #put the new user into 'session' cookie
 
-        session["users"] = request.form.get("email").lower()
+        session["user"] = request.form.get("email").lower()
         flash("Registration Successful!")
-        return redirect(url_for("add_dog", email=session["users"]))
+        return redirect(url_for("add_dog", email=session["user"]))
 
     return render_template("register.html")
+
+
+@app.route('/sign_in', methods=["GET", "POST"])
+def sign_in():
+    if request.method == "POST":
+        # check if user already exists in db
+        existing_user = mongo.db.users.find_one(
+            {"email": request.form.get("email").lower()})
+
+        if existing_user:
+            if check_password_hash(
+                    existing_user["password"], request.form.get("password")):
+                session["user"] = request.form.get("email").lower()
+                flash("Welcome, {}".format(
+                    request.form.get("email")))
+                return redirect(url_for("view_dashboard", email=session["user"]))
+            else:
+                # invalid password match
+                flash("Incorrect Email and/or Password combination")
+                return redirect(url_for("sign_in"))
+        else:
+            # Username doesn't exist
+            flash("Incorrect Email and/or Password combination")
+            return redirect(url_for("sign_in"))
+
+    return render_template("sign_in.html")
 
 
 @app.route('/view_dashboard', methods=['GET', 'POST'])

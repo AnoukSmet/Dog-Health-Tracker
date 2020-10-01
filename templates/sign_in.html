@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <h2>Sign in to your account</h2>
+    <div class="row">
+        <form action="{{ url_for('sign_in') }}" method="POST">
+            <div class="col s12">
+                <label class="labels" for="email">Email</label>
+                <input id="email" type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+            </div>
+            <div class="col s12">
+                <label class="labels" for="password">Password</label>
+                <input id="password" name="password" type="password" class="validate" minlength="5" maxlength="15" required pattern=".{6,}" title="six or more characters">
+            </div>
+            <div>
+                <button type="submit" name="action">Sign in</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}
+
