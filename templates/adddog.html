@@ -4,7 +4,8 @@
 <div class="container">
 <h2>Add dog</h2>
 
-<form action="{{ url_for('insert_dog') }}" method="POST"> 
+<form action="{{ url_for('insert_dog', user_id=user._id ) }}" method="POST"> 
+    <input type="text" class="user_id" name="user_id" id="user_id" value="{{user_id}}" hidden/>
     <label class="labels" for="dog_name">Name: </label>
     <input type="text" id="dog_name" name="dog_name">
 
@@ -15,7 +16,7 @@
     <input type="text" id="date_of_birth" name="date_of_birth" class="datepicker">
 
     <label class="labels" for="dog_description">Dog Description:</label> 
-    <textarea id="dog_description" class="materialize-textarea"></textarea>
+    <textarea id="dog_description" name="dog_description" class="materialize-textarea"></textarea>
     
     <div class="file-field input-field">
         <div class="btn">
@@ -26,6 +27,7 @@
             <input id="image_url" class="file-path validate" type="text" placeholder="Upload photo">
         </div>
     </div>
+
 
     <button type="submit" name="action">Add dog</button>
 </form>

@@ -7,8 +7,8 @@
     <div class="row">
         <form action="{{ url_for('sign_in') }}" method="POST">
             <div class="col s12">
-                <label class="labels" for="email">Email</label>
-                <input id="email" type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+                <label class="labels" for="username">Username</label>
+                <input id="username" type="text" name="username" pattern="^[a-zA-Z0-9]{5,15}$" required>
             </div>
             <div class="col s12">
                 <label class="labels" for="password">Password</label>
