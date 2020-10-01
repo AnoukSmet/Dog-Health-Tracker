@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+<div class="container">
 <h2>Add dog</h2>
 
 <form action="{{ url_for('insert_dog') }}" method="POST"> 
@@ -29,5 +29,5 @@
 
     <button type="submit" name="action">Add dog</button>
 </form>
-
+</div>
 {% endblock %}

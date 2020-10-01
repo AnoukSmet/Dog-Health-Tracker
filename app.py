@@ -28,7 +28,7 @@ def register():
     if request.method == "POST":
         #check if user already exists in db
         existing_user = mongo.db.users.find_one(
-            {"username": request.form.get("username").lower()})
+            {"email": request.form.get("email").lower()})
 
         if existing_user:
             flash("Username already exists")
@@ -37,7 +37,7 @@ def register():
         register = {
             "first_name": request.form.get("first_name"),
             "last_name": request.form.get("last_name"),
-            "username": request.form.get("username").lower(),
+            "email": request.form.get("email").lower(),
             "password": generate_password_hash(request.form.get("password"))
         }
  
@@ -45,9 +45,9 @@ def register():
 
         #put the new user into 'session' cookie
 
-        session["users"] = request.form.get("username").lower()
+        session["users"] = request.form.get("email").lower()
         flash("Registration Successful!")
-        return redirect(url_for("view_dashboard", username=session["users"]))
+        return redirect(url_for("add_dog", email=session["users"]))
 
     return render_template("register.html")
 
