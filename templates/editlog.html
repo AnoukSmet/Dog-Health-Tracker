@@ -36,31 +36,11 @@
                     <div class="col s4">
                         <select name="weight_metric">
                             {% for metric in weight_metrics %}
-                                {% if metric.metric_name == 'kg' %}
-                                <option value="kg" selected>kg</option>
-                                <option value="pounds">Pounds</option>
-                                <option value="ounces">Ounces</option>
-                                <option value="grams">grams</option>
-                                
-                                {% elif metric.metric_name == "pounds" %}
-                                <option value="kg">kg</option>
-                                <option value="pounds" selected>Pounds</option>
-                                <option value="ounces">Ounces</option>
-                                <option value="grams">grams</option>
-
-                                {% elif metric.metric_name == "ounces" %}
-                                <option value="kg">kg</option>
-                                <option value="pounds">Pounds</option>
-                                <option value="ounces" selected>Ounces</option>
-                                <option value="grams">grams</option>
-
-                                {% elif metric.metric_name == "grams" %}
-                                <option value="kg">kg</option>
-                                <option value="pounds">Pounds</option>
-                                <option value="ounces">Ounces</option>
-                                <option value="grams" selected>grams</option>
-                                                      
-                                {% endif %}                            
+                                {% if metric.metric_name == log.weight_metric %}
+                                    <option value="{{metric.metric_name}}" selected >{{metric.metric_name}}</option>
+                                {% else %}
+                                    <option value="{{metric.metric_name}}" >{{metric.metric_name}}</option>
+                                {% endif %}
                             {% endfor %}
                     </select>
                     </div>
@@ -81,30 +61,10 @@
                     <div class="col s4">
                         <select name="food_metric">
                             {% for metric in food_metrics %}
-                                {% if metric.metric_name == 'kg' %}
-                                <option value="kg" selected>kg</option>
-                                <option value="pounds">Pounds</option>
-                                <option value="ounces">Ounces</option>
-                                <option value="grams">grams</option>
-                                
-                                {% elif metric.metric_name == "pounds" %}
-                                <option value="kg">kg</option>
-                                <option value="pounds" selected>Pounds</option>
-                                <option value="ounces">Ounces</option>
-                                <option value="grams">grams</option>
-
-                                {% elif metric.metric_name == "ounces" %}
-                                <option value="kg">kg</option>
-                                <option value="pounds">Pounds</option>
-                                <option value="ounces" selected>Ounces</option>
-                                <option value="grams">grams</option>
-
-                                {% elif metric.metric_name == "grams" %}
-                                <option value="kg">kg</option>
-                                <option value="pounds">Pounds</option>
-                                <option value="ounces">Ounces</option>
-                                <option value="grams" selected>grams</option>
-                                                      
+                                {% if metric.metric_name == log.food_metric %}
+                                    <option value="{{metric.metric_name}}" selected >{{metric.metric_name}}</option>
+                                {% else %}
+                                    <option value="{{metric.metric_name}}" >{{metric.metric_name}}</option>
                                 {% endif %}
                           {% endfor %}
                         </select>
