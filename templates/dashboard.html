@@ -25,34 +25,35 @@
 </div>
 
 <div class="container">
-    <div class="row" id="dashboard">
-        <div class="col m3" id="dog-profile">
-            <div id="add-dog">
-                <a href="{{ url_for('add_dog', user_id=user._id)}}"><i class="material-icons icons">add_circle</i></a>
-            </div>
-            <h2>{{ dog.dog_name }}</h2>
-            <h5><strong>Breed</strong></h5>
-            <span>{{ dog.dog_breed }}</span>
-            <h5><strong>Date of birth</strong></h5>
-            <span>{{ dog.date_of_birth }}</span>
-            <h5><strong>Description</strong></h5>
-            <span>{{ dog.dog_description }}</span>
-            <div class="profile-icons">
-                <a href="{{ url_for('edit_profile', dog_id = dog._id) }}"><i class="material-icons icons">edit</i></a>
-                <a href="{{ url_for('delete_profile', dog_id = dog._id) }}"><i class="material-icons icons">delete</i></a>
-            </div>
-        </div>
-        
-    {% if logs_count == 0 %}
-     <div class="col m9">
-        <p>Click on the add button down right on the page to add your first log!</p>
+<div class="row">
+    <div class="col s12">
+      <ul class="tabs">
+      {% for dog in dogs %}
+        <li class="tab col s3"><a href="#{{dog.dog_id}}">{{dog.dog_name}}</a></li>
+      </ul>
     </div>
-
-    {% else %}
-
-    {% for log in logs %}  
+    <div id="{{dog.dog_id}}" class="col s12">
+        <div class="row dashboard">
+            <div class="col m3" id="dog-profile">
+                <div id="add-dog">
+                    <a href="{{ url_for('add_dog', user_id=user._id)}}"><i class="material-icons icons">add_circle</i></a>
+                </div>
+                <h2>{{ dog.dog_name }}</h2>
+                <h5><strong>Breed</strong></h5>
+                <span>{{ dog.dog_breed }}</span>
+                <h5><strong>Date of birth</strong></h5>
+                <span>{{ dog.date_of_birth }}</span>
+                <h5><strong>Description</strong></h5>
+                <span>{{ dog.dog_description }}</span>
+                <div class="profile-icons">
+                    <a href="{{ url_for('edit_profile', dog_id = dog._id) }}"><i class="material-icons icons">edit</i></a>
+                    <a href="{{ url_for('delete_profile', dog_id = dog._id) }}"><i class="material-icons icons">delete</i></a>
+                </div>
+            </div>
         
             <div class="col m9">
+            {% for log in logs %}
+                    {% if dog_id == dog.dog_id %}
                 <div class="row log">
                     <div class="col m3 log-date">
                         <span id="log-day">{{ log.log_date[0:2] }}</span>
@@ -68,12 +69,11 @@
                         <a href="{{ url_for('edit_log', log_id = log._id) }}"><i class="material-icons icons">edit</i></a>
                         <a href="{{ url_for('delete_log', log_id = log._id) }}"><i class="material-icons icons">delete</i></a>
                     </div>
+
                 </div>
+                {% endif %}
+        {% endfor %}
             </div>
-
-    {% endfor %}
-
-    {% endif %}
         
             <div class="fixed-action-btn">
                 <a class="btn-floating btn-large"  href="{{ url_for('add_log',  dog_id=dog._id, user_id=user._id) }}">
@@ -81,6 +81,12 @@
                 </a>
             </div>
     </div>
-</div>   
+    
+    </div>
 
+</div>
+
+</div>
+            
+{% endfor %}
 {% endblock %}

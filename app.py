@@ -81,10 +81,12 @@ def sign_in():
 
     return render_template("sign_in.html")
 
+
 @app.route('/log_out')
 def log_out():
     session.pop('user_id', None)
     return render_template('home.html')
+
 
 @app.route('/view_dashboard/<user_id>')
 def view_dashboard(user_id):
@@ -95,15 +97,15 @@ def view_dashboard(user_id):
 
     if session.get('user_id'):
         if session['user_id'] == str(user["_id"]):
-            dog = mongo.db.dogs.find_one({"user_id": user_id})
-            dog_id = str(dog["_id"])
-            logs = mongo.db.logs.find({"dog_id": dog_id})
+            dogs = mongo.db.dogs.find({"user_id": user_id})
+            # dog_id = str(dog["_id"])
+            logs = mongo.db.logs.find()
             logs_count = logs.count()
 
         return render_template("dashboard.html",
                                user=user,
                                user_id=user_id,
-                               dog=dog,
+                               dogs=dogs,
                                logs=logs,
                                logs_count=logs_count)
 
@@ -151,7 +153,7 @@ def delete_profile(dog_id):
 def add_log(user_id, dog_id):
     user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
     dog = mongo.db.dogs.find_one({"user_id": user_id})
-    
+
     if session.get('user_id'):
         if session['user_id'] == str(user["_id"]):
             dog = mongo.db.dogs.find_one({"user_id": user_id})
@@ -209,11 +211,13 @@ def update_log(log_id):
     })
     return redirect(url_for('view_dashboard'))
 
+
 @app.route('/delete_log/<log_id>')
 def delete_log(log_id):
     logs = mongo.db.logs
     logs.remove({'_id': ObjectId(log_id)})
     return redirect(url_for('view_dashboard'))
+
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
