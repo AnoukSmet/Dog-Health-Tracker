@@ -81,6 +81,10 @@ def sign_in():
 
     return render_template("sign_in.html")
 
+@app.route('/log_out')
+def log_out():
+    session.pop('user_id', None)
+    return render_template('home.html')
 
 @app.route('/view_dashboard/<user_id>')
 def view_dashboard(user_id):
