@@ -1,6 +1,28 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<ul id="dropdown1" class="dropdown-content">
+  <li><a href="#!">View profile</a></li>
+  <li><a href="#!">Log out</a></li>
+</ul>
+<nav class="navigation">
+    <div> 
+        <a href="#" class="brand-logo center">Dog Health Tracker</a>
+        <ul class="right">
+            <li><a class="dropdown-trigger" href="#!" data-target="dropdown1" id="profile-name">{{user.username}}<i class="material-icons right">arrow_drop_down</i></a></li>
+        </ul>
+    
+    </div>
+</nav>
+<div class="container">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <h4 class="center-align">{{ message }}</h4>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
 
 <div class="container">
     <div class="row" id="dashboard">
@@ -21,8 +43,15 @@
             </div>
         </div>
         
-    
-    {% for log in logs %}        
+    {% if logs_count == 0 %}
+     <div class="col m9">
+        <p>Click on the add button down right on the page to add your first log!</p>
+    </div>
+
+    {% else %}
+
+    {% for log in logs %}  
+        
             <div class="col m9">
                 <div class="row log">
                     <div class="col m3 log-date">
@@ -41,8 +70,10 @@
                     </div>
                 </div>
             </div>
+
     {% endfor %}
 
+    {% endif %}
         
             <div class="fixed-action-btn">
                 <a class="btn-floating btn-large"  href="{{ url_for('add_log',  dog_id=dog._id, user_id=user._id) }}">
@@ -50,5 +81,6 @@
                 </a>
             </div>
     </div>
-</div>  
+</div>   
+
 {% endblock %}

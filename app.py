@@ -59,21 +59,17 @@ def register():
 def sign_in():
     if request.method == "POST":
         # check if user already exists in db
-        existing_user = mongo.db.users.find_one(
+        user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
 
-        if existing_user:
-            if check_password_hash(existing_user["password"],
+        if user:
+            if check_password_hash(user["password"],
                request.form.get("password")):
-                user = mongo.db.users.find_one({
-                    'username': request.form.get("username").lower()})
                 user_id = user['_id']
                 session['user_id'] = str(user_id)
-                flash("Welcome")
-                dog = mongo.db.dogs.find_one({
-                    'user_id': user_id})
-                return redirect(url_for("view_dashboard", 
-                                        user_id=user_id, dog=dog))
+
+                return redirect(url_for("view_dashboard",
+                                        user_id=user_id))
             else:
                 # invalid password match
                 flash("Incorrect username and/or Password combination")
@@ -96,18 +92,22 @@ def view_dashboard(user_id):
     if session.get('user_id'):
         if session['user_id'] == str(user["_id"]):
             dog = mongo.db.dogs.find_one({"user_id": user_id})
-            logs = mongo.db.logs.find()
+            dog_id = str(dog["_id"])
+            logs = mongo.db.logs.find({"dog_id": dog_id})
+            logs_count = logs.count()
 
-    return render_template("dashboard.html",
-                           user=user,
-                           dog=dog,
-                           user_id=user_id,
-                           logs=logs)
+        return render_template("dashboard.html",
+                               user=user,
+                               user_id=user_id,
+                               dog=dog,
+                               logs=logs,
+                               logs_count=logs_count)
 
 
 @app.route('/add_dog/<user_id>')
 def add_dog(user_id):
-    return render_template("adddog.html", user_id=user_id)
+    user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
+    return render_template("adddog.html", user_id=user_id, user=user)
 
 
 @app.route('/insert_dog/<user_id>', methods=['POST'])
@@ -163,8 +163,8 @@ def add_log(user_id, dog_id):
                            user_id=user_id)
 
 
-@app.route('/insert_log/<user_id>', methods=['POST'])
-def insert_log(user_id):
+@app.route('/insert_log/<user_id>/<dog_id>', methods=['POST'])
+def insert_log(user_id, dog_id):
     user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
     if user is None:
         return redirect(url_for('sign_in'))
@@ -175,7 +175,9 @@ def insert_log(user_id):
             logs = mongo.db.logs
             logs.insert_one(request.form.to_dict())
 
-    return redirect(url_for('view_dashboard', user_id=user_id, dog=dog, user=user))
+    return redirect(url_for('view_dashboard',
+                            user_id=user_id, dog=dog,
+                            user=user))
 
 
 @app.route('/edit_log/<log_id>')

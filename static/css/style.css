@@ -12,12 +12,15 @@ body {
 
 .navigation {
     background-color: #284B63 !important;
-    margin-bottom: 2rem;
 }
 
 .navigation a {
     text-decoration: none;
     color: #fff;
+}
+
+#profile-name {
+    font-size: 1.6rem;
 }
 
 /* Home page */

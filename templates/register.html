@@ -1,5 +1,19 @@
 {% extends 'base.html' %}
+<nav class="navigation">
+    <div>
+        <a href="#" class="brand-logo center">Dog Health Tracker</a>
+    </div>
+</nav>
 
+<div class="container">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <h4 class="center-align">{{ message }}</h4>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
 {% block content %}
 <div class="container">
     <h2>Register here to start tracking your dog's health!</h2>
