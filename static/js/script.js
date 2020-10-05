@@ -21,4 +21,6 @@
       coverTrigger: false,
   });
 
-
+ $(document).ready(function(){
+    $('.tabs').tabs();
+  });
