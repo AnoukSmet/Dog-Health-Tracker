@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<ul id="dropdown1" class="dropdown-content">
+<ul id="profile-dropdown" class="dropdown-content">
   <li><a href="#!">View profile</a></li>
   <li><a href="{{ url_for('log_out') }}">Log out</a></li>
 </ul>
 <nav class="navigation">
     <div> 
-        <a href="#" class="brand-logo center" id="logo">Dog Health Tracker</a>
+        <a href="#" class="brand-logo" id="logo">Dog Health Tracker</a>
         <ul class="right">
-            <li><a class="dropdown-trigger" href="#!" data-target="dropdown1" id="username">{{user.username}}<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a class="dropdown-trigger" href="#!" data-target="profile-dropdown" id="username-dropdown"><i class="material-icons left" id="account-icon">account_circle</i><i class="material-icons right" id="dropdown-icon">arrow_drop_down</i></a></li>
         </ul>
     
     </div>
@@ -26,49 +26,74 @@
 
 <div class="container">
     <div class="row">
-        <div class="col s12">
-        <ul class="tabs">
-        {% for dog in dogs %}
-            {% for dog_profile in dog_profiles %}
-            <li class="tab col s3"><a href="#{{dog_profile.dog_id}}">{{dog_profile.dog_name}}</a></li>
-            {% endfor %}
-        </ul>
+        <div class="col s12" id="dog-selection">
+            <form action="" method="POST" class="row">
+                <div class="col s10">
+                    <select id="dog-dropdown">
+                    {% for dog in dogs %}
+                        {% for dog_profile in dog_profiles %}   
+                        <option value="{{dog_profile.dog_name}}">{{dog_profile.dog_name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col s2">
+                    <button id="profile-selection-button" type="submit">Select profile</button>
+                </div>
+            </form>
         </div>
         <div id="{{dog_id}}" class="col s12 dashboard">
-                <div class="col m3" id="dog-profile">
-                    <div id="add-dog">
-                        <a href="{{ url_for('add_dog', user_id=user._id)}}"><i class="material-icons icons">add_circle</i></a>
+            <div class="col s12 m3" id="dog-profile">
+                <div class="row">
+                    <div class="col s12">
+                        <div id="add-dog">
+                            <a href="{{ url_for('add_dog', user_id=user._id)}}" title="Add another dog"><i class="material-icons icons">add_circle</i></a>
+                        </div>
                     </div>
-                    <h2>{{ dog.dog_name }}</h2>
-                    <h5><strong>Breed</strong></h5>
-                    <span>{{ dog.dog_breed }}</span>
-                    <h5><strong>Date of birth</strong></h5>
-                    <span>{{ dog.date_of_birth }}</span>
-                    <h5><strong>Description</strong></h5>
-                    <span>{{ dog.dog_description }}</span>
-                    <div class="profile-icons">
-                        <a href="{{ url_for('edit_profile', dog_id = dog._id , user_id= user._id) }}"><i class="material-icons icons">edit</i></a>
-                        <a href="{{ url_for('delete_profile', dog_id = dog._id, user_id= user._id) }}"><i class="material-icons icons">delete</i></a>
+                    {% if dog.dog_image ==  "" %}
+                    <div class="col s12" id="image-container">
+                        <div id="no-image">
+                            <a href="{{ url_for('edit_profile', dog_id = dog._id , user_id= user._id) }}" title="Add profile image of your dog"> Click here to add a profile image of your dog!</a>
+                        </div>
                     </div>
-                </div>
+                    <!-- <img src="../static/images/default-dog-image.jpg" id="default-profile-image" alt="default_profile_image_dog"> -->
+                    {% else %}
+                    <div class="col s12">
+                        <img src="{{ dog.dog_image }}" id="profile-image" alt="profile_image_dog">
+                    </div>
+                    {% endif %}
+                    <div class="col s12">  
+                        <h2 id="dog-heading">{{ dog.dog_name }}</h2>
+                        <h5 class="dog-subheading"><strong>Breed</strong></h5>
+                        <span class="dog-body">{{ dog.dog_breed }}</span>
+                        <h5 class="dog-subheading"><strong>Date of birth</strong></h5>
+                        <span class="dog-body">{{ dog.date_of_birth }}</span>
+                        <h5 class="dog-subheading"><strong>Description</strong></h5>
+                        <span class="dog-body">{{ dog.dog_description }}</span>
+                        <div class="profile-icons">
+                            <a href="{{ url_for('edit_profile', dog_id = dog._id , user_id= user._id) }}" title="Edit dog profile"><i class="material-icons icons">edit</i></a>
+                            <a href="{{ url_for('delete_profile', dog_id = dog._id, user_id= user._id) }}" title="Delete dog profile"><i class="material-icons icons">delete</i></a>
+                        </div>
+                    </div>
+                </div>  
+            </div>
             
                 <div class="col m9">
                 {% for log in logs %}
                         {% if dog_id == dog.dog_id %}
                     <div class="row log">
-                        <div class="col m3 log-date">
+                        <div class="col s12 m3 log-date">
                             <span id="log-day">{{ log.log_date[0:2] }}</span>
                             <span id="log-month-year"> {{log.log_date[3:]}}</span>
                         </div>
-                        <div class="col m9 ">
+                        <div class="col s12 m7">
                             <p class="log-element">Activity: {{ log.dog_activity }}</p>
                             <p class="log-element">Food: {{ log.dog_food }} {{log.food_metric}}</p>
                             <p class="log-element">Weight: {{ log.dog_weight }} {{log.weight_metric}}</p>
                             <p class="log-element">Other notes: {{ log.other_notes }}</p>
                         </div>
-                        <div class="log-icons">
-                            <a href="{{ url_for('edit_log', log_id = log._id , user_id= user._id) }}"><i class="material-icons icons">edit</i></a>
-                            <a href="{{ url_for('delete_log', log_id = log._id , user_id= user._id) }}"><i class="material-icons icons">delete</i></a>
+                        <div class="log-icons s12 m2">
+                            <a href="{{ url_for('edit_log', log_id = log._id , user_id= user._id) }}" title="Edit log"><i class="material-icons icons">edit</i></a>
+                            <a href="{{ url_for('delete_log', log_id = log._id , user_id= user._id) }}" title="Delete log"><i class="material-icons icons">delete</i></a>
                         </div>
 
                     </div>
@@ -77,7 +102,7 @@
                 </div>
             
                 <div class="fixed-action-btn">
-                    <a class="btn-floating btn-large"  href="{{ url_for('add_log',  dog_id=dog._id, user_id=user._id) }}">
+                    <a class="btn-floating btn-large" href="{{ url_for('add_log',  dog_id=dog._id, user_id=user._id) }}" title="Add another log">
                         <i class="material-icons bg-color">add</i>
                     </a>
                 </div>

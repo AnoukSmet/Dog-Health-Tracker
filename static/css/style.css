@@ -5,7 +5,7 @@ html {
 }
 
 body {
-    font-size: 1.6rem;
+    font-size: 2rem;
     font-family: "Cormorant Garamond", Arial, Helvetica, sans-serif;
     color: #284B63;
 }
@@ -15,16 +15,15 @@ body {
 
 .bg-color {
     background-color: #284B63;
-    color: #4e88af;
+    color: #fff;
 }
 
 .bg-color:hover {
     background-color: #4e88af;
-    color: #284b63;
 }
 
 
-/* General styling */
+/* General styling - multiple use */
 
 .heading{
     font-size: 2.4rem;
@@ -45,10 +44,20 @@ body {
     color: #284B63;
 }
 
+.icons {
+    color: #284B63;
+    font-size: 4rem;
+}
+
+.icons:hover{
+    color: #4e88af;
+}
+
 /* Navigation */
 
 .navigation {
     background-color: #284B63 !important;
+    position: relative;
 }
 
 .navigation a {
@@ -62,9 +71,30 @@ body {
     width: 60%;
 }
 
-#username {
-    font-size: 1.6rem;
+.brand-logo {
+    transform: translateX(-50%);
+    left: 50%;
+    position: absolute;
 }
+
+    #account-icon {
+        margin: 0;
+        font-size: 4rem;
+    }
+    #dropdown-icon {
+        margin: 0;
+    }
+
+    #account-icon:hover {
+        color: #4e88af;
+    }
+
+    #profile-dropdown a {
+        padding: 1rem 1rem 0 1rem;
+        color: #284B63;
+        background-color: #fff;
+    }
+
 
 /* Home page */
 
@@ -161,7 +191,7 @@ input:focus{
 }
 
 /* Dashboard */
-
+    
 .dashboard {
     background-color: #D9D9D9;
     padding: 2rem;
@@ -170,70 +200,124 @@ input:focus{
     box-shadow: 0.2rem -0.3rem 0.2rem #c7c7c7;
 }
 
-#dog-profile {
-    padding-right: 2rem;
-    height: 100%;
-}
-
-.profile-icons {
-    margin-top: 1rem;
-}
-
-#add-dog {
-    float: right;
-    vertical-align: middle;
-    line-height: 5rem;
-}
-
-.icons {
-    color: #284B63;
-    font-size: 3rem;
-}
-
-.icons:hover{
-    color: #4e88af;
-}
-
-.log {
-    background-color: #F5F5F5   ;
-    padding: 1rem 1rem 0 1rem;
-    margin-top: 1rem;
-    box-shadow: 0.2rem -0.3rem 0.2rem #c7c7c7;
-}
-
-.log-element {
-    margin: 0.5rem 0;
-}
-
-.log-icons {
-    float: right;
-}
-
-.log-date {
-    text-align: center;
-}
-
-#log-day {
-    font-size: 7rem;
-    margin: 0;
-    text-align: center;
-    line-height: 9rem;
-}
-
-#log-month-year {
-    font-size: 1.6rem;
-    text-align: center;
-}
-
-#weigth-section {
+#dog-selection {
+    text-align: right;
+    margin-top: 1rem; 
     padding: 0;
 }
 
+#profile-selection-button {
+    background-color: #284B63;
+    border: 0.1rem solid #284B63;
+    border-radius: 1rem;
+    padding: 1rem;
+    color: #fff;
+    font-size: 1.6rem;
+}
+
+.dropdown-content li>a, .dropdown-content li>span {
+    color: #284B63 !important;
+}
+
+.select-wrapper input.select-dropdown {
+    color: #284B63;
+}
+
+    /* Dog Profile */
+
+    #dog-profile {
+        padding-right: 2rem;
+        height: 100%;
+        text-align: center;
+    }
+
+    #profile-image {
+        width: 100%;
+        height: auto;
+        border-radius: 50%;
+    }
+
+    #image-container {
+        display: table
+    }
+
+    #no-image {
+        display: table-cell;
+        border: 0.5rem solid #284B63;
+        background-color: #F5F5F5;
+        border-radius: 50%;
+        width: 20rem;;
+        height: 20rem; 
+        padding: 2rem;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    #no-image a {
+        text-decoration: none;
+        color: #284B63;
+    }
+
+    #no-image a:hover {
+        color: #4e88af;
+    }
+
+    #dog-heading {
+        font-size: 4rem;
+        margin: 1rem;
+    }
+
+    .dog-subheading {
+        font-size: 2rem;
+        font-weight: 600;
+    }
+
+    .dog-body {
+        font-size: 1.6rem;
+    }
+
+    #add-dog {
+    float: left;
+    margin-top: 1rem;
+    }
+
+    .profile-icons {
+        margin-top: 2rem;
+    }
+
+    /* Log Display */
+    .log {
+        background-color: #F5F5F5   ;
+        padding: 1rem 1rem 0 1rem;
+        margin-top: 1rem;
+        box-shadow: 0.2rem -0.3rem 0.2rem #c7c7c7;
+    }
+
+    .log-element {
+        margin: 0.5rem 0;
+    }
+
+    .log-date {
+        margin-bottom: 1rem;
+        font-family: "Play", Arial, Helvetica, sans-serif;
+    }
+
+    #log-day {
+        font-size: 6rem;
+        margin: 0;
+        text-align: center;
+    }
+
+    #log-month-year {
+        font-size: 2.5rem;
+        text-align: center;
+    }
+
+    .log-icons {
+        float: right;
+    }
+
 /* Add dog - Add log */
-
-
-
-
 
 #profile-selection {
     margin-bottom: 2rem;
@@ -247,12 +331,17 @@ input:focus{
     }
 }
 
-
 @media only screen and (min-width: 993px) {
   .container {
     width: 80%;
   }
 } 
+
+@media (min-width: 375px) {
+    #logo {
+        text-align: center;
+    }
+}
 
 @media (min-width: 768px) {
     #logo {
@@ -278,4 +367,13 @@ input:focus{
     #sign-in {
         width: 70%;
     }
+
+    .log-date {
+        text-align: center;
+    }
+
+    #log-day {
+        display: block;
+    }
+
 }

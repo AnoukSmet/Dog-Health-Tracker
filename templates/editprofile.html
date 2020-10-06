@@ -26,6 +26,9 @@
     <label class="labels" for="dog_description">Description: </label>
     <textarea name="dog_description" id="dog_description" class="materialize-textarea">{{ profile.dog_description }} </textarea>
 
+    <label class="labels" for="dog_image">Dog Image: </label>
+    <input type="url" id="dog_image" name="dog_image" placeholder="Paste your image URL here" value="{{profile.dog_image}}">
+
     <button type="submit" name="action">Update profile</button>
 </form>
 </div>

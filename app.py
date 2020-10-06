@@ -142,7 +142,7 @@ def update_profile(user_id, dog_id):
         'dog_breed': request.form.get('dog_breed'),
         'date_of_birth': request.form.get('date_of_birth'),
         'dog_description': request.form.get('dog_description'),
-        'image_url': request.form.get('image_url')
+        'dog_image': request.form.get('dog_image')
     })
     return redirect(url_for('view_dashboard', user_id=user_id))
 
