@@ -7,6 +7,7 @@ html {
 body {
     font-size: 1.6rem;
     font-family: "Cormorant Garamond", Arial, Helvetica, sans-serif;
+    color: #284B63;
 }
 
 
@@ -28,7 +29,8 @@ body {
 .heading{
     font-size: 2.4rem;
     font-weight: 600;
-    font-family: "Play", Arial, Helvetica, sans-serif
+    font-family: "Play", Arial, Helvetica, sans-serif;
+    padding: 0 1rem;
 }
 
 .sub-heading {
@@ -40,7 +42,7 @@ body {
 
 .labels {
     font-size: 1.6rem;
-    color: #000000;
+    color: #284B63;
 }
 
 /* Navigation */
@@ -108,8 +110,43 @@ body {
 
 /* Register */
 
+#register {
+    border: 0.3rem solid #284B63;
+    margin-top: 1rem;
+    text-align: center;
+    width: 90%;
+}
+
+.input-fields {
+    box-sizing: border-box;
+}
+
+#username,
+#password {
+    width: 90%;
+    border-bottom: 0.05rem solid #284B63 !important;
+}
 
 
+
+input:focus{
+    border-bottom: 0.1rem solid #284B63 !important;
+    box-shadow: 0 0.1rem 0 0 #284B63 !important; 
+}
+
+.form-buttons {
+    background-color: #284B63;
+    border: 0.1rem solid #284B63;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin: 1rem;
+    color: #fff;
+    font-size: 1.6rem;
+}
+
+.form-buttons:hover {
+    background-color: #152c3c;
+}
 /* Container */
 
 .container {
@@ -227,5 +264,9 @@ body {
 
     .labels {
         font-size: 2rem;
+    }
+
+    #register {
+        width: 70%;
     }
 }
