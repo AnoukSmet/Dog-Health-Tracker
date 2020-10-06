@@ -3,14 +3,14 @@
 {% block content %}
 <nav class="navigation">
     <div>
-        <a href="#" class="brand-logo center">Dog Health Tracker</a>
+        <a href="#" class="brand-logo center" id="logo">Dog Health Tracker</a>
     </div>
 </nav>
 <div class="container-fluid" id="hero-container">
     <div id="dog-image"></div>
     <div id="welcome-text">
-        <h2>Welcome to your personal Dog Health Tracker</h2>
-        <p>Register or sign in and start tracking!</p>
+        <h2 class="heading">Welcome to your personal Dog Health Tracker</h2>
+        <h4 class="sub-heading">Register now or sign in and start tracking!</h4>
         <a href="{{ url_for('register')}}" class="homepage-buttons">Register</a>
         <a href="{{ url_for('sign_in') }}" class="homepage-buttons">Sign in</a>
     </div>

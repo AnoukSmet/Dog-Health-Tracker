@@ -17,10 +17,12 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
+
 @app.route('/')
 @app.route('/home')
 def home():
     return render_template('home.html')
+
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -38,7 +40,7 @@ def register():
         first_name = request.form.get('first_name')
         last_name = request.form.get('last_name')
         password = generate_password_hash(request.form.get("password"))
- 
+
         mongo.db.users.insert_one({
             'first_name': first_name,
             'last_name': last_name,
@@ -199,7 +201,7 @@ def edit_log(user_id, log_id):
     log_to_update = mongo.db.logs.find_one({"_id": ObjectId(log_id)})
     return render_template('editlog.html',
                            log=log_to_update,
-                           dogs=mongo.db.dogs.find(),
+                           dogs=mongo.db.dogs.find({"user_id": user_id}),
                            weight_metrics=mongo.db.weight_metrics.find(),
                            food_metrics=mongo.db.food_metrics.find(),
                            user_id=user_id,

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=Play&display=swap');
 
 html {
     font-size: 62.5%;
@@ -5,8 +6,42 @@ html {
 
 body {
     font-size: 1.6rem;
+    font-family: "Cormorant Garamond", Arial, Helvetica, sans-serif;
 }
 
+
+/* colors */ .container
+
+.bg-color {
+    background-color: #284B63;
+    color: #4e88af;
+}
+
+.bg-color:hover {
+    background-color: #4e88af;
+    color: #284b63;
+}
+
+
+/* General styling */
+
+.heading{
+    font-size: 2.4rem;
+    font-weight: 600;
+    font-family: "Play", Arial, Helvetica, sans-serif
+}
+
+.sub-heading {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 5rem;
+    font-family: "Play", Arial, Helvetica, sans-serif
+}
+
+.labels {
+    font-size: 1.6rem;
+    color: #000000;
+}
 
 /* Navigation */
 
@@ -19,7 +54,13 @@ body {
     color: #fff;
 }
 
-#profile-name {
+#logo {
+    font-family: "Play", Arial, Helvetica, sans-serif;
+    font-size: 2rem;
+    width: 60%;
+}
+
+#username {
     font-size: 1.6rem;
 }
 
@@ -46,11 +87,8 @@ body {
     position: absolute;
     top: 0%;
     left: 50%; 
-    transform: translate(-50%); 
-    font-size: 3rem;
-    font-weight: 600;
+    transform: translate(-50%);
     color: #284B63;
-    text-align: center;
     width: 90%;
 }
 
@@ -58,18 +96,19 @@ body {
     text-decoration: none;
     background-color: #284B63;
     border-radius: 2rem;
-    padding: 1rem;
-    margin: 2rem;
+    padding: 1rem 2rem;
+    margin: 1rem;
     color: #fff;
-    font-weight: 400;
-    font-size: 2rem;
+    font-size: 2.5rem;
+}
+
+.homepage-buttons:hover {
+    background-color: #152c3c;
 }
 
 /* Register */
 
-.sub-heading {
-    margin-bottom: 3rem;
-}
+
 
 /* Container */
 
@@ -79,18 +118,9 @@ body {
   width: 90%;
 }
 
-@media only screen and (min-width: 993px) {
-  .container {
-    width: 80%;
-  }
-} 
-
-/* Dog Profile */
-
-
+/* Dashboard */
 
 .dashboard {
-
     background-color: #D9D9D9;
     padding: 2rem;
     margin-top: 1rem;
@@ -111,16 +141,6 @@ body {
     float: right;
     vertical-align: middle;
     line-height: 5rem;
-}
-
-.bg-color {
-    background-color: #284B63;
-    color: #4e88af;
-}
-
-.bg-color:hover {
-    background-color: #4e88af;
-    color: #284b63;
 }
 
 .icons {
@@ -167,17 +187,45 @@ body {
     padding: 0;
 }
 
-.labels {
-    font-size: 1.6rem;
-    color: #000000;
-}
+/* Add dog - Add log */
+
+
+
+
 
 #profile-selection {
     margin-bottom: 2rem;
 }
 
+/* Media Queries */ 
+
 @media (min-width: 1200px) {
     #log-day {
         margin: 0 3rem;
+    }
+}
+
+
+@media only screen and (min-width: 993px) {
+  .container {
+    width: 80%;
+  }
+} 
+
+@media (min-width: 768px) {
+    #logo {
+        font-size: 3rem;
+    }
+
+    .heading {
+        font-size: 3rem;
+    }
+
+    .sub-heading {
+        font-size: 2.5 rem
+    }
+
+    .labels {
+        font-size: 2rem;
     }
 }
