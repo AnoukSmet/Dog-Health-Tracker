@@ -27,19 +27,20 @@
 <div class="container">
     <div class="row">
         <div class="col s12" id="dog-selection">
-            <form action="" method="POST" class="row">
-                <div class="col s10">
-                    <select id="dog-dropdown">
-                    {% for dog in dogs %}
-                        {% for dog_profile in dog_profiles %}   
-                        <option value="{{dog_profile.dog_name}}">{{dog_profile.dog_name}}</option>
-                        {% endfor %}
+            {% if count_dogs > 1 %}
+            <form action="{{ url_for('view_dashboard', dog_id = dog._id, user_id=user._id)}}" method="POST" class="row">
+                <div class="col s7 m9">
+                    <select id="dog-dropdown" name="dog_name">
+                    {% for dog in dogs %} 
+                        <option id="dog_name" value="{{dog.dog_name}}">{{dog.dog_name}}</option>
+                    {% endfor %}
                     </select>
                 </div>
-                <div class="col s2">
+                <div class="col s5 m3">
                     <button id="profile-selection-button" type="submit">Select profile</button>
                 </div>
             </form>
+            {% endif %}
         </div>
         <div id="{{dog_id}}" class="col s12 dashboard">
             <div class="col s12 m3" id="dog-profile">
@@ -79,7 +80,6 @@
             
                 <div class="col m9">
                 {% for log in logs %}
-                        {% if dog_id == dog.dog_id %}
                     <div class="row log">
                         <div class="col s12 m3 log-date">
                             <span id="log-day">{{ log.log_date[0:2] }}</span>
@@ -97,7 +97,6 @@
                         </div>
 
                     </div>
-                    {% endif %}
             {% endfor %}
                 </div>
             
@@ -110,5 +109,4 @@
         </div>
     </div>
 </div>
-{% endfor %} 
 {% endblock %}

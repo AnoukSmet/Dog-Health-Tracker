@@ -86,28 +86,40 @@ def log_out():
     return render_template('home.html')
 
 
-@app.route('/view_dashboard/<user_id>')
+@app.route('/view_dashboard/<user_id>', methods=["GET", "POST"])
 def view_dashboard(user_id):
     user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
+    dogs = mongo.db.dogs.find({"user_id": user_id})
+    count_dogs = dogs.count()
 
     if user is None:
         return redirect(url_for('sign_in'))
 
     if session.get('user_id'):
         if session['user_id'] == str(user["_id"]):
-            dogs = mongo.db.dogs.find({"user_id": user_id})
-            dog_profiles = mongo.db.dogs.find({"user_id": user_id})
-            # dog_id = str(dog["_id"])
-            logs = mongo.db.logs.find()
-            logs_count = logs.count()
+            if request.method == 'POST':
+                selected_profile = request.form.get('dog_name')
+                dog = mongo.db.dogs.find_one({"dog_name": selected_profile})
+                dog_id = str(dog["_id"])
+                logs = mongo.db.logs.find({"dog_id": dog_id})
+            else:
+                dog = mongo.db.dogs.find_one()
+                dog_id = str(dog["_id"])
+                logs = mongo.db.logs.find({"dog_id": dog_id})
 
-        return render_template("dashboard.html",
-                               user=user,
-                               user_id=user_id,
-                               dogs=dogs,
-                               logs=logs,
-                               logs_count=logs_count,
-                               dog_profiles=dog_profiles)
+            # dogs = mongo.db.dogs.find({"user_id": user_id})
+            # dog_profiles = mongo.db.dogs.find({"user_id": user_id})
+            # # dog_id = str(dog["_id"])
+            # logs = mongo.db.logs.find()
+            # logs_count = logs.count()
+
+            return render_template("dashboard.html",
+                                   user=user,
+                                   user_id=user_id,
+                                   dogs=dogs,
+                                   logs=logs,
+                                   dog=dog,
+                                   count_dogs=count_dogs)
 
 
 @app.route('/add_dog/<user_id>')
