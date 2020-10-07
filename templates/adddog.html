@@ -28,6 +28,10 @@
 
 
         <button type="submit" name="action" class="form-buttons">Add dog</button>
+        {% if dogs != 0 %}
+        <a href="{{url_for('view_dashboard', user_id=user_id)}}" class="form-buttons">Cancel</a>
+        {% endif %}
+
     </form>
 </div>
 {% endblock %}

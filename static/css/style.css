@@ -11,14 +11,22 @@ body {
 }
 
 input,
-textarea {
+textarea,
+select {
     color: #284B63;
+    font-family: "Cormorant Garamond", Arial, Helvetica, sans-serif;
+    font-size: 2rem;
+    margin-bottom: 2rem;
 }
 
 input:focus,
 textarea:focus{
     border-bottom: 0.1rem solid #284B63 !important;
     box-shadow: 0 0.1rem 0 0 #284B63 !important; 
+}
+
+button:focus {
+    background-color: #284B63;
 }
 
 
@@ -136,6 +144,7 @@ textarea:focus{
 }
 
 .homepage-buttons {
+    font-family: "Cormorant Garamond", Arial, Helvetica, sans-serif;
     text-decoration: none;
     background-color: #284B63;
     border-radius: 2rem;
@@ -168,6 +177,7 @@ textarea:focus{
 }
 
 .form-buttons {
+    font-family: "Cormorant Garamond", Arial, Helvetica, sans-serif;
     background-color: #284B63;
     border: 0.1rem solid #284B63;
     border-radius: 1rem;
@@ -175,6 +185,7 @@ textarea:focus{
     margin-top: 1rem; 
     color: #fff;
     font-size: 1.6rem;
+    line-height: 2.1rem;
 }
 
 .form-buttons:hover {
@@ -188,6 +199,14 @@ textarea:focus{
     width: 90%;
 }
 
+#register-signin-link a{
+    text-decoration: underline;
+    color: #284B63;
+}
+
+#register-signin-link a:hover {
+    color: #4e88af;
+}
 
 /* Dashboard */
     
@@ -220,7 +239,8 @@ textarea:focus{
 
 .select-wrapper input.select-dropdown {
     color: #284B63;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
+    border-bottom: 0.1rem solid #284B63;
     }
 
     /* Dog Profile */
@@ -345,12 +365,21 @@ textarea:focus{
     background-color: #284B63;
 }
 
+.datepicker-table td.is-today {
+    color: #284B63;
+    background-color: #D9D9D9;
+}
+
 .btn-flat {
     color: #284B63;
 }
 
 .active {
     color: #284B63 !important;
+}
+
+.metrics {
+    margin-bottom: 0;
 }
 
 /* Media Queries */  

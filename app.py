@@ -104,7 +104,7 @@ def view_dashboard(user_id):
                 logs = mongo.db.logs.find({"dog_id": dog_id})
                 count_logs = logs.count()
             else:
-                dog = mongo.db.dogs.find_one()
+                dog = mongo.db.dogs.find_one({"user_id": user_id})
                 dog_id = str(dog["_id"])
                 logs = mongo.db.logs.find({"dog_id": dog_id})
                 count_logs = logs.count()
@@ -122,7 +122,10 @@ def view_dashboard(user_id):
 @app.route('/add_dog/<user_id>')
 def add_dog(user_id):
     user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
-    return render_template("adddog.html", user_id=user_id, user=user)
+    dogs = mongo.db.dogs.find({"user_id": user_id})
+    total_dogs = dogs.count()
+    return render_template("adddog.html", user_id=user_id,
+                           user=user, dogs=total_dogs)
 
 
 @app.route('/insert_dog/<user_id>', methods=['POST'])
@@ -159,26 +162,26 @@ def update_dog(user_id, dog_id):
 @app.route('/delete_dog/<user_id>/<dog_id>')
 def delete_dog(user_id, dog_id):
     dogs = mongo.db.dogs
+    logs = mongo.db.logs
     dogs.remove({'_id': ObjectId(dog_id)})
+    logs.remove({'dog_id': ObjectId(dog_id)})
     return redirect(url_for('view_dashboard', user_id=user_id))
 
 
 @app.route('/add_log/<user_id>/<dog_id>')
 def add_log(user_id, dog_id):
     user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
-    dog = mongo.db.dogs.find_one({"user_id": user_id})
+    # dog = mongo.db.dogs.find_one({"user_id": user_id})
 
     if session.get('user_id'):
         if session['user_id'] == str(user["_id"]):
-            dog = mongo.db.dogs.find_one({"user_id": user_id})
+            # dog = mongo.db.dogs.find_one({"user_id": user_id})
             weight_metrics = mongo.db.weight_metrics.find()
             food_metrics = mongo.db.food_metrics.find()
 
     return render_template("addlog.html",
-                           dog=dog,
                            weight_metrics=weight_metrics,
                            food_metrics=food_metrics,
-                           user=user,
                            dog_id=dog_id,
                            user_id=user_id)
 
@@ -237,6 +240,14 @@ def delete_log(user_id, log_id):
     logs = mongo.db.logs
     logs.remove({'_id': ObjectId(log_id)})
     return redirect(url_for('view_dashboard', user_id=user_id))
+
+
+@app.route('/delete_profile/<user_id>')
+def delete_profile(user_id):
+    mongo.db.logs.remove({"user_id": ObjectId(user_id)})
+    mongo.db.dogs.remove({"user_id": ObjectId(user_id)})
+    mongo.db.users.remove({'_id': ObjectId(user_id)})
+    return render_template('home.html')
 
 
 if __name__ == '__main__':
