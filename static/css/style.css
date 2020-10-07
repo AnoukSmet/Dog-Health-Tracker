@@ -166,7 +166,7 @@ input:focus{
     border: 0.1rem solid #284B63;
     border-radius: 1rem;
     padding: 1rem;
-    margin: 1rem;
+    margin-top: 1rem; 
     color: #fff;
     font-size: 1.6rem;
 }
@@ -184,11 +184,11 @@ input:focus{
 
 /* Container */
 
-.container {
+/* .container {
   margin: 0 auto;
   max-width: 1280px;
   width: 90%;
-}
+} */
 
 /* Dashboard */
     
@@ -221,7 +221,8 @@ input:focus{
 
 .select-wrapper input.select-dropdown {
     color: #284B63;
-}
+    font-size: 1.5rem;
+    }
 
     /* Dog Profile */
 
@@ -323,19 +324,15 @@ input:focus{
     margin-bottom: 2rem;
 }
 
-/* Media Queries */ 
-
-@media (min-width: 1200px) {
-    #log-day {
-        margin: 0 3rem;
-    }
+.datepicker-date-display {
+    background-color: #284B63;
 }
 
-@media only screen and (min-width: 993px) {
-  .container {
-    width: 80%;
-  }
-} 
+.btn-flat {
+    color: #284B63;
+}
+
+/* Media Queries */  
 
 @media (min-width: 375px) {
     #logo {
@@ -344,6 +341,10 @@ input:focus{
 }
 
 @media (min-width: 768px) {
+    .container {
+    width: 90%;
+    }
+
     #logo {
         font-size: 3rem;
     }
@@ -375,5 +376,10 @@ input:focus{
     #log-day {
         display: block;
     }
-
 }
+
+@media (min-width: 1200px) {
+    #log-day {
+        margin: 0 3rem;
+    }
+} 

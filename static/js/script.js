@@ -2,10 +2,17 @@
  * Function to enable datepicker
  */
 
+    
  $(document).ready(function(){
+    var date = new Date();
+    var today = date.getFullYear();
+    var min = today - 30;
      $('.datepicker').datepicker({
-          format: 'dd mmmm yyyy',
-          autoClose: true,
+        format: 'dd mmmm yyyy',
+        autoClose: true,
+        yearRange: [min, today],
+        minDate: new Date('1990,0,13'),
+        maxDate: new Date(),
       });
    })
 
