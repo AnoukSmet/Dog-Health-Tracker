@@ -37,7 +37,7 @@
                     </select>
                 </div>
                 <div class="col s5 m3">
-                    <button id="profile-selection-button" type="submit">Select profile</button>
+                    <button id="profile-selection-button" type="submit">Select dog profile</button>
                 </div>
             </form>
             {% endif %}
@@ -53,7 +53,7 @@
                     {% if dog.dog_image ==  "" %}
                     <div class="col s12" id="image-container">
                         <div id="no-image">
-                            <a href="{{ url_for('edit_profile', dog_id = dog._id , user_id= user._id) }}" title="Add profile image of your dog"> Click here to add a profile image of your dog!</a>
+                            <a href="{{ url_for('edit_dog', dog_id = dog._id , user_id= user._id) }}" title="Add profile image of your dog"> Click here to add a profile image of your dog!</a>
                         </div>
                     </div>
                     <!-- <img src="../static/images/default-dog-image.jpg" id="default-profile-image" alt="default_profile_image_dog"> -->
@@ -71,15 +71,18 @@
                         <h5 class="dog-subheading"><strong>Description</strong></h5>
                         <span class="dog-body">{{ dog.dog_description }}</span>
                         <div class="profile-icons">
-                            <a href="{{ url_for('edit_profile', dog_id = dog._id , user_id= user._id) }}" title="Edit dog profile"><i class="material-icons icons">edit</i></a>
-                            <a href="{{ url_for('delete_profile', dog_id = dog._id, user_id= user._id) }}" title="Delete dog profile"><i class="material-icons icons">delete</i></a>
+                            <a href="{{ url_for('edit_dog', dog_id = dog._id , user_id= user._id) }}" title="Edit dog profile"><i class="material-icons icons">edit</i></a>
+                            <a href="{{ url_for('delete_dog', dog_id = dog._id, user_id= user._id) }}" title="Delete dog profile"><i class="material-icons icons">delete</i></a>
                         </div>
                     </div>
                 </div>  
             </div>
             
                 <div class="col m9">
-                {% for log in logs %}
+                {% if count_logs == 0 %}
+                    <div id="default-log">Click <a href="{{ url_for('add_log', user_id=user._id, dog_id=dog._id)}}">here</a> or on the plus sign right below to add your first log! </div>
+                {% else %}
+                    {% for log in logs %}
                     <div class="row log">
                         <div class="col s12 m3 log-date">
                             <span id="log-day">{{ log.log_date[0:2] }}</span>
@@ -98,6 +101,7 @@
 
                     </div>
             {% endfor %}
+            {% endif %}
                 </div>
             
                 <div class="fixed-action-btn">

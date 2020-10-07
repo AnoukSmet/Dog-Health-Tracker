@@ -182,13 +182,6 @@ input:focus{
     width: 90%;
 }
 
-/* Container */
-
-/* .container {
-  margin: 0 auto;
-  max-width: 1280px;
-  width: 90%;
-} */
 
 /* Dashboard */
     
@@ -287,6 +280,24 @@ input:focus{
     }
 
     /* Log Display */
+
+    #default-log {
+        background-color: #F5F5F5;
+        padding: 2rem;
+        margin-top: 2rem;
+        box-shadow: 0.2rem -0.3rem 0.2rem #c7c7c7;
+        text-align: center;
+    }
+
+    #default-log a {
+        text-decoration: underline;
+        color: #284B63;
+    }
+
+    #default-log a:hover {
+        color: #4e88af;
+
+    }
     .log {
         background-color: #F5F5F5   ;
         padding: 1rem 1rem 0 1rem;
