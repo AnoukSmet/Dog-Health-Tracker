@@ -2,6 +2,10 @@
  * Function to enable datepicker
  */
 
+ function submitForm(){ 
+  document.getElementById('dog-profile-selection').submit(); 
+} 
+
     
  $(document).ready(function(){
     var date = new Date();
