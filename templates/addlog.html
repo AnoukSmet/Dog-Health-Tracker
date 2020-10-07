@@ -11,16 +11,13 @@
         <div class="col s12">
             <h2>Add log</h2>
         </div>
-
         <form action="{{ url_for('insert_log', user_id=user._id, dog_id=dog._id ) }}" method="POST"> 
             <div class="col s12">
                 <input type="text" class="dog_id" name="dog_id" id="dog_id" value="{{dog_id}}" hidden/>
                 <input type="text" class="user_id" name="user_id" id="user_id" value="{{user_id}}" hidden/>
                 <label class="labels" for="log_date">Date: </label>
                 <input type="text" id="log_date" name="log_date" class="datepicker">
-            </div>
 
-            <div class="col s12">
                 <div class="row" id="weight-section">
                     <label class="labels col s12" for="dog_weight">Weight: </label>
                     <div class="col s8" > 
@@ -34,38 +31,31 @@
                         </select>
                     </div>
                 </div>
-            </div>
 
-            <div class="col s12">
                 <label class="labels" for="dog_activity">Activity </label>
                 <input type="text" id="dog_activity" name="dog_activity">
-            </div>
 
-            <div class="col s12">  
-                    <div class="row">
-                        <label class="labels col s12" for="dog_food">Food:</label>
-                        <div class="col s8">
-                            <input type="text" id="dog_food" name="dog_food">
-                        </div>
-                        <div class="col s4">
-                            <select name="food_metric">
-                                {% for metric in food_metrics %}
-                                <option value="{{ metric.metric_name }}">{{ metric.metric_name }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                    </div> 
-                </div>
-        
+                <div class="row">
+                    <label class="labels col s12" for="dog_food">Food:</label>
+                    <div class="col s8">
+                        <input type="text" id="dog_food" name="dog_food">
+                    </div>
+                    <div class="col s4">
+                        <select name="food_metric">
+                            {% for metric in food_metrics %}
+                            <option value="{{ metric.metric_name }}">{{ metric.metric_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>         
 
-            <div class="col s12">
                 <label class="labels" for="other_notes">Other notes:</label>
-                <textarea name="other_notes" id="other_notes" class="materialize-textarea"></textarea>
-            </div>
+                <textarea name="other_notes" id="other_notes" class="materialize-textarea"></textarea>    
 
-            <button type="submit" name="action">Add log</button>
-</form>
-</div>
+                <button type="submit" class="form-buttons" name="action">Add log</button>
+            </div>
+        </form>
+    </div>
 </div>
 {% endblock %}
 

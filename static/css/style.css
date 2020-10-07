@@ -10,6 +10,17 @@ body {
     color: #284B63;
 }
 
+input,
+textarea {
+    color: #284B63;
+}
+
+input:focus,
+textarea:focus{
+    border-bottom: 0.1rem solid #284B63 !important;
+    box-shadow: 0 0.1rem 0 0 #284B63 !important; 
+}
+
 
 /* colors */ .container
 
@@ -154,11 +165,6 @@ body {
 .fields {
     width: 90%;
     border-bottom: 0.05rem solid #284B63 !important;
-}
-
-input:focus{
-    border-bottom: 0.1rem solid #284B63 !important;
-    box-shadow: 0 0.1rem 0 0 #284B63 !important; 
 }
 
 .form-buttons {
@@ -341,6 +347,10 @@ input:focus{
 
 .btn-flat {
     color: #284B63;
+}
+
+.active {
+    color: #284B63 !important;
 }
 
 /* Media Queries */  
