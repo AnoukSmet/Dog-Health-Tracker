@@ -83,6 +83,7 @@ def sign_in():
 @app.route('/log_out')
 def log_out():
     session.pop('user_id', None)
+
     return render_template('home.html')
 
 
@@ -101,6 +102,7 @@ def view_dashboard(user_id):
                 selected_profile = request.form.get('dog_name')
                 dog = mongo.db.dogs.find_one({"dog_name": selected_profile})
                 dog_id = str(dog["_id"])
+                session["dog_id"] = str(dog_id)
                 logs = mongo.db.logs.find({"dog_id": dog_id})
                 count_logs = logs.count()
             else:
@@ -110,10 +112,10 @@ def view_dashboard(user_id):
                 count_logs = logs.count()
 
             return render_template("dashboard.html",
-                                   user=user,
                                    user_id=user_id,
                                    dogs=dogs,
                                    logs=logs,
+                                   dog_id=dog_id,
                                    dog=dog,
                                    count_dogs=count_dogs,
                                    count_logs=count_logs)
@@ -121,34 +123,28 @@ def view_dashboard(user_id):
 
 @app.route('/add_dog/<user_id>')
 def add_dog(user_id):
-    user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
     dogs = mongo.db.dogs.find({"user_id": user_id})
     total_dogs = dogs.count()
-    return render_template("adddog.html", user_id=user_id,
-                           user=user, dogs=total_dogs)
+    return render_template("adddog.html", user_id=user_id, dogs=total_dogs)
 
 
 @app.route('/insert_dog/<user_id>', methods=['POST'])
 def insert_dog(user_id):
-    dogs = mongo.db.dogs
-    dogs.insert_one(request.form.to_dict())
+    mongo.db.dogs.insert_one(request.form.to_dict())
     return redirect(url_for('view_dashboard', user_id=user_id))
 
 
 @app.route('/edit_dog/<user_id>/<dog_id>')
 def edit_dog(user_id, dog_id):
-    user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
     profile_to_update = mongo.db.dogs.find_one({"_id": ObjectId(dog_id)})
     return render_template('editdog.html',
                            profile=profile_to_update,
-                           user_id=user_id,
-                           user=user)
+                           user_id=user_id)
 
 
 @app.route('/update_dog/<user_id>/<dog_id>', methods=["POST"])
 def update_dog(user_id, dog_id):
-    dogs = mongo.db.dogs
-    dogs.update({'_id': ObjectId(dog_id)}, {
+    mongo.db.dogs.update({'_id': ObjectId(dog_id)}, {
         'user_id': request.form.get('user_id'),
         'dog_name': request.form.get('dog_name'),
         'dog_breed': request.form.get('dog_breed'),
@@ -161,21 +157,17 @@ def update_dog(user_id, dog_id):
 
 @app.route('/delete_dog/<user_id>/<dog_id>')
 def delete_dog(user_id, dog_id):
-    dogs = mongo.db.dogs
-    logs = mongo.db.logs
-    dogs.remove({'_id': ObjectId(dog_id)})
-    logs.remove({'dog_id': ObjectId(dog_id)})
+    mongo.db.dogs.remove({'_id': ObjectId(dog_id)})
+    mongo.db.logs.remove({'dog_id': ObjectId(dog_id)})
     return redirect(url_for('view_dashboard', user_id=user_id))
 
 
 @app.route('/add_log/<user_id>/<dog_id>')
 def add_log(user_id, dog_id):
     user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
-    # dog = mongo.db.dogs.find_one({"user_id": user_id})
 
     if session.get('user_id'):
         if session['user_id'] == str(user["_id"]):
-            # dog = mongo.db.dogs.find_one({"user_id": user_id})
             weight_metrics = mongo.db.weight_metrics.find()
             food_metrics = mongo.db.food_metrics.find()
 
@@ -200,27 +192,25 @@ def insert_log(user_id, dog_id):
             logs.insert_one(request.form.to_dict())
 
     return redirect(url_for('view_dashboard',
-                            user_id=user_id, dog=dog,
-                            user=user))
+                            user_id=user_id, dog=dog))
 
 
 @app.route('/edit_log/<user_id>/<log_id>')
 def edit_log(user_id, log_id):
     user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
+    user_id = user["_id"]
     log_to_update = mongo.db.logs.find_one({"_id": ObjectId(log_id)})
     return render_template('editlog.html',
                            log=log_to_update,
                            dogs=mongo.db.dogs.find({"user_id": user_id}),
                            weight_metrics=mongo.db.weight_metrics.find(),
                            food_metrics=mongo.db.food_metrics.find(),
-                           user_id=user_id,
-                           user=user)
+                           user_id=user_id)
 
 
 @app.route('/update_log/<user_id>/<log_id>', methods=["POST"])
 def update_log(user_id, log_id):
-    logs = mongo.db.logs
-    logs.update({'_id': ObjectId(log_id)}, {
+    mongo.db.logs.update({'_id': ObjectId(log_id)}, {
         'user_id': request.form.get('user_id'),
         'dog_id': request.form.get('dog_id'),
         'dog_name': request.form.get('dog_name'),
@@ -237,8 +227,7 @@ def update_log(user_id, log_id):
 
 @app.route('/delete_log/<user_id>/<log_id>')
 def delete_log(user_id, log_id):
-    logs = mongo.db.logs
-    logs.remove({'_id': ObjectId(log_id)})
+    mongo.db.logs.remove({'_id': ObjectId(log_id)})
     return redirect(url_for('view_dashboard', user_id=user_id))
 
 

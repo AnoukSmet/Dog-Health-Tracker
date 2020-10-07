@@ -9,7 +9,7 @@
 
 <div class="container">
     <h2>Add dog</h2>
-    <form action="{{ url_for('insert_dog', user_id=user._id ) }}" method="POST"> 
+    <form action="{{ url_for('insert_dog', user_id=user_id ) }}" method="POST"> 
         <input type="text" class="user_id" name="user_id" id="user_id" value="{{user_id}}" hidden/>
         <label class="labels" for="dog_name">Name: </label>
         <input type="text" id="dog_name" name="dog_name">
