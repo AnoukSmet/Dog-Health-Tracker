@@ -2,7 +2,7 @@
 
 {% block content %}
 <ul id="profile-dropdown" class="dropdown-content">
-  <li><a href="{{ url_for('delete_profile', user_id=user._id) }}">Delete profile</a></li>
+  <li><a href="#modal1" class="modal-trigger">Delete profile</a></li>
   <li><a href="{{ url_for('log_out') }}">Log out</a></li>
 </ul>
 <nav class="navigation">
@@ -111,4 +111,17 @@
         </div>
     </div>
 </div>
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Delete profile</h4>
+      <p>Are you sure you would like to delete your profile?</p>
+    </div>
+    <div class="modal-footer">
+        <a href="{{ url_for('view_dashboard', user_id=user._id) }}" class="modal-close form-buttons btn-flat">Close</a>
+        <a href="{{ url_for('delete_profile', user_id=user._id) }}" class="modal-close form-buttons btn-flat">Agree</a>
+    </div>
+  </div>
+
 {% endblock %}
