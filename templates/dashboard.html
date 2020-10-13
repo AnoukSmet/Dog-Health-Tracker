@@ -51,7 +51,7 @@
                     {% if dog.dog_image ==  "" %}
                     <div class="col s12" id="image-container">
                         <div id="no-image">
-                            <a href="{{ url_for('edit_dog', dog_id = dog_id , user_id=user_id) }}" title="Add profile image of your dog"> Click here to add a profile image of your dog!</a>
+                            <a href="{{ url_for('edit_dog', dog_id=dog_id , user_id=user_id) }}" title="Add profile image of your dog"> Click here to add a profile image of your dog!</a>
                         </div>
                     </div>
                     <!-- <img src="../static/images/default-dog-image.jpg" id="default-profile-image" alt="default_profile_image_dog"> -->
