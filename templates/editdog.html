@@ -30,7 +30,7 @@
     <input type="url" id="dog_image" name="dog_image" placeholder="Paste your image URL here" value="{{profile.dog_image}}">
 
     <button type="submit" name="action" class="form-buttons">Update dog profile</button>
-    <a href="{{url_for('view_dashboard', user_id=user_id)}}" class="form-buttons">Cancel</a>
+    <a href="{{url_for('view_dashboard', user_id=user_id, dog_id=dog_id)}}" class="form-buttons">Cancel</a>
 </form>
 </div>
 

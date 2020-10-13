@@ -1,5 +1,6 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for, session, flash
+from flask import (Flask, render_template, redirect, request, url_for, session,
+                   flash)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -63,11 +64,13 @@ def sign_in():
         if user:
             if check_password_hash(user["password"],
                request.form.get("password")):
-                user_id = user['_id']
+                user_id = str(user['_id'])
                 session['user_id'] = str(user_id)
+                dog = mongo.db.dogs.find_one({"user_id": user_id})
+                dog_id = dog["_id"]
 
                 return redirect(url_for("view_dashboard",
-                                        user_id=user_id))
+                                        user_id=user_id, dog_id=dog_id))
             else:
                 # invalid password match
                 flash("Incorrect username and/or Password combination")
@@ -87,8 +90,8 @@ def log_out():
     return render_template('home.html')
 
 
-@app.route('/view_dashboard/<user_id>', methods=["GET", "POST"])
-def view_dashboard(user_id):
+@app.route('/view_dashboard/<user_id>/<dog_id>', methods=["GET", "POST"])
+def view_dashboard(user_id, dog_id):
     user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
     dogs = mongo.db.dogs.find({"user_id": user_id})
     count_dogs = dogs.count()
@@ -102,11 +105,10 @@ def view_dashboard(user_id):
                 selected_profile = request.form.get('dog_name')
                 dog = mongo.db.dogs.find_one({"dog_name": selected_profile})
                 dog_id = str(dog["_id"])
-                session["dog_id"] = str(dog_id)
                 logs = mongo.db.logs.find({"dog_id": dog_id})
                 count_logs = logs.count()
             else:
-                dog = mongo.db.dogs.find_one({"user_id": user_id})
+                dog = mongo.db.dogs.find_one({"_id": ObjectId(dog_id)})
                 dog_id = str(dog["_id"])
                 logs = mongo.db.logs.find({"dog_id": dog_id})
                 count_logs = logs.count()
@@ -121,17 +123,30 @@ def view_dashboard(user_id):
                                    count_logs=count_logs)
 
 
-@app.route('/add_dog/<user_id>')
+@app.route('/api/dog/add/<user_id>', methods=['GET', 'POST'])
 def add_dog(user_id):
-    dogs = mongo.db.dogs.find({"user_id": user_id})
-    total_dogs = dogs.count()
-    return render_template("adddog.html", user_id=user_id, dogs=total_dogs)
 
+    if request.method == 'POST':
+        dog = {
+            'user_id': request.form.get('user_id'),
+            'dog_name': request.form.get('dog_name'),
+            'dog_breed': request.form.get('dog_breed'),
+            'date_of_birth': request.form.get('date_of_birth'),
+            'dog_description': request.form.get('dog_description'),
+            'dog_image': request.form.get('dog_image')
+        }
+        mongo.db.dogs.insert_one(dog)
+        dog = mongo.db.dogs.find_one({
+             "dog_name": request.form.get('dog_name')})
+        dog_id = dog["_id"]
+        return redirect(url_for("view_dashboard",
+                                user_id=user_id, dog_id=dog_id))
 
-@app.route('/insert_dog/<user_id>', methods=['POST'])
-def insert_dog(user_id):
-    mongo.db.dogs.insert_one(request.form.to_dict())
-    return redirect(url_for('view_dashboard', user_id=user_id))
+    elif request.method == 'GET':
+        dogs = mongo.db.dogs.find({"user_id": user_id})
+        total_dogs = dogs.count()
+        return render_template("adddog.html", user_id=user_id,
+                               dogs=total_dogs)
 
 
 @app.route('/edit_dog/<user_id>/<dog_id>')
@@ -152,14 +167,14 @@ def update_dog(user_id, dog_id):
         'dog_description': request.form.get('dog_description'),
         'dog_image': request.form.get('dog_image')
     })
-    return redirect(url_for('view_dashboard', user_id=user_id))
+    return redirect(url_for('view_dashboard', user_id=user_id, dog_id=dog_id))
 
 
 @app.route('/delete_dog/<user_id>/<dog_id>')
 def delete_dog(user_id, dog_id):
-    mongo.db.dogs.remove({'_id': ObjectId(dog_id)})
-    mongo.db.logs.remove({'dog_id': ObjectId(dog_id)})
-    return redirect(url_for('view_dashboard', user_id=user_id))
+    mongo.db.dogs.remove({'_id': user_id})
+    mongo.db.logs.remove({'dog_id': dog_id})
+    return redirect(url_for('view_dashboard', user_id=user_id, dog_id=dog_id))
 
 
 @app.route('/add_log/<user_id>/<dog_id>')
@@ -192,7 +207,7 @@ def insert_log(user_id, dog_id):
             logs.insert_one(request.form.to_dict())
 
     return redirect(url_for('view_dashboard',
-                            user_id=user_id, dog=dog))
+                            user_id=user_id, dog=dog, dog_id=dog_id))
 
 
 @app.route('/edit_log/<user_id>/<log_id>')
@@ -208,8 +223,8 @@ def edit_log(user_id, log_id):
                            user_id=user_id)
 
 
-@app.route('/update_log/<user_id>/<log_id>', methods=["POST"])
-def update_log(user_id, log_id):
+@app.route('/update_log/<user_id>/<dog_id>/<log_id>', methods=["POST"])
+def update_log(user_id, dog_id, log_id):
     mongo.db.logs.update({'_id': ObjectId(log_id)}, {
         'user_id': request.form.get('user_id'),
         'dog_id': request.form.get('dog_id'),
@@ -222,13 +237,13 @@ def update_log(user_id, log_id):
         'food_metric': request.form.get('food_metric'),
         'other_notes': request.form.get('other_notes'),
     })
-    return redirect(url_for('view_dashboard', user_id=user_id))
+    return redirect(url_for('view_dashboard', user_id=user_id, dog_id=dog_id))
 
 
-@app.route('/delete_log/<user_id>/<log_id>')
-def delete_log(user_id, log_id):
+@app.route('/delete_log/<user_id>/<dog_id>/<log_id>')
+def delete_log(user_id, dog_id, log_id):
     mongo.db.logs.remove({'_id': ObjectId(log_id)})
-    return redirect(url_for('view_dashboard', user_id=user_id))
+    return redirect(url_for('view_dashboard', user_id=user_id, dog_id=dog_id))
 
 
 @app.route('/delete_profile/<user_id>')

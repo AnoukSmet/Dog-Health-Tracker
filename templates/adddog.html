@@ -8,8 +8,18 @@
 </nav>
 
 <div class="container">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <h4 class="center-align">{{ message }}</h4>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+
+<div class="container">
     <h2>Add dog</h2>
-    <form action="{{ url_for('insert_dog', user_id=user_id ) }}" method="POST"> 
+    <form method="POST" action="{{ url_for('add_dog', user_id=user_id, dog_id=dog_id ) }}" id="add-dog-form"> 
         <input type="text" class="user_id" name="user_id" id="user_id" value="{{user_id}}" hidden/>
         <label class="labels" for="dog_name">Name: </label>
         <input type="text" id="dog_name" name="dog_name">
@@ -27,10 +37,10 @@
         <input type="url" id="dog_image" name="dog_image" placeholder="Paste your image URL here">
 
 
-        <button type="submit" name="action" class="form-buttons">Add dog</button>
-        {% if dogs != 0 %}
-        <a href="{{url_for('view_dashboard', user_id=user_id)}}" class="form-buttons">Cancel</a>
-        {% endif %}
+        <button type="submit" class="form-buttons" id="add-dog-submit">Add dog</button>
+         {% if dogs != 0 %}
+        <a href="{{url_for('view_dashboard', user_id=user_id, dog_id=dog_id)}}" class="form-buttons">Cancel</a> 
+        {% endif %} 
 
     </form>
 </div>
