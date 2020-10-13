@@ -29,10 +29,7 @@
   });
 
   $(".dropdown-trigger").dropdown({
-      coverTrigger: false,
+      coverTrigger: false
   });
 
-  $(document).ready(function(){
-    $('.modal').modal();
-  });
 

@@ -139,7 +139,8 @@ def add_dog(user_id):
         }
         mongo.db.dogs.insert_one(dog)
         dog = mongo.db.dogs.find_one({
-             "dog_name": request.form.get('dog_name')})
+             "dog_name": request.form.get('dog_name'),
+             "user_id": request.form.get('user_id')})
         dog_id = dog["_id"]
         return redirect(url_for("view_dashboard",
                                 user_id=user_id, dog_id=dog_id))
@@ -253,14 +254,6 @@ def edit_log(user_id, dog_id, log_id):
 def delete_log(user_id, dog_id, log_id):
     mongo.db.logs.remove({'_id': ObjectId(log_id)})
     return redirect(url_for('view_dashboard', user_id=user_id, dog_id=dog_id))
-
-
-@app.route('/api/profile/delete/<user_id>')
-def delete_profile(user_id):
-    mongo.db.logs.remove({"user_id": ObjectId(user_id)})
-    mongo.db.dogs.remove({"user_id": ObjectId(user_id)})
-    mongo.db.users.remove({'_id': ObjectId(user_id)})
-    return render_template('home.html')
 
 
 if __name__ == '__main__':
