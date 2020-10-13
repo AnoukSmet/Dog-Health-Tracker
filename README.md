@@ -211,5 +211,59 @@ I have used [Draw.io](https://draw.io/) to make this flowchart which you can vie
 
 [Flowchart](wireframes/flowchart.png)
 
+### **Database Structure**
+
+I have used MongoDB to set up the database for this project with the following collections: 
+
+#### **Users:**
+
+Key      | Value
+---------|-----------
+_id      | ObjectId
+username | String
+password | String
+
+#### **Dogs:**
+
+Key             | Value
+----------------|-----------
+_id             | ObjectId
+user_id         | String
+dog_name        | String
+dog_breed       | String
+date_of_birth   | String
+dog_description | String
+dog_image       | String
+
+#### **Logs:**
+
+Key             | Value
+----------------|-----------
+_id             | ObjectId
+dog_id          | String
+user_id         | String
+log_date        | String
+dog_weigth      | String
+weigth_metric   | String
+dog_activity    | String
+dog_food        | String
+food_metric     | String
+other_notes     | String
+
+#### **Food_metrics** ####
+
+Key             | Value
+----------------|-----------
+_id             | ObjectId
+metric_name     | String
+
+#### **Weigth_metrics** ####
+
+Key             | Value
+----------------|-----------
+_id             | ObjectId
+metric_name     | String
+
+
 
 [Back to Top](#table-of-contents)
