@@ -105,12 +105,14 @@ def view_dashboard(user_id, dog_id):
                 selected_profile = request.form.get('dog_name')
                 dog = mongo.db.dogs.find_one({"dog_name": selected_profile})
                 dog_id = str(dog["_id"])
-                logs = mongo.db.logs.find({"dog_id": dog_id})
+                logs = mongo.db.logs.find({"dog_id": dog_id}).sort("log_date",
+                                                                   -1)
                 count_logs = logs.count()
             else:
                 dog = mongo.db.dogs.find_one({"_id": ObjectId(dog_id)})
                 dog_id = str(dog["_id"])
-                logs = mongo.db.logs.find({"dog_id": dog_id})
+                logs = mongo.db.logs.find({"dog_id": dog_id}).sort("log_date",
+                                                                   -1)
                 count_logs = logs.count()
 
             return render_template("dashboard.html",
