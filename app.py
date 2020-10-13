@@ -20,7 +20,6 @@ mongo = PyMongo(app)
 
 
 @app.route('/')
-@app.route('/home')
 def home():
     return render_template('home.html')
 
@@ -254,6 +253,24 @@ def edit_log(user_id, dog_id, log_id):
 def delete_log(user_id, dog_id, log_id):
     mongo.db.logs.remove({'_id': ObjectId(log_id)})
     return redirect(url_for('view_dashboard', user_id=user_id, dog_id=dog_id))
+
+
+@app.errorhandler(404)
+def page_not_found(error):
+    """
+    Renders error.html with 404 message.
+    """
+    error_message = str(error)
+    return render_template('error.html', error_message=error_message), 404
+
+
+@app.errorhandler(500)
+def server_error(error):
+    """
+    Renders error.html with 500 message.
+    """
+    error_message = str(error)
+    return render_template('error.html', error_message=error_message), 500
 
 
 if __name__ == '__main__':

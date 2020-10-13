@@ -24,12 +24,14 @@
  * Function to enable dropdown select box
  */
 
-    $(document).ready(function(){
+$(document).ready(function(){
     $('select').formSelect();
-  });
+});
 
-  $(".dropdown-trigger").dropdown({
-      coverTrigger: false
-  });
+$('.dropdown-trigger').dropdown({
+   coverTrigger: false,
+});
+
+
 
 
