@@ -32,7 +32,10 @@ If you have any feedback or questions, head over to my GitHub contact details an
         * [Fonts](#fonts)
         * [Colors](#colors)
         * [Structure](#structure)
-* [Wireframes](#wireframes)
+* [Wireframes and Flowcharts](#wireframes-and-flowcharts)
+    * [Wireframes](#wireframes)
+    * [Flowcharts](#flowcharts)
+    * [Database Structure](#database-structure)
 * [Features](#features)
     * [Existing Features](#existing-features)
     * [Features to be implemented](#features-to-be-implemented)
@@ -265,5 +268,35 @@ _id             | ObjectId
 metric_name     | String
 
 
+[Back to Top](#table-of-contents)
+
+---
+
+<a></a>
+
+## **Features**
+
+<a></a>
+
+### **Existing Features**
+
+* Registration functionality
+* Sign In and Out functionality
+* Add multiple dogs per user 
+* CRUD Functions:
+    * Create: possibility to add various dogs and logs
+    * Read: dashboard where you can view the dog profile(which was selected) and its logs
+    * Update: possibility to update the dog profile and logs
+    * Delete: possibility to delete the dog profiles and logs
+
+<a></a>
+
+### **Features to be implemented**
+
+* Currently the user can only insert image url. In the future I would like that the user can upload an image from its computer.
+* Have a more extensive user profile with email where you can send updates, newsletters to. 
+* Have a 'forget password' functionality.
+* Possibility for the user to be able to add categories they would like to specificely track for their dog.
+* The possibility to filter the logs 
 
 [Back to Top](#table-of-contents)
