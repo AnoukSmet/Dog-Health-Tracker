@@ -180,3 +180,28 @@ As Bootstrap is designed for mobile first, I will be certain that my website fun
 
 --- 
 <a></a>
+## **Wireframes**
+I used [Balsamic](https://balsamiq.com/wireframes/) to create wireframes for my website. 
+
+
+You can find my wireframes below:
+
+### Desktop Wireframes
+* [Home](wireframes/desktop-home.png)
+* [Dashboard](wireframes/desktop-dashboard.png)
+* [Add Dog](wireframes/desktop-adddog.png)
+* [Add Log](wireframes/desktop-addlog.png)
+
+### Tablet Wireframes
+* [Dashboard](wireframes/tablet-dashboard.png)
+* [Add Dog](wireframes/tablet-adddog.png)
+* [Add Log](wireframes/tablet-addlog.png)
+
+### Mobile Wireframes
+* [Dashboard](wireframes/mobile-dashboard.png)
+* [Add Dog](wireframes/mobile-adddog.png)
+* [Add Log](wireframes/mobile-addlog.png)
+
+
+
+[Back to Top](#table-of-contents)
