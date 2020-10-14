@@ -104,14 +104,14 @@ def view_dashboard(user_id, dog_id):
                 dog = mongo.db.dogs.find_one({"dog_name": selected_profile})
                 dog_id = str(dog["_id"])
                 logs = mongo.db.logs.find({"dog_id": dog_id}).sort(
-                    "log_date", -1)
+                    [('log_date', -1)])
                 count_logs = logs.count()
 
             else:
                 dog = mongo.db.dogs.find_one({"_id": ObjectId(dog_id)})
                 dog_id = str(dog["_id"])
                 logs = mongo.db.logs.find({"dog_id": dog_id}).sort(
-                    "log_date", -1)
+                    [('log_date', -1)])
                 count_logs = logs.count()
 
             return render_template("pages/dashboard.html",
@@ -128,6 +128,8 @@ def view_dashboard(user_id, dog_id):
 def add_dog(user_id):
 
     if request.method == 'POST':
+        dogs = mongo.db.dogs.find({"user_id": user_id})
+        total_dogs = dogs.count()
         dog = {
             'user_id': request.form.get('user_id'),
             'dog_name': request.form.get('dog_name'),
@@ -142,7 +144,8 @@ def add_dog(user_id):
              "user_id": request.form.get('user_id')})
         dog_id = dog["_id"]
         return redirect(url_for("view_dashboard",
-                                user_id=user_id, dog_id=dog_id))
+                                user_id=user_id, dog_id=dog_id,
+                                dogs=total_dogs))
 
     elif request.method == 'GET':
         dogs = mongo.db.dogs.find({"user_id": user_id})

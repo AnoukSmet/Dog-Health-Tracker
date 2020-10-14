@@ -12,7 +12,7 @@
     var today = date.getFullYear();
     var min = today - 30;
      $('.datepicker').datepicker({
-        format: 'dd mmmm yyyy',
+        format: 'yyyy mmmm dd',
         autoClose: true,
         yearRange: [min, today],
         minDate: new Date('1990,0,13'),

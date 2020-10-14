@@ -65,8 +65,9 @@
                 {% for log in logs %}
                 <div class="row log">
                     <div class="col s12 m3 log-date">
-                        <span id="log-day">{{ log.log_date[0:2] }}</span>
-                        <span id="log-month-year"> {{log.log_date[3:]}}</span>
+                        <span id="log-day">{{ log.log_date[-2:] }}</span>
+                        <span id="log-month"> {{log.log_date[4:-2]}}</span>
+                        <span id="log-year"> {{ log.log_date[0:4]}}</span>
                     </div>
                     <div class="col s12 m7">
                         <p class="log-element">Activity: {{ log.dog_activity }}</p>
