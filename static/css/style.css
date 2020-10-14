@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=Play&display=swap');
+@import "//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css";
+
 
 html {
     font-size: 62.5%;
@@ -382,6 +384,54 @@ button:focus {
 .metrics {
     margin-bottom: 0;
 }
+
+/* Date icon as placeholder for datepicker */
+
+
+.mainLoginInput{
+  height: 40px;
+  padding: 0px;
+  font-size: 30px;
+  margin: 5px 0;
+}
+
+.mainLoginInput::-webkit-input-placeholder { 
+font-family: FontAwesome;
+font-weight: normal;
+overflow: visible;
+vertical-align: top;
+display: inline-block !important;
+padding-left: 5px;
+padding-top: 2px;
+color: #284B63;
+}
+
+.mainLoginInput::-moz-placeholder  { 
+font-family: FontAwesome;
+font-weight: normal;
+overflow: visible;
+vertical-align: top;
+display: inline-block !important;
+padding-left: 5px;
+padding-top: 2px;
+color: #284B63;
+}
+
+.mainLoginInput:-ms-input-placeholder  { 
+font-family: FontAwesome;
+font-weight: normal;
+overflow: visible;
+vertical-align: top;
+display: inline-block !important;
+padding-left: 5px;
+padding-top: 2px;
+color: #284B63;
+}
+
+.input-bottom {
+    border-bottom: 0.03rem solid #284B63 !important;
+}
+
 
 /* Media Queries */  
 

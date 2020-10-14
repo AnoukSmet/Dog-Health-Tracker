@@ -2,13 +2,12 @@
     <input type="text" class="dog_id" name="dog_id" id="dog_id" value="{{dog_id}}" hidden/>
     <input type="text" class="user_id" name="user_id" id="user_id" value="{{user_id}}" hidden/>
     <label class="labels" for="log_date">Date: </label>
-    <input type="text" id="log_date" name="log_date" class="datepicker">
-    <!-- <input type="date" id="log_date" name="log_date"> -->
+    <input type="text" id="log_date" name="log_date" readonly="readonly" class="datepicker mainLoginInput input-bottom" placeholder="&#XF133;">
 
     <div class="row metrics">
         <label class="labels col s12" for="dog_weight">Weight: </label>
         <div class="col s8" > 
-            <input type="text" id="dog_weight" name="dog_weight">
+            <input type="text" id="dog_weight" name="dog_weight" class="input-bottom">
         </div>
         <div class="col s4">
             <select name="weight_metric">
@@ -20,12 +19,12 @@
     </div>
 
     <label class="labels" for="dog_activity">Activity </label>
-    <input type="text" id="dog_activity" name="dog_activity">
+    <input type="text" id="dog_activity" name="dog_activity" class="input-bottom">
 
     <div class="row metrics">
         <label class="labels col s12" for="dog_food">Food:</label>
         <div class="col s8">
-            <input type="text" id="dog_food" name="dog_food">
+            <input type="text" id="dog_food" name="dog_food" class="input-bottom">
         </div>
         <div class="col s4">
             <select name="food_metric">
@@ -37,7 +36,7 @@
     </div>         
 
     <label class="labels" for="other_notes">Other notes:</label>
-    <textarea name="other_notes" id="other_notes" class="materialize-textarea"></textarea>    
+    <textarea name="other_notes" id="other_notes" class="materialize-textarea input-bottom"></textarea>    
 
     <button type="submit" class="form-buttons" name="action">Add log</button>
     <a href="{{url_for('view_dashboard', user_id=user_id, dog_id=dog_id)}}" class="form-buttons">Cancel</a>
