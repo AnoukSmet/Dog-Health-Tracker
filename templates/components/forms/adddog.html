@@ -1,0 +1,23 @@
+<form method="POST" action="{{ url_for('add_dog', user_id=user_id, dog_id=dog_id ) }}"> 
+    <input type="text" class="user_id" name="user_id" id="user_id" value="{{user_id}}" hidden/>
+    <label class="labels" for="dog_name">Name: </label>
+    <input type="text" id="dog_name" name="dog_name">
+
+    <label class="labels" for="dog_breed">Breed: </label>
+    <input type="text" id="dog_breed" name="dog_breed">
+
+    <label class="labels" for="date_of_birth">Day of Birth: </label>
+    <input type="text" id="date_of_birth" name="date_of_birth" class="datepicker">
+
+    <label class="labels" for="dog_description">Dog Description:</label> 
+    <textarea id="dog_description" name="dog_description" class="materialize-textarea"></textarea>
+        
+    <label class="labels" for="dog_image">Dog Image: </label>
+    <input type="url" id="dog_image" name="dog_image" placeholder="Paste your image URL here">
+
+
+    <button type="submit" class="form-buttons" id="add-dog-submit">Add dog</button>
+     {% if dogs != 0 %}
+        <a href="{{url_for('view_dashboard', user_id=user_id, dog_id=dog_id)}}" class="form-buttons">Cancel</a> 
+    {% endif %} 
+</form>

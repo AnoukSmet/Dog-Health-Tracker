@@ -1,0 +1,14 @@
+{% extends 'layout/base.html' %}
+{% include 'components/navigation/basic_navigation.html' %}
+{% include 'components/flash_messages.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+            <h2>Add dog</h2>
+            {% include 'components/forms/adddog.html' %}
+        </div>
+    </div>
+</div>
+{% endblock %}

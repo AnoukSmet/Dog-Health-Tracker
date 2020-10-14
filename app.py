@@ -21,7 +21,7 @@ mongo = PyMongo(app)
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    return render_template('pages/home.html')
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -50,7 +50,7 @@ def register():
             flash("Registration Successful!")
             return redirect(url_for("add_dog", user_id=user_id))
 
-    return render_template("register.html")
+    return render_template("pages/register.html")
 
 
 @app.route('/signin', methods=["GET", "POST"])
@@ -79,14 +79,13 @@ def sign_in():
             flash("Incorrect username and/or Password combination")
             return redirect(url_for("sign_in"))
 
-    return render_template("sign_in.html")
+    return render_template("pages/sign_in.html")
 
 
 @app.route('/logout')
 def log_out():
     session.pop('user_id', None)
-
-    return render_template('home.html')
+    return render_template("pages/home.html")
 
 
 @app.route('/dashboard/<user_id>/<dog_id>', methods=["GET", "POST"])
@@ -104,17 +103,18 @@ def view_dashboard(user_id, dog_id):
                 selected_profile = request.form.get('dog_name')
                 dog = mongo.db.dogs.find_one({"dog_name": selected_profile})
                 dog_id = str(dog["_id"])
-                logs = mongo.db.logs.find({"dog_id": dog_id}).sort("log_date",
-                                                                   -1)
+                logs = mongo.db.logs.find({"dog_id": dog_id}).sort(
+                    "log_date", -1)
                 count_logs = logs.count()
+
             else:
                 dog = mongo.db.dogs.find_one({"_id": ObjectId(dog_id)})
                 dog_id = str(dog["_id"])
-                logs = mongo.db.logs.find({"dog_id": dog_id}).sort("log_date",
-                                                                   -1)
+                logs = mongo.db.logs.find({"dog_id": dog_id}).sort(
+                    "log_date", -1)
                 count_logs = logs.count()
 
-            return render_template("dashboard.html",
+            return render_template("pages/dashboard.html",
                                    user_id=user_id,
                                    dogs=dogs,
                                    logs=logs,
@@ -147,7 +147,7 @@ def add_dog(user_id):
     elif request.method == 'GET':
         dogs = mongo.db.dogs.find({"user_id": user_id})
         total_dogs = dogs.count()
-        return render_template("adddog.html", user_id=user_id,
+        return render_template("pages/adddog.html", user_id=user_id,
                                dogs=total_dogs)
 
 
@@ -168,7 +168,7 @@ def edit_dog(user_id, dog_id):
 
     elif request.method == "GET":
         profile_to_update = mongo.db.dogs.find_one({"_id": ObjectId(dog_id)})
-        return render_template('editdog.html',
+        return render_template('pages/editdog.html',
                                profile=profile_to_update,
                                user_id=user_id)
 
@@ -209,7 +209,7 @@ def add_log(user_id, dog_id):
                 weight_metrics = mongo.db.weight_metrics.find()
                 food_metrics = mongo.db.food_metrics.find()
 
-        return render_template("addlog.html",
+        return render_template("pages/addlog.html",
                                weight_metrics=weight_metrics,
                                food_metrics=food_metrics,
                                dog_id=dog_id,
@@ -240,7 +240,7 @@ def edit_log(user_id, dog_id, log_id):
         user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
         user_id = user["_id"]
         log_to_update = mongo.db.logs.find_one({"_id": ObjectId(log_id)})
-        return render_template('editlog.html',
+        return render_template('pages/editlog.html',
                                log=log_to_update,
                                dogs=mongo.db.dogs.find({"user_id": user_id}),
                                weight_metrics=mongo.db.weight_metrics.find(),
@@ -261,7 +261,8 @@ def page_not_found(error):
     Renders error.html with 404 message.
     """
     error_message = str(error)
-    return render_template('error.html', error_message=error_message), 404
+    return render_template('pages/error.html',
+                           error_message=error_message), 404
 
 
 @app.errorhandler(500)
@@ -270,7 +271,8 @@ def server_error(error):
     Renders error.html with 500 message.
     """
     error_message = str(error)
-    return render_template('error.html', error_message=error_message), 500
+    return render_template('pages/error.html',
+                           error_message=error_message), 500
 
 
 if __name__ == '__main__':

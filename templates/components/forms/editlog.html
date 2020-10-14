@@ -1,0 +1,51 @@
+<form action="{{ url_for('edit_log', log_id=log._id ,dog_id=dog_id, user_id= user_id) }}" method="POST"> 
+    <input type="text" class="dog_id" name="dog_id" id="dog_id" value="{{dog_id}}" hidden/>
+    <input type="text" class="user_id" name="user_id" id="user_id" value="{{user_id}}" hidden/>
+    <label class="labels" for="log_date">Date: </label>
+    <input type="text" id="log_date" name="log_date" value="{{ log.log_date }}" class="datepicker">
+
+    <div class="row metrics">
+        <label class="labels col s12" for="dog_weight">Weight: </label>
+        <div class="col s8" > 
+            <input type="text" id="dog_weight" name="dog_weight" value="{{ log.dog_weight }}">
+        </div>
+        <div class="col s4">
+            <select name="weight_metric">
+                {% for metric in weight_metrics %}
+                    {% if metric.metric_name == log.weight_metric %}
+                        <option value="{{metric.metric_name}}" selected >{{metric.metric_name}}</option>
+                    {% else %}
+                        <option value="{{metric.metric_name}}" >{{metric.metric_name}}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+
+    <label class="labels" for="dog_activity">Activity </label>
+    <input type="text" id="dog_activity" name="dog_activity" value="{{ log.dog_activity }}">
+
+    <div class="row metrics">
+        <label class="labels col s12" for="dog_food">Food:</label>
+        <div class="col s8">
+            <input type="text" id="dog_food" name="dog_food" value="{{ log.dog_food }}">
+        </div>
+        <div class="col s4">
+            <select name="food_metric">
+                {% for metric in food_metrics %}
+                    {% if metric.metric_name == log.food_metric %}
+                        <option value="{{metric.metric_name}}" selected >{{metric.metric_name}}</option>
+                    {% else %}
+                        <option value="{{metric.metric_name}}" >{{metric.metric_name}}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        </div>
+    </div> 
+
+    <label class="labels" for="other_notes">Other notes:</label>
+    <textarea name="other_notes" id="other_notes" class="materialize-textarea">{{ log.other_notes }}</textarea>
+
+    <button type="submit" name="action" class="form-buttons">Update log</button>
+    <a href="{{url_for('view_dashboard', user_id=user_id, dog_id=dog_id)}}" class="form-buttons">Cancel</a>
+</form>
