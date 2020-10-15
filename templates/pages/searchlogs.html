@@ -12,7 +12,7 @@
         <div class="col s12" id="search-form">
             <form method="POST" action="{{ url_for('search_logs', user_id=user_id, dog_id=dog_id ) }}">
                 <label class="labels" for="log_date">Date: </label>
-                <input type="text" id="log_date" name="log_date" readonly="readonly" class="datepicker mainLoginInput input-bottom" placeholder="&#XF133; Select the date for which you would like to see the logs">                
+                <input type="text" id="log_date" name="log_date" readonly="readonly" class="datepicker mainLoginInput input-bottom" placeholder="&#XF133; Select your date">                
                 <button class="form-buttons" type="submit" name="action">Search</button>
                 <a href="{{url_for('view_dashboard', user_id=user_id, dog_id=dog_id)}}" class="form-buttons">Go back to dashboard</a>
             </form>

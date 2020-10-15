@@ -74,6 +74,7 @@ button:focus {
     color: #4e88af;
 }
 
+
 /* Navigation */
 
 .navigation {
@@ -437,6 +438,11 @@ color: #284B63;
 
 #search-form {
     margin-top: 5rem;
+}
+
+#search-button {
+    display: flex;
+    justify-content: center;
 }
 
 /* Media Queries */  
