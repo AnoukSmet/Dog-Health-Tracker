@@ -433,6 +433,12 @@ color: #284B63;
 }
 
 
+/* search form */
+
+#search-form {
+    margin-top: 5rem;
+}
+
 /* Media Queries */  
 
 @media (min-width: 375px) {

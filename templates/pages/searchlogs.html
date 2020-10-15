@@ -1,0 +1,56 @@
+{% extends 'layout/base.html' %}
+
+{% include 'components/navigation/extensive_navigation.html' %}
+
+{% block content %}
+<div>
+{% include 'components/flash_messages.html' %}
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col s12" id="search-form">
+            <form method="POST" action="{{ url_for('search_logs', user_id=user_id, dog_id=dog_id ) }}">
+                <label class="labels" for="log_date">Date: </label>
+                <input type="text" id="log_date" name="log_date" readonly="readonly" class="datepicker mainLoginInput input-bottom" placeholder="&#XF133; Select the date for which you would like to see the logs">                
+                <button class="form-buttons" type="submit" name="action">Search</button>
+                <a href="{{url_for('view_dashboard', user_id=user_id, dog_id=dog_id)}}" class="form-buttons">Go back to dashboard</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+            {% if count_logs == 0 %}
+            <div id="default-log">There are no logs for this date</div>
+            {% else %}
+            {% for log in logs %}
+            <div class="log-container">
+                <div class="row log">
+                    <div class="col s12 m3 log-date">
+                        <span id="log-day">{{ log.log_date[-2:] }}</span>
+                        <span id="log-month"> {{log.log_date[4:-2]}}</span>
+                        <span id="log-year"> {{ log.log_date[0:4]}}</span>
+                    </div>
+                    <div class="col s12 m7">
+                        <p class="log-element">Activity: {{ log.dog_activity }}</p>
+                        <p class="log-element">Food: {{ log.dog_food }} {{log.food_metric}}</p>
+                        <p class="log-element">Weight: {{ log.dog_weight }} {{log.weight_metric}}</p>
+                        <p class="log-element">Other notes: {{ log.other_notes }}</p>
+                    </div>
+                    <div class="log-icons s12 m2">
+                        <a href="{{ url_for('edit_log', log_id = log._id , user_id=user_id, dog_id=dog_id) }}" title="Edit log"><i class="material-icons icons">edit</i></a>
+                        <a href="{{ url_for('delete_log', log_id = log._id , user_id=user_id, dog_id=dog_id) }}" title="Delete log"><i class="material-icons icons">delete</i></a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

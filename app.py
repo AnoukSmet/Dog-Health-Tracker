@@ -1,7 +1,7 @@
 import os
 from flask import (Flask, render_template, redirect, request, url_for, session,
-                   flash)
-from flask_pymongo import PyMongo
+                   flash, jsonify)
+from flask_pymongo import PyMongo, pymongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
@@ -103,15 +103,15 @@ def view_dashboard(user_id, dog_id):
                 selected_profile = request.form.get('dog_name')
                 dog = mongo.db.dogs.find_one({"dog_name": selected_profile})
                 dog_id = str(dog["_id"])
-                logs = mongo.db.logs.find({"dog_id": dog_id}).sort(
-                    [('log_date', -1)])
+                logs = mongo.db.logs.find({'dog_id': dog_id}).sort(
+                    "log_date", -1)
                 count_logs = logs.count()
 
             else:
                 dog = mongo.db.dogs.find_one({"_id": ObjectId(dog_id)})
                 dog_id = str(dog["_id"])
-                logs = mongo.db.logs.find({"dog_id": dog_id}).sort(
-                    [('log_date', -1)])
+                logs = mongo.db.logs.find({'dog_id': dog_id}).sort(
+                    "log_date", -1)
                 count_logs = logs.count()
 
             return render_template("pages/dashboard.html",
@@ -122,6 +122,25 @@ def view_dashboard(user_id, dog_id):
                                    dog=dog,
                                    count_dogs=count_dogs,
                                    count_logs=count_logs)
+
+
+@app.route('/api/logs/search/<user_id>/<dog_id>', methods=['GET', 'POST'])
+def search_logs(user_id, dog_id):
+    if request.method == "POST":
+        log_date = request.form.get("log_date")
+        logs = mongo.db.logs.find({"dog_id": dog_id,
+                                   "log_date": log_date})
+        count_logs = logs.count()
+
+    elif request.method == 'GET':
+        logs = ''
+        count_logs = logs.count(logs)
+
+    return render_template("pages/searchlogs.html",
+                           user_id=user_id,
+                           dog_id=dog_id,
+                           logs=logs,
+                           count_logs=count_logs)
 
 
 @app.route('/api/dog/add/<user_id>', methods=['GET', 'POST'])
