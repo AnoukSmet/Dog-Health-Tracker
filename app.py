@@ -96,6 +96,8 @@ def log_out():
 def view_dashboard(user_id, dog_id):
     user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
     dogs = mongo.db.dogs.find({"user_id": user_id})
+    # Get count of dogs do display select box when more than 1 dog
+    # When only 1 dog, disable delete dog button
     count_dogs = dogs.count()
 
     if user is None:
