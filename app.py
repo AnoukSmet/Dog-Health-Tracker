@@ -1,7 +1,7 @@
 import os
 from flask import (Flask, render_template, redirect, request, url_for, session,
-                   flash, jsonify)
-from flask_pymongo import PyMongo, pymongo
+                   flash)
+from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
@@ -39,15 +39,16 @@ def register():
         username = request.form.get("username").lower()
         password = generate_password_hash(request.form.get("password"))
 
+        # add user to the users collection in database
         mongo.db.users.insert_one({
             'username': username,
             'password': password})
 
+        # when registration successfull, redirect to add dog form
         if mongo.db.users.find_one({'username': username}) is not None:
             user = mongo.db.users.find_one({'username': username})
             user_id = user['_id']
             session['user_id'] = str(user_id)
-            flash("Registration Successful!")
             return redirect(url_for("add_dog", user_id=user_id))
 
     return render_template("pages/register.html")
@@ -60,11 +61,14 @@ def sign_in():
         user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
 
+        # if user exists, verify password
         if user:
             if check_password_hash(user["password"],
                request.form.get("password")):
                 user_id = str(user['_id'])
                 session['user_id'] = str(user_id)
+
+                # find dog in dogs collection related to the user
                 dog = mongo.db.dogs.find_one({"user_id": user_id})
                 dog_id = dog["_id"]
 
@@ -72,11 +76,11 @@ def sign_in():
                                         user_id=user_id, dog_id=dog_id))
             else:
                 # invalid password match
-                flash("Incorrect username and/or Password combination")
+                flash("Incorrect username and/or Password")
                 return redirect(url_for("sign_in"))
         else:
             # Username doesn't exist
-            flash("Incorrect username and/or Password combination")
+            flash("Incorrect username and/or Password")
             return redirect(url_for("sign_in"))
 
     return render_template("pages/sign_in.html")
@@ -100,6 +104,7 @@ def view_dashboard(user_id, dog_id):
     if session.get('user_id'):
         if session['user_id'] == str(user["_id"]):
             if request.method == 'POST':
+                # Receive input from user which profile should be displayed
                 selected_profile = request.form.get('dog_name')
                 dog = mongo.db.dogs.find_one({"dog_name": selected_profile})
                 dog_id = str(dog["_id"])
@@ -108,6 +113,7 @@ def view_dashboard(user_id, dog_id):
                 count_logs = logs.count()
 
             else:
+                # if no input was given, find dog related to user
                 dog = mongo.db.dogs.find_one({"_id": ObjectId(dog_id)})
                 dog_id = str(dog["_id"])
                 logs = mongo.db.logs.find({'dog_id': dog_id}).sort(
@@ -127,12 +133,16 @@ def view_dashboard(user_id, dog_id):
 @app.route('/api/logs/search/<user_id>/<dog_id>', methods=['GET', 'POST'])
 def search_logs(user_id, dog_id):
     if request.method == "POST":
+        # Get date input from user
         log_date = request.form.get("log_date")
+
+        # find logs where input matches the log_date from relevant dog
         logs = mongo.db.logs.find({"dog_id": dog_id,
                                    "log_date": log_date})
         count_logs = logs.count()
 
     elif request.method == 'GET':
+        # when no input is given yet, no logs should be displayed
         logs = ''
         count_logs = logs.count(logs)
 
@@ -147,6 +157,7 @@ def search_logs(user_id, dog_id):
 def add_dog(user_id):
 
     if request.method == 'POST':
+        # when form was submitted, retrieve input
         dogs = mongo.db.dogs.find({"user_id": user_id})
         total_dogs = dogs.count()
         dog = {
@@ -157,7 +168,9 @@ def add_dog(user_id):
             'dog_description': request.form.get('dog_description'),
             'dog_image': request.form.get('dog_image')
         }
+        # store input in dogs collection in database
         mongo.db.dogs.insert_one(dog)
+        # find inserted dog and redirect to dashboard of inserted dog
         dog = mongo.db.dogs.find_one({
              "dog_name": request.form.get('dog_name'),
              "user_id": request.form.get('user_id')})
@@ -167,6 +180,8 @@ def add_dog(user_id):
                                 dogs=total_dogs))
 
     elif request.method == 'GET':
+        # Get count of dogs related to user
+        # in order to disable cancel button when count is 0
         dogs = mongo.db.dogs.find({"user_id": user_id})
         total_dogs = dogs.count()
         return render_template("pages/adddog.html", user_id=user_id,
@@ -176,6 +191,7 @@ def add_dog(user_id):
 @app.route('/api/dog/edit/<user_id>/<dog_id>', methods=['GET', 'POST'])
 def edit_dog(user_id, dog_id):
     if request.method == "POST":
+        # Update dog profile with input received from user
         mongo.db.dogs.update({'_id': ObjectId(dog_id)}, {
             'user_id': request.form.get('user_id'),
             'dog_name': request.form.get('dog_name'),
@@ -189,6 +205,7 @@ def edit_dog(user_id, dog_id):
                                 dog_id=dog_id))
 
     elif request.method == "GET":
+        # Get dog profile that needs to be updated
         dog = mongo.db.dogs.find_one({"_id": ObjectId(dog_id)})
         dog_id = dog["_id"]
         return render_template('pages/editdog.html',
@@ -199,6 +216,8 @@ def edit_dog(user_id, dog_id):
 
 @app.route('/api/dog/delete/<user_id>/<dog_id>')
 def delete_dog(user_id, dog_id):
+    # Find dog to remove + associated logs
+    # Find remaining dog related to user to display on dashboard
     mongo.db.dogs.remove({'_id': ObjectId(dog_id)})
     mongo.db.logs.remove({'dog_id': ObjectId(dog_id)})
     dog = mongo.db.dogs.find_one({"user_id": user_id})
@@ -208,30 +227,17 @@ def delete_dog(user_id, dog_id):
 
 @app.route('/api/log/add/<user_id>/<dog_id>', methods=['GET', 'POST'])
 def add_log(user_id, dog_id):
-
     if request.method == "POST":
-        user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
-        dog = mongo.db.dogs.find_one({"_id": ObjectId(dog_id)})
-        if user is None:
-            return redirect(url_for('sign_in'))
-
-        if session.get('user_id'):
-            if session['user_id'] == str(user["_id"]):
-                dog = mongo.db.dogs.find_one({"_id": ObjectId(dog_id)})
-                logs = mongo.db.logs
-                logs.insert_one(request.form.to_dict())
+        # Add log to logs collection in database
+        mongo.db.logs.insert_one(request.form.to_dict())
 
         return redirect(url_for('view_dashboard',
-                                user_id=user_id, dog=dog, dog_id=dog_id))
+                                user_id=user_id, dog_id=dog_id))
 
     elif request.method == "GET":
-
-        user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
-
-        if session.get('user_id'):
-            if session['user_id'] == str(user["_id"]):
-                weight_metrics = mongo.db.weight_metrics.find()
-                food_metrics = mongo.db.food_metrics.find()
+        # Get metric for weight and food input
+        weight_metrics = mongo.db.weight_metrics.find()
+        food_metrics = mongo.db.food_metrics.find()
 
         return render_template("pages/addlog.html",
                                weight_metrics=weight_metrics,
@@ -243,6 +249,7 @@ def add_log(user_id, dog_id):
 @app.route('/api/log/edit/<user_id>/<dog_id>/<log_id>',
            methods=['GET', 'POST'])
 def edit_log(user_id, dog_id, log_id):
+    # Update log with input received from user
     if request.method == "POST":
         mongo.db.logs.update({'_id': ObjectId(log_id)}, {
             'user_id': request.form.get('user_id'),
@@ -261,9 +268,9 @@ def edit_log(user_id, dog_id, log_id):
                                 dog_id=dog_id))
 
     elif request.method == 'GET':
-        user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
-        user_id = user["_id"]
+        # find log that needs to be updated
         log_to_update = mongo.db.logs.find_one({"_id": ObjectId(log_id)})
+
         return render_template('pages/editlog.html',
                                log=log_to_update,
                                dogs=mongo.db.dogs.find({"user_id": user_id}),
@@ -275,15 +282,14 @@ def edit_log(user_id, dog_id, log_id):
 
 @app.route('/api/log/delete/<user_id>/<dog_id>/<log_id>')
 def delete_log(user_id, dog_id, log_id):
+    # Find log that needs to be deleted
     mongo.db.logs.remove({'_id': ObjectId(log_id)})
     return redirect(url_for('view_dashboard', user_id=user_id, dog_id=dog_id))
 
 
 @app.errorhandler(404)
 def page_not_found(error):
-    """
-    Renders error.html with 404 message.
-    """
+    # Renders error.html with 404 message.
     error_message = str(error)
     return render_template('pages/error.html',
                            error_message=error_message), 404
@@ -291,9 +297,7 @@ def page_not_found(error):
 
 @app.errorhandler(500)
 def server_error(error):
-    """
-    Renders error.html with 500 message.
-    """
+    # Renders error.html with 500 message.
     error_message = str(error)
     return render_template('pages/error.html',
                            error_message=error_message), 500
