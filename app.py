@@ -189,9 +189,11 @@ def edit_dog(user_id, dog_id):
                                 dog_id=dog_id))
 
     elif request.method == "GET":
-        profile_to_update = mongo.db.dogs.find_one({"_id": ObjectId(dog_id)})
+        dog = mongo.db.dogs.find_one({"_id": ObjectId(dog_id)})
+        dog_id = dog["_id"]
         return render_template('pages/editdog.html',
-                               profile=profile_to_update,
+                               dog_id=dog_id,
+                               dog=dog,
                                user_id=user_id)
 
 
