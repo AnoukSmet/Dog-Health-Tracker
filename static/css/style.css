@@ -4,18 +4,21 @@
 
 html {
     font-size: 62.5%;
+    position: relative;
+    min-height: 100vh;
 }
 
 body {
     font-size: 2rem;
     font-family: "Cormorant Garamond", Arial, Helvetica, sans-serif;
     color: #284B63;
+    
 }
 
 input,
 textarea,
 select {
-    color: #284B63;
+    color: #284B63 !important;
     font-family: "Cormorant Garamond", Arial, Helvetica, sans-serif;
     font-size: 2rem;
     margin-bottom: 2rem;
@@ -219,6 +222,7 @@ button:focus {
     margin-top: 1rem;
     margin-left: 0;
     box-shadow: 0.2rem -0.3rem 0.2rem #c7c7c7;
+    margin-bottom: 5rem;
 }
 
 #dog-selection {
@@ -359,6 +363,10 @@ button:focus {
         float: right;
     }
 
+    .btn-floating {
+        margin-bottom: 3rem;
+    }
+
 /* Add dog - Add log */
 
 #profile-selection {
@@ -443,6 +451,25 @@ color: #284B63;
 #search-button {
     display: flex;
     justify-content: center;
+}
+
+/* Footer */
+
+#footer {
+    background-color: #284B63;
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    height: 5rem;
+    position: absolute; 
+    left: 0;
+    bottom: 0;
+
+}
+
+#footer a {
+    text-decoration: none;
+    color: #fff;
 }
 
 /* Media Queries */  
