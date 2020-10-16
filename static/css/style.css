@@ -254,7 +254,7 @@ button:focus {
 
     #dog-profile {
         padding-right: 2rem;
-        height: 100%;
+        height: auto;
         text-align: center;
     }
 
@@ -464,6 +464,7 @@ color: #284B63;
     position: absolute; 
     left: 0;
     bottom: 0;
+    line-height: 5rem;
 
 }
 

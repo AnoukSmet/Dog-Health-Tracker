@@ -1,11 +1,6 @@
 /**
  * Function to enable datepicker
  */
-
- function submitForm(){ 
-  document.getElementById('dog-profile-selection').submit(); 
-} 
-
     
  $(document).ready(function(){
     var date = new Date();
@@ -28,10 +23,25 @@ $(document).ready(function(){
     $('select').formSelect();
 });
 
+/**
+ * Function to submit selected profile without submit button 
+ */
+ function submitForm(){ 
+  document.getElementById('dog-profile-selection').submit(); 
+} 
+
+/**
+ * Function to trigger the dropdown to log out
+ */
+
 $('.dropdown-trigger').dropdown({
    coverTrigger: false,
 });
 
+/**
+ * Function to go back to dashboard 
+ * when cancel button add dog is clicked
+ */
 function goBack() {
   window.history.back();
 }

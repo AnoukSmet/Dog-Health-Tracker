@@ -1,0 +1,19 @@
+<form action="{{ url_for('register') }}" method="POST"> 
+    <div class="row">
+        <div class="col s12 m8 offset-m2 input-fields">               
+            <label class="labels" for="username">Username</label>
+            <input id="username" type="text" name="username" class="fields" pattern="[a-zA-Z0-9]+" required title="Only letters (either case) and numbers. No special characters">
+        </div>
+        <div class="col s12 m8 offset-m2 input-fields">
+            <label class="labels" for="password">Password</label>
+            <input id="password" name="password" type="password" class="fields" minlength="5" maxlength="15" required pattern=".{6,}" title="six or more characters">
+        </div>
+        <div class="col s12">
+            <button type="submit" class="form-buttons" name="action">Register now</button>
+        </div>
+        <div class="col s12" id="register-signin-link">
+            <h4>Do you already have an account?</h4>
+            <a href="{{ url_for('sign_in') }}">Click here to sign in</a>
+        </div>
+    </div>
+</form>

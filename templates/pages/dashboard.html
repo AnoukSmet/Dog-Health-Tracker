@@ -59,6 +59,7 @@
             </div>
             
             <div class="col m9">
+                
             {% if count_logs == 0 %}
                 <div id="default-log">Click <a href="{{ url_for('add_log', user_id=user_id, dog_id=dog_id)}}">here</a> or on the plus sign right below to add your first log! </div>
             {% else %}
@@ -86,18 +87,16 @@
                 </div>
         {% endfor %}
         {% endif %}
-        
-            </div>
-            <div class="fixed-action-btn">
-                <a class="btn-floating btn-large" href="{{ url_for('add_log',  dog_id=dog_id, user_id=user_id) }}" title="Add another log">
-                    <i class="material-icons bg-color">add</i>
-                </a>
+
+                <div class="fixed-action-btn"> 
+                    <a class="btn-floating btn-large" href="{{ url_for('add_log',  dog_id=dog_id, user_id=user_id) }}" title="Add another log">
+                        <i class="material-icons bg-color">add</i>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 {% include 'components/footer/footer.html' %}
-
-
 {% endblock %}
