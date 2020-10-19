@@ -384,3 +384,40 @@ Tested the sign in form on various browers and devices and the form is responsiv
 
 * **Verdict**    
 The test has passed all the criteria and works like planned.
+
+### **Profile Dog**
+
+#### User story: As a user, I would like to have a personal profile for my dog. 
+
+* **Plan**  
+The user should be able to created a profile for the dog in which it can fill in various information. 
+Possible input fields should be the name of the dog, breed, date of birth, description and an image of the dog. 
+A summary of the dog profile will be displayed on the dashboard overview. 
+
+* **Implementation**  
+Created a form with the various input fields where the user can fill in the information. 
+I didn't make any of the fields required as for some dogs, the date of birth etc is unknown and the user might not want to fill this in. 
+For the image, I worked with an url that has to be filled in. I don't have the required knowledge and skills yet to enable the user to upload an image from its device. 
+This will be implemented at a later stage when I have the required knowledge and skills. 
+For the date of birth, I have implemented the datepicker from materialize so the user can select the date on the calendar. 
+The range for years, goes until 30 years back (Research told me that the oldest dog in the world was 29 years old). 
+The user can not pick a date in the future as that information is unknown. 
+Manual input has been disabled so the user has to pick the date from the calendar and a correct date will be stored in the correct format. 
+I have also added a cancel button that allows the user to go back to the dashboard in case the user doesn't want to proceed. 
+I have disabled the cancel button on the add dog form that is being displayed after registring as the user should have at least one dog added to its account.
+
+
+* **Test**  
+I have tested the add dog form various times to make sure it works properly.
+The input is stored correctly in the dogs collection in the database. 
+Calendar works as planned with the correct year range being displayed and when clicking a day on the calendar, the calendar automatically closes. 
+Cancel button works as planned and takes the user back to the dashboard. Cancel button is hidden whenever the count of dogs from the user equals to 0. 
+
+* **Result**  
+Adding a profile for the dog works as planned and looks good across various browsers and devices. 
+This includes the inputfields, the datepicker (with the correct range of years), cancel button. 
+Upon submitting the form, the input is stored correctly in the database. 
+
+* **Verdict**  
+The test has passed all the criteria and works like planned.
+
