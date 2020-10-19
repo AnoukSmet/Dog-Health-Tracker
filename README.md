@@ -72,7 +72,8 @@ If you have any feedback or questions, head over to my GitHub contact details an
 
 ### **User Stories**
 
-* As a user, I would like to be able to register for the website so I can have my personal environment
+* As a user, I would like to be able to register for the website so I can have my personal environment.
+* As a user, I want to login after I created an account and see my previous inserted information.
 * As a user, I would like to have a personal profile for my dog. 
 * As a user, I would like to track activity, food and weigth. 
 * As a user, I want to be able to add a log on a daily basis. 
@@ -358,17 +359,28 @@ Tested the registration on various browers and devices and the form is responsiv
 * **Verdict**
 The test has passed all the criteria and works like planned.
 
-### ****
+### **Sign In**
 
-#### User story: 
+#### User story: As a user, I want to login after I created an account and see my previous inserted information.
 
 * **Plan**  
-
+My plan is to create a login form where the user can fill in its username and password.
+After signing in, the user will be redirected to the dashboard where the user can see the previously inserted information.
 
 * **Implementation**  
+I created a form where the user can fill in its username and password which will be verified with the information stored in the database. 
+When the wrong information is being filled in, the correct feedback will be provided to the user. 
+In case the user wrongfully clicked on sign in instead of register, a link to the register page is provided so the user doesn't have to go back. 
 
 * **Test**  
+Signing in with the correct username and password works as planned and the dashboard of that user will be displayed. 
+When the user fills in the wrong username and/or password, the correct message is being displayed on the screen. 
+Redirecting to register page works as well. 
 
 * **Result**  
+Sign in form is working as planned and the input is being verified correctly with the stored information of the database.
+Redirection to the dashboard works as well as planned so the user can view its previously inserted information.
+Tested the sign in form on various browers and devices and the form is responsive and userfriendly. 
 
 * **Verdict**    
+The test has passed all the criteria and works like planned.
