@@ -72,6 +72,7 @@ If you have any feedback or questions, head over to my GitHub contact details an
 
 ### **User Stories**
 
+* As a user, I would like to be able to register for the website so I can have my personal environment
 * As a user, I would like to have a personal profile for my dog. 
 * As a user, I would like to track activity, food and weigth. 
 * As a user, I want to be able to add a log on a daily basis. 
@@ -83,24 +84,6 @@ If you have any feedback or questions, head over to my GitHub contact details an
 * As a user, I want to have the possibiltiy to delete a log as well when no longer relevant. 
 * As a user, I want the website to be easy to use. 
 * As a user, I want the process to add a log to be simple to not loose too much time. 
-
-<a></a>
-
-### **User Stories**
-
-* As a user, I would like to be able to pick a category
-* As a user, I would like to track my score during the game. 
-* As a user, I expect a variety of questions so no questions get repeated.
-* As a user, I would like to know the correct answer when answered incorrectly.
-* As a user, I expect that the game has a nice visually appealing lay out to be in line with the game.
-* As a user of a game, the first impression is very important. 
-* As a user you already want to get the happy feeling as of the moment you open the website.
-* As a user, I expect all the different pages to be in the same style to make it as a whole.
-* As a user I want to learn something new while playing a game. 
-* As a user, I want the webiste to be easy to use. I prefer not to have too many buttons or options. 
-* As a user, I want some extra information on how to play the game in case I don't understand it. 
-* As a user, I want to know where I am in the game, to know how many questions I still have left. 
-* As a user, I want to be able to restart the game if I don't like the questions in the category.
 
 <a></a>
 
@@ -301,7 +284,7 @@ metric_name     | String
 * Expand search function so user can filter on more keywords except for log_date
 * Add pagination so the list of logs will be display with a max of 20 logs per page
 
-[Back to Top](#table-of-contents)
+[Back to Top](#table-of-contents)gi
 
 <a></a>
 
@@ -341,3 +324,51 @@ metric_name     | String
 [Back to Top](#table-of-contents)
 
 <a></a>
+
+
+## **Testing**
+
+### **Registration**
+
+#### User story: As a user, I would like to be able to register for the website so I can have my personal environment
+
+* **Plan**  
+I want to create a page where the user can register for its personal account to which only the user has access.
+After registration, the user will be taken to the "Add dog" form to add their dog right away to their profile. 
+
+* **Implementation**  
+I created a form where the user can fill choose a username and a password. 
+I have used the pattern attribute to only allow certain characters for the username and password. 
+Correct feedback will be displayed whenever the user doesn't meet the pattern critera. 
+Before creating the new account, I will check in the database if the username already exists. 
+If so, correct feedback will be displayed to the user so he can choose another username. 
+Password will be stored with the help of the password generate hash so it is stored safely.
+After the registration was succesfull, the user will be redirected to the adddog page to add it's first dog.
+
+* **Test**  
+I have tried to create an account with an already existing username. Correct feedback is displayed.
+Whenever I didn't meet the pattern criteria, the correct feedback was displayed, explaining which charachters etc are allowed. 
+User acccount is created whenever all criteria was met and user is being redirect to adddog page to add its first dog. 
+
+* **Result**  
+Registration form is working as planned and user information is stored safely in the mongodb Users collection.
+Redirection to add dog works as well as planned so the user can add its dog right away. 
+Tested the registration on various browers and devices and the form is responsive and userfriendly. 
+
+* **Verdict**
+The test has passed all the criteria and works like planned.
+
+### ****
+
+#### User story: 
+
+* **Plan**  
+
+
+* **Implementation**  
+
+* **Test**  
+
+* **Result**  
+
+* **Verdict**    
