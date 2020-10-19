@@ -296,12 +296,12 @@ metric_name     | String
 * Currently the user can only insert image url. In the future I would like that the user can upload an image from its computer.
 * Have a more extensive user profile with email where you can send updates, newsletters to. 
 * Have a 'forget password' functionality.
-* Possibility for the user to be able to add categories they would like to specificely track for their dog.
+* Possibility for the user to be able to add categories they would like to specificely track for their dog like medication etc. 
 * The possibility to filter the logs 
+* Expand search function so user can filter on more keywords except for log_date
+* Add pagination so the list of logs will be display with a max of 20 logs per page
 
 [Back to Top](#table-of-contents)
-
-
 
 <a></a>
 

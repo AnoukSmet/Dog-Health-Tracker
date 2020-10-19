@@ -12,7 +12,7 @@ body {
     font-size: 2rem;
     font-family: "Cormorant Garamond", Arial, Helvetica, sans-serif;
     color: #284B63;
-    
+    min-height: 100vh;
 }
 
 input,
@@ -320,6 +320,7 @@ button:focus {
         margin-top: 2rem;
         box-shadow: 0.2rem -0.3rem 0.2rem #c7c7c7;
         text-align: center;
+        margin-bottom: 1rem;
     }
 
     #default-log a {
