@@ -453,6 +453,11 @@ color: #284B63;
     justify-content: center;
 }
 
+#add-log-s {
+    display: flex;  
+    justify-content: center;
+}
+
 /* Footer */
 
 #footer {

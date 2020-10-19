@@ -108,7 +108,8 @@ def view_dashboard(user_id, dog_id):
             if request.method == 'POST':
                 # Receive input from user which profile should be displayed
                 selected_profile = request.form.get('dog_name')
-                dog = mongo.db.dogs.find_one({"dog_name": selected_profile})
+                dog = mongo.db.dogs.find_one({"dog_name": selected_profile,
+                                              "user_id": user_id})
                 dog_id = str(dog["_id"])
                 logs = mongo.db.logs.find({'dog_id': dog_id}).sort(
                     "log_date", -1)
