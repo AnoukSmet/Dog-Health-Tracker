@@ -412,6 +412,7 @@ I have tested the add dog form various times to make sure it works properly.
 The input is stored correctly in the dogs collection in the database. 
 Calendar works as planned with the correct year range being displayed and when clicking a day on the calendar, the calendar automatically closes. 
 Cancel button works as planned and takes the user back to the dashboard. Cancel button is hidden whenever the count of dogs from the user equals to 0. 
+In order to display the correct dogs for the user, I have addded the _id the user as a hidden inputfield for the add dog which is stored in the database.
 
 * **Result**  
 Adding a profile for the dog works as planned and looks good across various browsers and devices. 
@@ -421,3 +422,83 @@ Upon submitting the form, the input is stored correctly in the database.
 * **Verdict**  
 The test has passed all the criteria and works like planned.
 
+### **Add log**
+
+#### User story: As a user, I would like to track activity, food and weigth. 
+
+
+* **Plan**  
+The user should be able to add logs with the various information that needs to be tracked. 
+From own experience, I have decided to include the following input fields:
+* Date of the log 
+* Activity 
+* Weigth 
+* Food 
+* Other notes 
+
+* **Implementation**  
+Also here I have created a form with the various inputfields. 
+For date I have again used the datepicker with future dates disabled as you shouldn't be able to log for future data. 
+For the activity I have not added any metrics etc because it can vary a lot depending on the user and the dog (example: playing with a stick can also be seen as activity for some users)
+For the weigth I have inlucded metrics (kg, grams, pounds and ounces) which are the most important weight metrics being used. 
+For the food I have included the same metrics. 
+For other notes the user can choose what to fill in like comments on the behaviour of the dog, medication, vet's appointment etc. 
+Also here I added a cancel button in case the user wants to go back to the dashboard without submitting the log. 
+
+* **Test**  
+I have tested the form on various browsers and devices and it works as planned. 
+The correct input is stores in the logs collection in the database. 
+In order to be able to display the relevant logs of the dog, I have added 2 hidden fields on the form: user_id and dog_id. 
+This information is also being stored in the database and through this, I'm able to display the logs of a specific dog from the user. 
+Cancel button brings the user back to the dashboard as planned. 
+
+* **Result**  
+Add log form for tracking purpose works as planned for various browsers and devices. 
+Correct information is stored and relevant logs can be retrieved to display on dashboard. 
+
+* **Verdict**  
+The test has passed all the criteria and works like planned.
+
+
+### ****
+
+#### User story: 
+
+* **Plan**  
+
+* **Implementation**  
+
+* **Test**  
+
+* **Result**  
+
+* **Verdict**  
+
+
+### ****
+
+#### User story: 
+
+* **Plan**  
+
+* **Implementation**  
+
+* **Test**  
+
+* **Result**  
+
+* **Verdict**  
+
+### ****
+
+#### User story: 
+
+* **Plan**  
+
+* **Implementation**  
+
+* **Test**  
+
+* **Result**  
+
+* **Verdict**  
