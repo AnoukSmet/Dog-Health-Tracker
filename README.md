@@ -76,7 +76,7 @@ If you have any feedback or questions, head over to my GitHub contact details an
 * As a user, I want to login after I created an account and see my previous inserted information.
 * As a user, I would like to have a personal profile for my dog. 
 * As a user, I would like to track activity, food and weigth. 
-* As a user, I want to be able to add a log on a daily basis. 
+* As a user, I want to be able to add as many logs as I want, even multiple per day (morning and evening for example)
 * As a user, I would like to have a dashboard where I can have a good overview. 
 * As a user, I want to be able to search on date to get specific data. 
 * As a user, I want to be able to add special notes to the log whenever relevant. 
@@ -428,13 +428,13 @@ The test has passed all the criteria and works like planned.
 
 
 * **Plan**  
-The user should be able to add logs with the various information that needs to be tracked. 
-From own experience, I have decided to include the following input fields:
-* Date of the log 
-* Activity 
-* Weigth 
-* Food 
-* Other notes 
+The user should be able to add logs with the various information that needs to be tracked.   
+From own experience, I have decided to include the following input fields:  
+*Date of the log*  
+*Activity*   
+*Weigth*  
+*Food*   
+*Other notes*   
 
 * **Implementation**  
 Also here I have created a form with the various inputfields. 
@@ -460,20 +460,56 @@ Correct information is stored and relevant logs can be retrieved to display on d
 The test has passed all the criteria and works like planned.
 
 
-### ****
+### **Dashboard**
 
-#### User story: 
+#### User story: As a user, I would like to have a dashboard where I can have a good overview. 
 
 * **Plan**  
+I would like to create a dashboard where the user can see the profile of the dog on the left and the logs of the dog on the right. 
+Whenever the user has multiple dogs, I want that the user is able to select the profile that should be displayed on the dashboard. 
+The dashboard should be very clear and intuitive to use.   
 
 * **Implementation**  
+My dashboard exists out of 2 main parts, the dog profile and the logs display. 
+
+    *Dog profile*  
+    Here it shows all the submitted information about the dog, including the image which gives a personal feeling to the user. 
+    When the user hasn't filled in the url, it shows 'Click here to add an image' which takes the user to the edit dog profile page. 
+    Left on top it has a plus button where the user can click to add another dog. 
+    Below the profile it shows an edit button and a delete button. Delete button will not show in case the user only has 1 dog. 
+
+    *Logs display*   
+    The logs that will be displayed are from the dog profile selected. 
+    When no logs are submitted yet, it shows 'Click here or on the plus sign right below to add your first log" which takes you to the add log page. 
+    From the moment the user has at least submitted 1 log, another button will appear above the logs with the following text: Click here to search dogs by date'. 
+    This will take the user to the search logs page where a search can be performed by date. 
+    For medium devices and up I have included a Floating action button which is displayed right below on the screen. 
+    Even if the user is in the middle of the screen, the button will be displayed, giving the user the possibility the add a log without having to scroll up to the top. 
+    The floating action button will be hidden on small screens and a normal button will appear on below the search button. 
+    I have implemented this because the floating action button was appearing on top of the dog profile which might have confused the user with the add another dog button. 
+
+    Whenever the user has more than 1 dog in its profile, a select element will appear above the dashboard saying: "Select the dog profile you want to see". 
+    Here the names of all the dogs that the user has will be displayed. 
+    When the user clicks on the name, the form will be submitted (without submit button) and the profile and logs of that dog will be displayed on the dashboard. 
 
 * **Test**  
+When the dashboard is being displayed after registring and adding the first dog profle, the correct profile is being displayed under dog profile. 
+Under logs the text to add first log is being displayed correctly. The dog profile doesn't show the delete button as the user only has 1 dog added on that moment. 
+From the moment the user adds a first log, the log is being displayed nicely on the screen with nice focus on the date to make the dashboard more appealing. 
+The text to add first log disappears and the button to search logs by date appears nicely above the log. 
+When multiple logs have been added, the logs are ordered by log date with the most recent one first. 
+The floating action button appears nicely on the right below corner of the screen with a bottom margin, so it doesn't disappear behind the footer. 
+On small devices the floating action button disappears and a normal button appears right below the search button. 
+
+    When the user has added more than 1 dog, the select box appears above the dashboard, allowing the user to select the profile that should be displayed on the dashboard. 
 
 * **Result**  
+The dashboard looks as planned across various browers and devices. 
+All the functionalities work as planned and the correct information is being displayed on the screen. 
+Hiding the floating action button on small devices works well and improves the user experience. 
 
 * **Verdict**  
-
+The test has passed all the criteria and works like planned.
 
 ### ****
 
