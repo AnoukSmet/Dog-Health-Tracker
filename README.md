@@ -81,6 +81,7 @@ If you have any feedback or questions, head over to my GitHub contact details an
 * As a user, I want to be able to search on date to get specific data. 
 * As a user, I want to be able to add special notes to the log whenever relevant. 
 * As a user, I want to be able to add another dog.
+* As a user, I want to be able to edit the dog profile.
 * As a user, I want to have the possibility to edit a log when I made a mistake or want to add some info. 
 * As a user, I want to have the possibiltiy to delete a log as well when no longer relevant. 
 * As a user, I want the website to be easy to use. 
@@ -406,7 +407,6 @@ Manual input has been disabled so the user has to pick the date from the calenda
 I have also added a cancel button that allows the user to go back to the dashboard in case the user doesn't want to proceed. 
 I have disabled the cancel button on the add dog form that is being displayed after registring as the user should have at least one dog added to its account.
 
-
 * **Test**  
 I have tested the add dog form various times to make sure it works properly.
 The input is stored correctly in the dogs collection in the database. 
@@ -542,6 +542,65 @@ Button to take the user back to the dashboard functions as planned.
 
 * **Verdict**  
 The test has passed all the criteria and works like planned.
+
+### **Multiple dog profiles**
+
+#### User story: As a user, I want to be able to add another dog.
+
+* **Plan**  
+As some users might have multiple dogs, it is a good user experience that they can have all their dogs under 1 account instead having to create multiple user accounts. 
+On the dashboard under dog profile, a button will be dislayed left on top where the user can click to add another dog. 
+This will take the user to the add dog page, same page as where the user was redirected to after registring.
+Here a cancel button will be displayed in case the user doesn't want to proceed with adding another dog.
+
+* **Implementation**  
+The form is the same one as when the user created a first dog profile.
+The main difficulty of having multiple dogs per user, was the display on the dashboard. 
+In the end I have decided to add a select box above the profile whenever the user has more than 1 dog added to the profile. 
+In the select box I added a default option with the text: Select the dog profile you want to see. 
+The option that the user can choose will depend on the amount of dogs added to the profile, the names of the dogs will be displayed as the value. 
+
+    In order to accomplish the above, I have decidede to add the dog_id to the dashboard url. 
+    Whenever the users clicks on the dog name in the select box, the form will automatically submit (with the help of javascript) and load the dog profile and logs of the selected dog. 
+    Implementing the above solution meant as well that I had to rewrite a big part of my other functions. 
+    This to make sure that everytime there was a redirect to the dashboard, the correct dog_id had to be included. 
+
+    When the user signs in, the dashboard that will be displayed will be the first one that was loaded in the dogs collection of the database. 
+
+* **Test**  
+After I had implemented the above solution, I had to test all the other functionalities as well to make sure the correct dog profile was being displayed on the dashboard. 
+Whenever the user has more than 1 dog, the select box is being displayed with the dog names that the user has created. 
+Upon clicking the dog name for which the user would like to see the dashboard, the form is submitted and the correct info is being displayed. 
+When the user removes the previously last dog (and has only 1 dog remaining), the select box disappears and profile of the remaining dog is displayed. 
+I made sure that whenever a new log was added, edited or deleted, the dashboard of the relevant dog kept on being displayed on the screen. 
+
+* **Result**  
+Having multiple dogs on the profile was a big challenge which has taken a lot of time and testing. 
+The functionality is now working as planned across various devices and browsers. 
+The select box appears nicely like planned above the dashboard.
+
+* **Verdict**  
+The test has passed all the criteria and works like planned.
+
+### **Edit log and dog profile**
+
+#### User story: As a user, I want to be able to edit the dog profile / As a user, I want to have the possibility to edit a log when I made a mistake or want to add some info. 
+
+* **Plan**  
+The user has to be able to edit an existing log and dog profile when a mistake was made or when the user wants to add certain information. 
+Here it is important that the information that the user inserted before remains intact and will be displayed on the page in order to have a good user experience. 
+Every log and dog profile will have an edit button which will take the user to the editlog or editprofile screen. 
+
+* **Implementation**  
+For this functionality I have reused the form of the add dog or add log with some small differences. 
+The value of the input fields will already be filled in with the information that the user has inserted before. 
+
+
+* **Test**  
+
+* **Result**  
+
+* **Verdict**  
 
 ### ****
 
