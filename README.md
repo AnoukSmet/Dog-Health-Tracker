@@ -646,3 +646,25 @@ The delete button for the dog profile is correctly being displayed when the user
 
 * **Verdict**  
 The test has passed all the criteria and works like planned.
+
+### **Log out**
+
+#### User story: As a user, I want to be able to log out of my profile.
+
+* **Plan**  
+As soon as the user is logged in, an icon with a dropdown will appear on the right side of the navbar. 
+When clicking on the icon, the dropdown with log out will appear. 
+When the button is clicked, the user will be logged out of its account and be redirected to the home page of the website. 
+
+* **Implementation**  
+I have added a dropdown with an icon in the navbar when the user is logged in. 
+When the user clicks the button, it will remove the user_id from the session and the user will be redirected to the homepage.
+
+* **Test**  
+When clicking the button, the user is being logged out and the home.html is being loaded. 
+
+* **Result**  
+Log out function workes as planned across various devices and browsers. 
+
+* **Verdict**  
+The test has passed all the criteria and works like planned.
