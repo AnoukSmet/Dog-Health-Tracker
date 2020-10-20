@@ -594,13 +594,22 @@ Every log and dog profile will have an edit button which will take the user to t
 * **Implementation**  
 For this functionality I have reused the form of the add dog or add log with some small differences. 
 The value of the input fields will already be filled in with the information that the user has inserted before. 
-
+When the user submits the form, all the fields will be updated in the relevant collection in the database. 
+In order to make this function work, I had to include the dog_id for the edit dog profile and the log_id for the edit log profile. 
+This way I made sure that the correct profile or log was updated. 
 
 * **Test**  
+I have tested the edit functionality various times to make sure the data was being updated correctly. 
+After the submission of the form, the user is being redirected to the dashboard of the dog for which the changes were made. 
+Cancel button also takes the user back to the dashboard in case the user doesn't want to proceed with the changes. 
 
 * **Result**  
+The edit functionality works as planned across various browsers and devices. 
+The correct document in the logs or dogs database in being updated and the user is taken back to the relevant dashboard. 
+Cancel button redirects the user correctly to the relevant dashboard. 
 
 * **Verdict**  
+The test has passed all the criteria and works like planned.
 
 ### ****
 
