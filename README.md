@@ -611,16 +611,38 @@ Cancel button redirects the user correctly to the relevant dashboard.
 * **Verdict**  
 The test has passed all the criteria and works like planned.
 
-### ****
+### **Delete log and/or dog**
 
-#### User story: 
+#### User story: As a user, I want to have the possibiltiy to delete a log as well when no longer relevant. 
 
 * **Plan**  
+* Log  
+In case the user made a mistake or the information is no longer relevant, the user should be able to delete a log. 
+There will be a delete button (delete icon) which the user can use. The relevant log will be removed from the database and the user will stay on the relevant dashboard. 
+
+* Dog 
+When the user only has 1 dog added to the profile, the user will not be able to delete the dog profile. 
+As the dashboard url functions with the user id and the dog id, there always needs to be at least 1 dog added to the profile. 
+If the user has more than 1 dog added to the profile, a delete button (delete icon) will appear next to the edit button. 
+When the user deletes the profile, the dashboard of the (one of the) remaining dog(s) will be displayed.
 
 * **Implementation**  
+I have added the delete button to every log, next to the edit button. 
+I have worked with selfexplanatory icons which improves the overall look of the dashboard. 
+When the users clicks on the button, the log with the relevant log_id will be removed from the database. 
+
+In case the user has multiple dogs and clickes the delete button, the dog with the relevant dog_id will be removed from the database. 
 
 * **Test**  
+When the delete button for the log is clicked, the relevant log is being removed and the user stays on the relevant dashboard. 
+When only 1 dog has been added to the user account, the delete button is not being displayed. 
+As soon as the user has added multiple dogs, the delete button shows. 
+When delete button of the dog profile has been clicked, the relevant dog is being removed from the database. 
+After this, the dashboard of (one of) the remaining dog(s) is being displayed. 
 
 * **Result**  
+The delete funtionality works as planned across various browsers and devices. 
+The delete button for the dog profile is correctly being displayed when the user has multiple dog profiles and is being hidden when only 1 dog has been added. 
 
 * **Verdict**  
+The test has passed all the criteria and works like planned.

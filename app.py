@@ -222,7 +222,6 @@ def delete_dog(user_id, dog_id):
     # Find dog to remove + associated logs
     # Find remaining dog related to user to display on dashboard
     mongo.db.dogs.remove({'_id': ObjectId(dog_id)})
-    mongo.db.logs.remove({'dog_id': ObjectId(dog_id)})
     dog = mongo.db.dogs.find_one({"user_id": user_id})
     dog_id = dog["_id"]
     return redirect(url_for('view_dashboard', user_id=user_id, dog_id=dog_id))
