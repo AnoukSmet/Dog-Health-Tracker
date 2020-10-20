@@ -511,19 +511,37 @@ Hiding the floating action button on small devices works well and improves the u
 * **Verdict**  
 The test has passed all the criteria and works like planned.
 
-### ****
+### **Search Logs**
 
-#### User story: 
+#### User story: As a user, I want to be able to search on date to get specific data. 
 
 * **Plan**  
+After a while the user will have a lot of logs which will make it more complicated to find a certain log. 
+I want that the user is able to filter on the logs depending on the log date to make it easier find a certain log. 
+In the future I would also like to add pagination to the logs so it doesn't look like an endless list of logs. 
+Currently I don't have the required skills or knowledge for this so I will only implement the search function.
 
 * **Implementation**  
+As of the moment the user has added at least 1 log for the dog profile, a button will appear on top where the user can click to go to the search logs page. 
+Upon loading the page, no logs will be displayed, only the search function for which I will use a datepicker. 
+If the date that was inserted matches with the log date of one or multiple logs, those logs will be displayed on the screen. 
+If there was no log found with that logs date, the following message will appear: 
+"There are no logs for this date". 
+After this, the user can either search on another date or return to the dashboard. 
 
 * **Test**  
+When I implemented the above strategy, I noticed that the logs of other dogs where showing as well with the same log date. 
+In my function I have included the dog_id in order to only display the logs of that date of the relevant dog. 
+When no logs are found, the correct message is being displayed on the screen. 
+The button to take the user back to the dashboard works as planned and the dashboard of the dog for which you were performing the search is being loaded. 
 
 * **Result**  
+The search logs page works as planned across various browsers and devices. 
+Search function works as planned and return the correct logs or feedback message depending on the user input. 
+Button to take the user back to the dashboard functions as planned. 
 
 * **Verdict**  
+The test has passed all the criteria and works like planned.
 
 ### ****
 
