@@ -45,8 +45,10 @@ If you have any feedback or questions, head over to my GitHub contact details an
     * [Tools](#tools)
 * [Testing](#testing)
 * [Deployment](#deployment)
+    * [Heroku Deployment](#heroku-deployment)
+    * [MongoDB](#mongodb)
+    * [Local Deployment](#local-deployment)
 * [Credits](#credits)
-* [Closing Note](#closing-note)
 
 --- 
 
@@ -800,12 +802,14 @@ For deployment on Heroku I've used the following steps:
     IP = 0.0.0.0
     PORT = 5000
     MONGO_DBNAME = [Name of your MongoDB] 
-    MONGO_URI = mongodb+srv://:@<cluster_name>-qtxun.mongodb.net/<database_name>?retryWrites=true&w=majority
+    MONGO_URI = mongodb+srv://root:<password>@<cluster_name>.djp7i.mongodb.net/<dbname>?retryWrites=true&w=majority
     SECRET_KEY = [Secret key]
     ```
 
 1. Scroll back up and click "Deploy". Scroll down and click "Enable automatic deployment".
 1. Just beneath, click "Deploy branch". Heroku will now start building the app. When the build is complete, click "view app" to open it.
+
+[Back to Top](#table-of-contents)
 
 ### MongoDB
 1. Sign in or sign up to MongoDB
@@ -817,6 +821,7 @@ For deployment on Heroku I've used the following steps:
 1. Add a new database user, and keep the credentials secure
 1. Within the Network Access option, add IP Address 0.0.0.0
 
+[Back to Top](#table-of-contents)
 
 ### Local Deployment
 1. Navigate to the Dog-Health_Tracker respository
@@ -835,7 +840,7 @@ pip3 install -r requirements.txt
 ```
 
 Run the code by running this code below:
-````
+```
 python3 app.py
 ```
 
@@ -844,6 +849,20 @@ You will also have to set up an env.py file in the root directory of your projec
 For more information, visit [Cloning a repository](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/cloning-a-repository) on github.
 
 
+[Back to Top](#table-of-contents)
+
+<a></a>
+
+## **Credits**
+
+* While I was developing this website, I ran into some difficulties that I didn't know how to tackle. I want to thank the [Stackoverflow](https://stackoverflow.com/) community for making their useful content available online. 
+
+* I would like to thank my mentor Simen [Eventyret_mentor](https://github.com/Eventyret) for his endless support and guiding me into becomming a better developer!
+
+* Last but not least, I would also like to thank my husband-to-be [Artur](https://github.com/arturmpinho) and my parents for testing testing testing and giving me feedback about the game. 
+It has really helped me to improve my website and make sure it has an overall good user experience.
+
+[Back to Top](#table-of-contents)
 
 
 
