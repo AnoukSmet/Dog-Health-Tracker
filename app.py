@@ -49,7 +49,10 @@ def register():
             user = mongo.db.users.find_one({'username': username})
             user_id = user['_id']
             session['user_id'] = str(user_id)
-            return redirect(url_for("blank_dashboard", user_id=user_id))
+            dogs = mongo.db.dogs.find({"user_id": user_id})
+            count_dogs = dogs.count()
+            return redirect(url_for("blank_dashboard", user_id=user_id,
+                                    count_dogs=count_dogs))
 
     return render_template("pages/register.html")
 
@@ -75,13 +78,19 @@ def sign_in():
                 if dog:
                     # If yes, show dashboard of dog profile
                     dog_id = dog["_id"]
+                    dogs = mongo.db.dogs.find({"user_id": user_id})
+                    count_dogs = dogs.count()
                     return redirect(url_for("view_dashboard",
-                                            user_id=user_id, dog_id=dog_id))
+                                            user_id=user_id, dog_id=dog_id,
+                                            count_dogs=count_dogs))
 
                 else:
-                    # If no, redirect user to add dog profile
+                    # If no, redirect user to blank_dashboard
+                    dogs = mongo.db.dogs.find({"user_id": user_id})
+                    count_dogs = dogs.count()
                     return redirect(url_for("blank_dashboard",
-                                            user_id=user_id))
+                                            user_id=user_id,
+                                            count_dogs=count_dogs))
 
             else:
                 # invalid password match
@@ -103,8 +112,11 @@ def log_out():
 
 @app.route('/dashboard/<user_id>')
 def blank_dashboard(user_id):
-    return render_template("pages/blank_dashboard.html",
-                           user_id=user_id)
+    dogs = mongo.db.dogs.find({"user_id": user_id})
+    count_dogs = dogs.count()
+    return render_template("pages/dashboard.html",
+                           user_id=user_id,
+                           count_dogs=count_dogs)
 
 
 @app.route('/dashboard/<user_id>/<dog_id>', methods=["GET", "POST"])
@@ -177,7 +189,6 @@ def add_dog(user_id):
     if request.method == 'POST':
         # when form was submitted, retrieve input
         dogs = mongo.db.dogs.find({"user_id": user_id})
-        total_dogs = dogs.count()
         dog = {
             'user_id': request.form.get('user_id'),
             'dog_name': request.form.get('dog_name'),
@@ -193,17 +204,18 @@ def add_dog(user_id):
              "dog_name": request.form.get('dog_name'),
              "user_id": request.form.get('user_id')})
         dog_id = dog["_id"]
+        count_dogs = dogs.count()
         return redirect(url_for("view_dashboard",
                                 user_id=user_id, dog_id=dog_id,
-                                dogs=total_dogs))
+                                count_dogs=count_dogs))
 
     elif request.method == 'GET':
         # Get count of dogs related to user
         # in order to disable cancel button when count is 0
         dogs = mongo.db.dogs.find({"user_id": user_id})
-        total_dogs = dogs.count()
+        count_dogs = dogs.count()
         return render_template("pages/adddog.html", user_id=user_id,
-                               dogs=total_dogs)
+                               count_dogs=count_dogs)
 
 
 @app.route('/api/dog/edit/<user_id>/<dog_id>', methods=['GET', 'POST'])
@@ -218,9 +230,12 @@ def edit_dog(user_id, dog_id):
             'dog_description': request.form.get('dog_description'),
             'dog_image': request.form.get('dog_image')
         })
+        dogs = mongo.db.dogs.find({"user_id": user_id})
+        count_dogs = dogs.count()
         return redirect(url_for('view_dashboard',
                                 user_id=user_id,
-                                dog_id=dog_id))
+                                dog_id=dog_id,
+                                count_dogs=count_dogs))
 
     elif request.method == "GET":
         # Get dog profile that needs to be updated
@@ -243,13 +258,19 @@ def delete_dog(user_id, dog_id):
         mongo.db.dogs.remove({'_id': ObjectId(dog_id)})
         dog = mongo.db.dogs.find_one({"user_id": user_id})
         dog_id = dog["_id"]
+        dogs = mongo.db.dogs.find({"user_id": user_id})
+        count_dogs = dogs.count()
         return redirect(url_for('view_dashboard', user_id=user_id,
-                                dog_id=dog_id))
+                                dog_id=dog_id,
+                                count_dogs=count_dogs))
 
     # If user only has 1 dog remaining, redirect user to add_dog
     else:
         mongo.db.dogs.remove({'_id': ObjectId(dog_id)})
-        return redirect(url_for("blank_dashboard", user_id=user_id))
+        dogs = mongo.db.dogs.find({"user_id": user_id})
+        count_dogs = dogs.count()
+        return redirect(url_for("blank_dashboard", user_id=user_id,
+                                count_dogs=count_dogs))
 
 
 @app.route('/api/log/add/<user_id>/<dog_id>', methods=['GET', 'POST'])
@@ -257,9 +278,12 @@ def add_log(user_id, dog_id):
     if request.method == "POST":
         # Add log to logs collection in database
         mongo.db.logs.insert_one(request.form.to_dict())
+        dogs = mongo.db.dogs.find({"user_id": user_id})
+        count_dogs = dogs.count()
 
         return redirect(url_for('view_dashboard',
-                                user_id=user_id, dog_id=dog_id))
+                                user_id=user_id, dog_id=dog_id,
+                                count_dogs=count_dogs))
 
     elif request.method == "GET":
         # Get metric for weight and food input
@@ -290,9 +314,12 @@ def edit_log(user_id, dog_id, log_id):
             'food_metric': request.form.get('food_metric'),
             'other_notes': request.form.get('other_notes'),
         })
+        dogs = mongo.db.dogs.find({"user_id": user_id})
+        count_dogs = dogs.count()
         return redirect(url_for('view_dashboard',
                                 user_id=user_id,
-                                dog_id=dog_id))
+                                dog_id=dog_id,
+                                count_dogs=count_dogs))
 
     elif request.method == 'GET':
         # find log that needs to be updated
@@ -311,7 +338,10 @@ def edit_log(user_id, dog_id, log_id):
 def delete_log(user_id, dog_id, log_id):
     # Find log that needs to be deleted
     mongo.db.logs.remove({'_id': ObjectId(log_id)})
-    return redirect(url_for('view_dashboard', user_id=user_id, dog_id=dog_id))
+    dogs = mongo.db.dogs.find({"user_id": user_id})
+    count_dogs = dogs.count()
+    return redirect(url_for('view_dashboard', user_id=user_id, dog_id=dog_id,
+                            count_dogs=count_dogs))
 
 
 @app.errorhandler(404)

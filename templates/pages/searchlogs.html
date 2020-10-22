@@ -20,8 +20,9 @@
     </div>
 </div>
 
-<div class="container">
-    <div class="row">
+<!-- <div class="dashboard"> -->
+<div class="container" >
+    <div class="row" id="search-dashboard">
         <div class="col s12">
             {% if count_logs == 0 %}
             <div id="default-log">There are no logs for this date</div>
@@ -51,6 +52,7 @@
         </div>
     </div>
 </div>
+<!-- </div> -->
 {% endblock %}
 
 {% include 'components/footer/footer.html' %}

@@ -225,6 +225,10 @@ button:focus {
     margin-bottom: 5rem;
 }
 
+#search-dashboard {
+    margin-bottom: 5rem;
+}
+
 #dog-selection {
     text-align: right;
     margin-top: 1rem; 
