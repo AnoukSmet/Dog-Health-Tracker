@@ -749,7 +749,8 @@ My first idea here was to disable the remove button when there was only 1 dog pr
 After I implemented this idea, I was still not 100% satisfied with the fix as I think the user should be able to delete the last dog on its profile. 
 Instead I have enabled to delete button again when there is only 1 dog remaining and redirected the user instead to the add dog profile. 
 On the add dog page I have changed to heading depending on if the user already has a dog or not. 
-If yes, the heading will display 'Add another dog to your profile' and when not 'Add a dog profile to start tracking'
+If yes, the heading will display 'Add another dog to your profile' and when not 'Add a dog profile to start tracking'.
+For this fix to work, I added an if statement in my delete dog function to check the amount of dogs that the user has in its account.
 
 * **Verdict**   
 I think that my second approach to this issue is a better solution than the first. 

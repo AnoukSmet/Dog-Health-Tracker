@@ -227,22 +227,22 @@ def edit_dog(user_id, dog_id):
 
 @app.route('/api/dog/delete/<user_id>/<dog_id>')
 def delete_dog(user_id, dog_id):
-    # Find dog to remove + associated logs
-    # Find remaining dog related to user to display on dashboard
-    mongo.db.dogs.remove({'_id': ObjectId(dog_id)})
-    dog = mongo.db.dogs.find_one({"user_id": user_id})
-    dog_id = dog["_id"]
-    return redirect(url_for('view_dashboard', user_id=user_id, dog_id=dog_id))
+    # Find all the dogs that fall under the user account
+    dogs = mongo.db.dogs.find({"user_id": user_id})
 
-
-@app.route('/api/last/dog/delete/<user_id>/<dog_id>')
-def delete_last_dog(user_id, dog_id):
-    # Find dog to remove + associated logs
+    # If the user has more than 1 dog profile, remove dog profile
     # Find remaining dog related to user to display on dashboard
-    mongo.db.dogs.remove({'_id': ObjectId(dog_id)})
-    # dog = mongo.db.dogs.find_one({"user_id": user_id})
-    # dog_id = dog["_id"]
-    return redirect(url_for('add_dog', user_id=user_id))
+    if dogs.count() > 1:
+        mongo.db.dogs.remove({'_id': ObjectId(dog_id)})
+        dog = mongo.db.dogs.find_one({"user_id": user_id})
+        dog_id = dog["_id"]
+        return redirect(url_for('view_dashboard', user_id=user_id,
+                                dog_id=dog_id))
+
+    # If user only has 1 dog remaining, redirect user to add_dog
+    else:
+        mongo.db.dogs.remove({'_id': ObjectId(dog_id)})
+        return redirect(url_for('add_dog', user_id=user_id))
 
 
 @app.route('/api/log/add/<user_id>/<dog_id>', methods=['GET', 'POST'])
