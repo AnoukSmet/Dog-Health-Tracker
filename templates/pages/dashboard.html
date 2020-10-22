@@ -11,20 +11,20 @@
 <div class="container">
     <div class="row">
         <div class="col s12 dashboard" id="blank-dashboard">
-            <div class="col s12 m3" id="dog-profile">
+            <div class="col s12 m3">
                 <div class="row">
                     <div class="col s12">
-                        <div id="add-dog">
+                        <div class="add-dog">
                             <a href="{{ url_for('add_dog', user_id=user_id)}}" title="Add another dog"><i class="material-icons icons">add_circle</i></a>
                         </div>
                     </div>
-                    <div class="col s12" id="image-container">
-                        <div id="no-image">
+                    <div class="col s12 image-container">
+                        <div class="no-image">
                             <a href="{{ url_for('add_dog',user_id=user_id) }}" title="Add profile image of your dog"> Click here to create a profile for your dog!</a>
                         </div>
                     </div>
                     <div class="col s12">
-                        <h2 id="dog-heading"></h2>
+                        <h2 class="dog-heading"></h2>
                         <h5 class="dog-subheading"><strong>Breed</strong></h5>
                         <span class="dog-body"></span>
                         <h5 class="dog-subheading"><strong>Date of birth</strong></h5>
@@ -64,13 +64,13 @@
             <div class="col s12 m3" id="dog-profile">
                 <div class="row">
                     <div class="col s12">
-                        <div id="add-dog">
+                        <div class="add-dog">
                             <a href="{{ url_for('add_dog', user_id=user_id)}}" title="Add another dog"><i class="material-icons icons">add_circle</i></a>
                         </div>
                     </div>
                     {% if dog.dog_image ==  "" %}
-                    <div class="col s12" id="image-container">
-                        <div id="no-image">
+                    <div class="col s12 image-container">
+                        <div class="no-image">
                             <a href="{{ url_for('edit_dog', dog_id=dog_id , user_id=user_id) }}" title="Add profile image of your dog"> Click here to add a profile image of your dog!</a>
                         </div>
                     </div>
@@ -80,7 +80,7 @@
                     </div>
                     {% endif %}
                     <div class="col s12">
-                        <h2 id="dog-heading">{{ dog.dog_name }}</h2>
+                        <h2 class="dog-heading">{{ dog.dog_name }}</h2>
                         <h5 class="dog-subheading"><strong>Breed</strong></h5>
                         <span class="dog-body">{{ dog.dog_breed }}</span>
                         <h5 class="dog-subheading"><strong>Date of birth</strong></h5>
