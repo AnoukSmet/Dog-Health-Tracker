@@ -282,9 +282,9 @@ metric_name     | String
 * Have a more extensive user profile with email where you can send updates, newsletters to. 
 * Have a 'forget password' functionality.
 * Possibility for the user to be able to add categories they would like to specificely track for their dog like medication etc. 
-* The possibility to filter the logs 
-* Expand search function so user can filter on more keywords except for log_date
-* Add pagination so the list of logs will be display with a max of 20 logs per page
+* The possibility to filter the logs based on range of data or by month.
+* Expand search function so user can filter on more keywords except for log_date.
+* Add pagination so the list of logs will be display with a max of 20 logs per page.
 
 [Back to Top](#table-of-contents)gi
 
@@ -668,3 +668,98 @@ Log out function workes as planned across various devices and browsers.
 
 * **Verdict**  
 The test has passed all the criteria and works like planned.
+
+
+[Back to Top](#table-of-contents)
+
+## **Bugs**
+
+### **Cancel Add dog button not working**
+
+* **Bug**  
+When the user opens the add another dog (already having at least one dog under its account), a cancel button is provided to the user in case he doesn't want to proceed.
+This button was set up like my other 'cancel' buttons with an anchor link that takes the user back to the dashboard. 
+
+To add another dog, you will not 'send' a dog_id in the url but only the user_id. The dog_id will be created when the user has added the dog. 
+To load the dashboard, you need a user_id AND a dog_id in order to display the dashboard of a certain dog. 
+This was not working as the dog_id will not be generated in case the add dog was cancelled. 
+
+* **Fix**       
+I noticed that when I used the back button of my browsers, I was taken back to the previous page, which is the dashboard.
+As the user is not suposed to have to use the back button of the browsers, I did some research on how I could implement the same functionality into my cancel button. 
+With the use of javascript, I have created a goBack function which will take the user back to the dashboard after clicking the anchor link using the window.history.back().
+
+* **Verdict**    
+I'm not sure if this is the correct way to go but at the moment it resolves the bug. 
+The cancel button is now working how it is supposed to so I'm satisfied with the fix.
+
+### **Dashboard of first dog of user always displaying after adding/editing logs for other profile**
+
+* **Bug**  
+When I had multiple dogs added to a user account and I wanted to add/edit a log or edit the dog profile, the user was redirected to the dashboard. 
+Instead of displaying the dashboard of the dog for which you just performed a change, the dashboard of the first dog from the user in the collection was being displayed. 
+
+* **Fix**       
+In order to have this resolved, I have decided to include the dog_id in the dashboard url and add a hidden field in the forms that takes the dog_id. 
+The dog_id would be posted along with the other fields and stores in the database. 
+For the dashboard view, I would then use that id to display the profile of the dog for which the change was made. 
+
+* **Verdict**   
+The fix resolved the issue and the dashboard of the dog for which the change was made is being shown after submitting the form.
+
+### **Logs and profile of dog with same name appearing in different useraccounts**
+
+* **Bug**  
+When I had multiple user accounts which had dogs with the same name, often the information like logs, profile description etc of the dog with the same name from another user account was being displayed. 
+I needed to make sure that only the data of the dog of the relevant user account is being displayed. 
+
+* **Fix**       
+I noticed that in some of my functions, I only used dog_name in order to find certain data. 
+By adding the user_id to the find function, I have managed to only get the information of the dog of that user.
+This change had to be made in the view_dashboard function as well as in the add_dog function.
+
+* **Verdict**   
+The fix resolved the bug and only the data of the dog of the relevant user is being displayed on the dashboard. 
+
+### **Floating Action Button not showing good on mobile devices**
+
+* **Bug**  
+I had implemented a floating action button on the dashboard which allowed the user to click the add log button wherever the user was situated on the screen. 
+This was used to prevent that the user had to scroll back to the top in order to add a log. 
+However when I was testing this implementation I noticed that on mobile devices, it was working rather confusing. 
+As the display of the dog_profile takes up full view height, the floating action button was being displayed on top of the dog_profile. 
+The user might have gotten confused this button with the add dog button which is not good for user experience.
+
+* **Fix**       
+My first idea was to only show the floating action button as off the moment the user scrolled down to the logs section but I was unable to implemented this. 
+As a result, I have decided to hide the floating action button on small devices and added a fixed button right under the search button where the user can click to add a log. 
+
+* **Verdict**   
+It doesn't give the same user experience as the floating action button on medium and large devices but it still provides a better user experience that the floating action button being displayed on the dog profile. 
+
+### **Removing last dog of a user account**
+
+* **Bug**  
+When the user only has 1 dog left under its account, the user was still able to delete the profile which resulted in an error. 
+This was caused by the dashboard needing a dog_id in order to display the dashboard. 
+As it was the last dog of the user being deleted, there was no dog that could be displayed. 
+
+* **Fix**       
+My first idea here was to disable the remove button when there was only 1 dog profile left. 
+After I implemented this idea, I was still not 100% satisfied with the fix as I think the user should be able to delete the last dog on its profile. 
+Instead I have enabled to delete button again when there is only 1 dog remaining and redirected the user instead to the add dog profile. 
+On the add dog page I have changed to heading depending on if the user already has a dog or not. 
+If yes, the heading will display 'Add another dog to your profile' and when not 'Add a dog profile to start tracking'
+
+* **Verdict**   
+I think that my second approach to this issue is a better solution than the first. 
+Especially when thinking about the user experience. 
+I'm satisfied with the fix and the user is now able to remove their dog profile, even if there is only 1 remaining. 
+
+### ****
+
+* **Bug**  
+
+* **Fix**       
+
+* **Verdict**   

@@ -1,12 +1,16 @@
 {% extends 'layout/base.html' %}
-{% include 'components/navigation/basic_navigation.html' %}
+{% include 'components/navigation/extensive_navigation.html' %}
 {% include 'components/flash_messages.html' %}
 {% block content %}
 
 <div class="container">
     <div class="row">
         <div class="col s12">
-            <h2>Add dog</h2>
+            {% if dogs == 0 %}
+            <h3>Add a dog profile to start tracking!</h3>
+            {% else %}
+            <h3>Add your another dog profile to your account!</h3>
+            {% endif %}
             {% include 'components/forms/adddog.html' %}
         </div>
     </div>

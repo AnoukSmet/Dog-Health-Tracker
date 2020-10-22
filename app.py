@@ -70,10 +70,18 @@ def sign_in():
 
                 # find dog in dogs collection related to the user
                 dog = mongo.db.dogs.find_one({"user_id": user_id})
-                dog_id = dog["_id"]
 
-                return redirect(url_for("view_dashboard",
-                                        user_id=user_id, dog_id=dog_id))
+                # check if user already has a dog_profile added to its account
+                if dog:
+                    # If yes, show dashboard of dog profile
+                    dog_id = dog["_id"]
+                    return redirect(url_for("view_dashboard",
+                                            user_id=user_id, dog_id=dog_id))
+
+                else:
+                    # If no, redirect user to add dog profile
+                    return redirect(url_for("add_dog", user_id=user_id))
+
             else:
                 # invalid password match
                 flash("Incorrect username and/or Password")
@@ -225,6 +233,16 @@ def delete_dog(user_id, dog_id):
     dog = mongo.db.dogs.find_one({"user_id": user_id})
     dog_id = dog["_id"]
     return redirect(url_for('view_dashboard', user_id=user_id, dog_id=dog_id))
+
+
+@app.route('/api/last/dog/delete/<user_id>/<dog_id>')
+def delete_last_dog(user_id, dog_id):
+    # Find dog to remove + associated logs
+    # Find remaining dog related to user to display on dashboard
+    mongo.db.dogs.remove({'_id': ObjectId(dog_id)})
+    # dog = mongo.db.dogs.find_one({"user_id": user_id})
+    # dog_id = dog["_id"]
+    return redirect(url_for('add_dog', user_id=user_id))
 
 
 @app.route('/api/log/add/<user_id>/<dog_id>', methods=['GET', 'POST'])
