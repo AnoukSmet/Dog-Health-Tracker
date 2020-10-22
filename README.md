@@ -690,7 +690,8 @@ To add another dog, you will not 'send' a dog_id in the url but only the user_id
 To load the view_dashboard, you need a user_id AND a dog_id in order to display the dashboard of a certain dog. 
 This was not working as the dog_id will not be generated in case the add dog was cancelled. 
 
-This was working for the cancel add dog when it was the first dog as the blank dashboard doesn't require the dog_id. 
+When the user would add a dog, coming from the blank_dashboard there was no issue as the blank_dashboard doesn't require a dog_id. 
+Here I could just implement my redirect to the blank_dashboard function. 
 
 * **Fix**       
 I noticed that when I used the back button of my browsers, I was taken back to the previous page, which is the dashboard.
@@ -773,3 +774,80 @@ I'm satisfied with the fix and the user is now able to remove their dog profile,
 * **Fix**       
 
 * **Verdict**   
+
+[Back to Top](#table-of-contents)
+
+<a></a>
+
+## **Deployment**
+
+### Heroku Deployment
+
+I have created the Dog Health Tracker project using Github, from there I used Gitpod to write my code. 
+Then I used commits to git followed by "git push" to my GitHub repository. 
+I've deployed this project to Heroku and used "git push heroku master" to make sure my pushes to GitHub were also made to Heroku. 
+For deployment on Heroku I've used the following steps:
+
+1. Create a requirements file. In the cli it can be done by running the following command: pip3 freeze --local > requirements.txt
+1. Create a procfile. In the cli it can be done by running the following command: echo web: python app.py > Procfile
+1. Log in to Heroku, click "New" > "Create new app"
+1. Give the project a unique name, choose region and click "Create app".
+1. Scroll down to "deployment method"-section. Choose "Github" for automatic deployment.
+1. From the inputs below, make sure your github user is selected, and then enter the name for your repo. Click "search". When it finds the repo, click the "connect" button.
+1. Scroll back up and click "settings". Scroll down and click "Reveal config vars". Set up your variables for IP, PORT, SECRET_KEY, MONGO_URI and MONGODB_NAME:
+
+    ```
+    IP = 0.0.0.0
+    PORT = 5000
+    MONGO_DBNAME = [Name of your MongoDB] 
+    MONGO_URI = mongodb+srv://:@<cluster_name>-qtxun.mongodb.net/<database_name>?retryWrites=true&w=majority
+    SECRET_KEY = [Secret key]
+    ```
+
+1. Scroll back up and click "Deploy". Scroll down and click "Enable automatic deployment".
+1. Just beneath, click "Deploy branch". Heroku will now start building the app. When the build is complete, click "view app" to open it.
+
+### MongoDB
+1. Sign in or sign up to MongoDB
+1. Create a new cluster
+1. Clicking on the "Connect" button will enable you to connect to this cluster
+1. Under the Collections tab, click Create Database
+1. Set up the following collections: users, dogs, logs, food_metrics and Weigth_metrics
+1. Under the Security Menu on the left, select Database Access.
+1. Add a new database user, and keep the credentials secure
+1. Within the Network Access option, add IP Address 0.0.0.0
+
+
+### Local Deployment
+1. Navigate to the Dog-Health_Tracker respository
+1. Click Clone or download
+1. Copy the link provided (https://github.com/AnoukSmet/Dog-Health-Tracker.git)
+1. Open the working directory where you want the repository to be cloned to, and in the terminal use the following command 
+    ```
+    git clone https://github.com/AnoukSmet/Dog-Health-Tracker.git
+    ```
+1. All the files will now be cloned into your chosen workspace.
+
+
+Note: You will have to install all the dependencies from [requirements](https://github.com/AnoukSmet/Dog-Health-Tracker/blob/master/requirements.txt) for the app to work. In the cli, you can run the command
+```
+pip3 install -r requirements.txt
+```
+
+Run the code by running this code below:
+````
+python3 app.py
+```
+
+You will also have to set up an env.py file in the root directory of your project, and set up variables for IP, PORT, SECRET_KEY, MONGU_URI and MONGODB_NAME. 
+
+For more information, visit [Cloning a repository](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/cloning-a-repository) on github.
+
+
+
+
+
+
+
+
+
