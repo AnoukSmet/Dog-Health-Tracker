@@ -336,7 +336,9 @@ metric_name     | String
 
 * **Plan**  
 I want to create a page where the user can register for its personal account to which only the user has access.
-After registration, the user will be taken to the "Add dog" form to add their dog right away to their profile. 
+My first plan was to redirect the user to the add_dog form right away to add the first dog but I realised it might confuse the user. 
+Therefor after registration, the user will be taken to a "blank_dashboard" where the only call-to-action will be to add their first dog.
+This way the user can make 'the decision' to add a dog profile themselves and I don't make that choice for them.
 
 * **Implementation**  
 I created a form where the user can fill choose a username and a password. 
@@ -345,16 +347,16 @@ Correct feedback will be displayed whenever the user doesn't meet the pattern cr
 Before creating the new account, I will check in the database if the username already exists. 
 If so, correct feedback will be displayed to the user so he can choose another username. 
 Password will be stored with the help of the password generate hash so it is stored safely.
-After the registration was succesfull, the user will be redirected to the adddog page to add it's first dog.
+After the registration was succesfull, the user will be redirected to the blank_dashboard to add their first dog.
 
 * **Test**  
 I have tried to create an account with an already existing username. Correct feedback is displayed.
 Whenever I didn't meet the pattern criteria, the correct feedback was displayed, explaining which charachters etc are allowed. 
-User acccount is created whenever all criteria was met and user is being redirect to adddog page to add its first dog. 
+User acccount is created whenever all criteria was met and user is being redirect to blank_dashboard.
 
 * **Result**  
 Registration form is working as planned and user information is stored safely in the mongodb Users collection.
-Redirection to add dog works as well as planned so the user can add its dog right away. 
+Redirection to blank_dashboard works as well as planned so the user can choose to add its dog right away. 
 Tested the registration on various browers and devices and the form is responsive and userfriendly. 
 
 * **Verdict**
@@ -367,6 +369,7 @@ The test has passed all the criteria and works like planned.
 * **Plan**  
 My plan is to create a login form where the user can fill in its username and password.
 After signing in, the user will be redirected to the dashboard where the user can see the previously inserted information.
+In case the user doesn't have any dog added to its profile, the user will be redirected to the blank dashboard where a dog profile can be added.
 
 * **Implementation**  
 I created a form where the user can fill in its username and password which will be verified with the information stored in the database. 
@@ -374,13 +377,13 @@ When the wrong information is being filled in, the correct feedback will be prov
 In case the user wrongfully clicked on sign in instead of register, a link to the register page is provided so the user doesn't have to go back. 
 
 * **Test**  
-Signing in with the correct username and password works as planned and the dashboard of that user will be displayed. 
+Signing in with the correct username and password works as planned and the correct dashboard of that user will be displayed. 
 When the user fills in the wrong username and/or password, the correct message is being displayed on the screen. 
 Redirecting to register page works as well. 
 
 * **Result**  
 Sign in form is working as planned and the input is being verified correctly with the stored information of the database.
-Redirection to the dashboard works as well as planned so the user can view its previously inserted information.
+Redirection to the correct dashboard works as well as planned so the user can either add a dog on the blank dashboard or view its previously inserted information.
 Tested the sign in form on various browers and devices and the form is responsive and userfriendly. 
 
 * **Verdict**    
@@ -405,14 +408,13 @@ The range for years, goes until 30 years back (Research told me that the oldest 
 The user can not pick a date in the future as that information is unknown. 
 Manual input has been disabled so the user has to pick the date from the calendar and a correct date will be stored in the correct format. 
 I have also added a cancel button that allows the user to go back to the dashboard in case the user doesn't want to proceed. 
-I have disabled the cancel button on the add dog form that is being displayed after registring as the user should have at least one dog added to its account.
 
 * **Test**  
 I have tested the add dog form various times to make sure it works properly.
 The input is stored correctly in the dogs collection in the database. 
 Calendar works as planned with the correct year range being displayed and when clicking a day on the calendar, the calendar automatically closes. 
 Cancel button works as planned and takes the user back to the dashboard. Cancel button is hidden whenever the count of dogs from the user equals to 0. 
-In order to display the correct dogs for the user, I have addded the _id the user as a hidden inputfield for the add dog which is stored in the database.
+In order to display the correct dogs for the user, I have addded the _id of the user as a hidden inputfield for the add dog which is stored in the database.
 
 * **Result**  
 Adding a profile for the dog works as planned and looks good across various browsers and devices. 
@@ -469,6 +471,9 @@ I would like to create a dashboard where the user can see the profile of the dog
 Whenever the user has multiple dogs, I want that the user is able to select the profile that should be displayed on the dashboard. 
 The dashboard should be very clear and intuitive to use.   
 
+When the user doesn't have any dog yet added to its useraccount, a blank dashboard will be displayed with a very clear call-to-action to add the first dog. 
+On the place where normally the logs would show, I will the following text: "After you have added your dog, come here to start tracking!"
+
 * **Implementation**  
 My dashboard exists out of 2 main parts, the dog profile and the logs display. 
 
@@ -476,11 +481,13 @@ My dashboard exists out of 2 main parts, the dog profile and the logs display.
     Here it shows all the submitted information about the dog, including the image which gives a personal feeling to the user. 
     When the user hasn't filled in the url, it shows 'Click here to add an image' which takes the user to the edit dog profile page. 
     Left on top it has a plus button where the user can click to add another dog. 
-    Below the profile it shows an edit button and a delete button. Delete button will not show in case the user only has 1 dog. 
+    Below the profile it shows an edit button and a delete button. 
+    When the user doesn't have a dog added yet, it will display an empty profile with a call-to-action to add a dog profile.
 
     *Logs display*   
     The logs that will be displayed are from the dog profile selected. 
-    When no logs are submitted yet, it shows 'Click here or on the plus sign right below to add your first log" which takes you to the add log page. 
+    When no dog profile is added yet, here it will show that as soon as they have added a dog, they can come here to start tracking.
+    When a dog profile is added but no logs are submitted yet, it shows 'Click here or on the plus sign right below to add your first log" which takes you to the add log page. 
     From the moment the user has at least submitted 1 log, another button will appear above the logs with the following text: Click here to search dogs by date'. 
     This will take the user to the search logs page where a search can be performed by date. 
     For medium devices and up I have included a Floating action button which is displayed right below on the screen. 
@@ -493,6 +500,7 @@ My dashboard exists out of 2 main parts, the dog profile and the logs display.
     When the user clicks on the name, the form will be submitted (without submit button) and the profile and logs of that dog will be displayed on the dashboard. 
 
 * **Test**  
+The correct dashboard is being displayed depending on if the user has already added a dog profile.
 When the dashboard is being displayed after registring and adding the first dog profle, the correct profile is being displayed under dog profile. 
 Under logs the text to add first log is being displayed correctly. The dog profile doesn't show the delete button as the user only has 1 dog added on that moment. 
 From the moment the user adds a first log, the log is being displayed nicely on the screen with nice focus on the date to make the dashboard more appealing. 
@@ -550,8 +558,8 @@ The test has passed all the criteria and works like planned.
 * **Plan**  
 As some users might have multiple dogs, it is a good user experience that they can have all their dogs under 1 account instead having to create multiple user accounts. 
 On the dashboard under dog profile, a button will be dislayed left on top where the user can click to add another dog. 
-This will take the user to the add dog page, same page as where the user was redirected to after registring.
-Here a cancel button will be displayed in case the user doesn't want to proceed with adding another dog.
+This will take the user to the add dog page, same page as where the user was redirected to after registering.
+A cancel button will be displayed in case the user doesn't want to proceed with adding another dog.
 
 * **Implementation**  
 The form is the same one as when the user created a first dog profile.
@@ -621,28 +629,26 @@ In case the user made a mistake or the information is no longer relevant, the us
 There will be a delete button (delete icon) which the user can use. The relevant log will be removed from the database and the user will stay on the relevant dashboard. 
 
 * Dog 
-When the user only has 1 dog added to the profile, the user will not be able to delete the dog profile. 
-As the dashboard url functions with the user id and the dog id, there always needs to be at least 1 dog added to the profile. 
-If the user has more than 1 dog added to the profile, a delete button (delete icon) will appear next to the edit button. 
-When the user deletes the profile, the dashboard of the (one of the) remaining dog(s) will be displayed.
+The user should be able to delete the dog profile, even though there would only be 1 dog remaning. 
+If the last dog has been removed, the user will be taken again to the blank dashboard where the user can decide to add a dog. 
+The reason why I created a seperate dashboard for this is because the view dashboard url functions with the user id and the dog id, there always needs to be at least 1 dog added to the profile. 
+Therefor I created a blank dashboard which doesn't take the dog_id as a parameter with the same structure as the view_dashboard.
+When the user still has multiple dog and deletes a profile, the dashboard of the (one of the) remaining dog(s) will be displayed.
 
 * **Implementation**  
 I have added the delete button to every log, next to the edit button. 
 I have worked with selfexplanatory icons which improves the overall look of the dashboard. 
-When the users clicks on the button, the log with the relevant log_id will be removed from the database. 
-
-In case the user has multiple dogs and clickes the delete button, the dog with the relevant dog_id will be removed from the database. 
+When the users clicks on the button, the log with the relevant log_id will be removed from the database and is being redirected to the correct dashboard.
 
 * **Test**  
 When the delete button for the log is clicked, the relevant log is being removed and the user stays on the relevant dashboard. 
-When only 1 dog has been added to the user account, the delete button is not being displayed. 
-As soon as the user has added multiple dogs, the delete button shows. 
 When delete button of the dog profile has been clicked, the relevant dog is being removed from the database. 
-After this, the dashboard of (one of) the remaining dog(s) is being displayed. 
+When user removes last dog, the user being redirect to the blank_dashboard.
+When the user has multiple dogs in its profile and removes 1, user is redirected to view_dashboard of (one of) the remaining dog(s).
 
 * **Result**  
 The delete funtionality works as planned across various browsers and devices. 
-The delete button for the dog profile is correctly being displayed when the user has multiple dog profiles and is being hidden when only 1 dog has been added. 
+The delete button for the dog profile is correctly being displayed and works as planned.
 
 * **Verdict**  
 The test has passed all the criteria and works like planned.
@@ -681,8 +687,10 @@ When the user opens the add another dog (already having at least one dog under i
 This button was set up like my other 'cancel' buttons with an anchor link that takes the user back to the dashboard. 
 
 To add another dog, you will not 'send' a dog_id in the url but only the user_id. The dog_id will be created when the user has added the dog. 
-To load the dashboard, you need a user_id AND a dog_id in order to display the dashboard of a certain dog. 
+To load the view_dashboard, you need a user_id AND a dog_id in order to display the dashboard of a certain dog. 
 This was not working as the dog_id will not be generated in case the add dog was cancelled. 
+
+This was working for the cancel add dog when it was the first dog as the blank dashboard doesn't require the dog_id. 
 
 * **Fix**       
 I noticed that when I used the back button of my browsers, I was taken back to the previous page, which is the dashboard.
@@ -747,7 +755,8 @@ As it was the last dog of the user being deleted, there was no dog that could be
 * **Fix**       
 My first idea here was to disable the remove button when there was only 1 dog profile left. 
 After I implemented this idea, I was still not 100% satisfied with the fix as I think the user should be able to delete the last dog on its profile. 
-Instead I have enabled to delete button again when there is only 1 dog remaining and redirected the user instead to the add dog profile. 
+Instead I have enabled to delete button again when there is only 1 dog remaining and when the last dog has been removed, the user is being redirected to the blank_dashboard.
+Here the user can see a very simple dashboard where the only call-to-action is to add a dog profile. 
 On the add dog page I have changed to heading depending on if the user already has a dog or not. 
 If yes, the heading will display 'Add another dog to your profile' and when not 'Add a dog profile to start tracking'.
 For this fix to work, I added an if statement in my delete dog function to check the amount of dogs that the user has in its account.
