@@ -49,7 +49,7 @@ def register():
             user = mongo.db.users.find_one({'username': username})
             user_id = user['_id']
             session['user_id'] = str(user_id)
-            return redirect(url_for("add_dog", user_id=user_id))
+            return redirect(url_for("blank_dashboard", user_id=user_id))
 
     return render_template("pages/register.html")
 
@@ -80,7 +80,8 @@ def sign_in():
 
                 else:
                     # If no, redirect user to add dog profile
-                    return redirect(url_for("add_dog", user_id=user_id))
+                    return redirect(url_for("blank_dashboard",
+                                            user_id=user_id))
 
             else:
                 # invalid password match
@@ -98,6 +99,12 @@ def sign_in():
 def log_out():
     session.pop('user_id', None)
     return render_template("pages/home.html")
+
+
+@app.route('/dashboard/<user_id>')
+def blank_dashboard(user_id):
+    return render_template("pages/blank_dashboard.html",
+                           user_id=user_id)
 
 
 @app.route('/dashboard/<user_id>/<dog_id>', methods=["GET", "POST"])
@@ -242,7 +249,7 @@ def delete_dog(user_id, dog_id):
     # If user only has 1 dog remaining, redirect user to add_dog
     else:
         mongo.db.dogs.remove({'_id': ObjectId(dog_id)})
-        return redirect(url_for('add_dog', user_id=user_id))
+        return redirect(url_for("blank_dashboard", user_id=user_id))
 
 
 @app.route('/api/log/add/<user_id>/<dog_id>', methods=['GET', 'POST'])

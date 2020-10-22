@@ -314,21 +314,41 @@ button:focus {
 
     /* Log Display */
 
-    #default-log {
+    .default-log {
         background-color: #F5F5F5;
         padding: 2rem;
         margin-top: 2rem;
         box-shadow: 0.2rem -0.3rem 0.2rem #c7c7c7;
         text-align: center;
         margin-bottom: 1rem;
+    
     }
 
-    #default-log a {
+    #start-tracking {
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+        padding: 1rem;
+        margin-top: 0;
+    }
+
+    #blank-dashboard {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #start-tracking p {
+        width: 80%;
+        font-size: 3rem;
+    }
+
+    .default-log a {
         text-decoration: underline;
         color: #284B63;
     }
 
-    #default-log a:hover {
+    .default-log a:hover {
         color: #4e88af;
 
     }

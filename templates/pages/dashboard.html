@@ -60,7 +60,7 @@
             <div class="col m9">
                 
             {% if count_logs == 0 %}
-                <div id="default-log">Click <a href="{{ url_for('add_log', user_id=user_id, dog_id=dog_id)}}">here</a> or on the plus sign right below to add your first log! </div>
+                <div class="default-log">Click <a href="{{ url_for('add_log', user_id=user_id, dog_id=dog_id)}}">here </a> or on the plus sign right below to add your first log! </div>
             {% else %}
                 <div class="row">
                 <div id="search-button" class="col s12">
