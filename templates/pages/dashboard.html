@@ -10,33 +10,35 @@
 {% if count_dogs == 0 %}
 <div class="container">
     <div class="row">
-        <div class="col s12 dashboard" id="blank-dashboard">
-            <div class="col s12 m3">
-                <div class="row">
-                    <div class="col s12">
-                        <div class="add-dog">
-                            <a href="{{ url_for('add_dog', user_id=user_id)}}" title="Add another dog"><i class="material-icons icons">add_circle</i></a>
+        <div class="col s12 dashboard" >
+            <div class="row " id="blank-dashboard">
+                <div class="col s12 m3 dog-profile">
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="add-dog">
+                                <a href="{{ url_for('add_dog', user_id=user_id)}}" title="Add another dog"><i class="material-icons icons">add_circle</i></a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col s12 image-container">
-                        <div class="no-image">
-                            <a href="{{ url_for('add_dog',user_id=user_id) }}" title="Add profile image of your dog"> Click here to create a profile for your dog!</a>
+                        <div class="col s12 image-container">
+                            <div class="no-image">
+                                <a href="{{ url_for('add_dog',user_id=user_id) }}" title="Add profile image of your dog"> Click here to create a profile for your dog!</a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col s12">
-                        <h2 class="dog-heading"></h2>
-                        <h5 class="dog-subheading"><strong>Breed</strong></h5>
-                        <span class="dog-body"></span>
-                        <h5 class="dog-subheading"><strong>Date of birth</strong></h5>
-                        <span class="dog-body"></span>
-                        <h5 class="dog-subheading"><strong>Description</strong></h5>
-                        <span class="dog-body"></span>
+                        <div class="col s12" >
+                            <h2 class="dog-heading"></h2>
+                            <h5 class="dog-subheading"><strong>Breed</strong></h5>
+                            <span class="dog-body"></span>
+                            <h5 class="dog-subheading"><strong>Date of birth</strong></h5>
+                            <span class="dog-body"></span>
+                            <h5 class="dog-subheading"><strong>Description</strong></h5>
+                            <span class="dog-body"></span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col m9">
-                <div class="default-log" id="start-tracking">
-                    <p>After you have added your dog, come here to start tracking!</p>
+                <div class="col s12 m9">
+                    <div class="default-log" id="start-tracking">
+                        <p>After you have added your dog, come here to start tracking!</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -61,7 +63,7 @@
             {% endif %}
         </div>
         <div id="{{dog_id}}" class="col s12 dashboard">
-            <div class="col s12 m3" id="dog-profile">
+            <div class="col s12 m3 dog-profile">
                 <div class="row">
                     <div class="col s12">
                         <div class="add-dog">
@@ -98,7 +100,7 @@
             <div class="col m9">
                 
             {% if count_logs == 0 %}
-                <div class="default-log">Click <a href="{{ url_for('add_log', user_id=user_id, dog_id=dog_id)}}">here </a> or on the plus sign right below to add your first log! </div>
+                <div class="default-log">Click <a href="{{ url_for('add_log', user_id=user_id, dog_id=dog_id)}}">here </a>to add your first log! </div>
             {% else %}
                 <div class="row">
                 <div id="search-button" class="col s12">
