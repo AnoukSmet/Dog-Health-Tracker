@@ -8,7 +8,7 @@
     var min = today - 30;
      $('.datepicker').datepicker({
         format: 'yyyy mmmm dd',
-        autoClose: true,
+        autoClose: false,
         yearRange: [min, today],
         minDate: new Date('1990,0,13'),
         maxDate: new Date(),
