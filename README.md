@@ -696,13 +696,18 @@ When the user would add a dog, coming from the blank_dashboard there was no issu
 Here I could just implement my redirect to the blank_dashboard function. 
 
 * **Fix**       
-I noticed that when I used the back button of my browsers, I was taken back to the previous page, which is the dashboard.
-As the user is not suposed to have to use the back button of the browsers, I did some research on how I could implement the same functionality into my cancel button. 
-With the use of javascript, I have created a goBack function which will take the user back to the dashboard after clicking the anchor link using the window.history.back().
+My first idea was to use the javascript window.history.back() which resolved the issue. 
+But after some additional research, I noticed that this might have not been the best way to approach this. 
+
+Instead I have decided that when the add dog page is loaded (request.method == "GET"), to "find" a dog in the dogs collection from the user and store that id. 
+In case the user would want to cancel, that dog would be displayed on the dashboard. 
+
+Ideally the dog that was displayed before would appear on the screen but due to lack of knowledge, I haven't figured out how to implement that. 
 
 * **Verdict**    
-I'm not sure if this is the correct way to go but at the moment it resolves the bug. 
-The cancel button is now working how it is supposed to so I'm satisfied with the fix.
+I'm not 100% satisfied with the fix as the dog profile that will be loaded is not the one who the user had open before. 
+This will be resolved in future releases.
+Nonetheless the cancel button is currently working. 
 
 ### **Dashboard of first dog of user always displaying after adding/editing logs for other profile**
 
