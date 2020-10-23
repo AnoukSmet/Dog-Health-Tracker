@@ -16,8 +16,8 @@
     <input type="url" id="dog_image" name="dog_image" placeholder="Paste your image URL here" class="input-bottom">
 
     <button type="submit" class="form-buttons" id="add-dog-submit">Add dog</button>
-        {% if dogs !=0 %}
-        <a href="#" onclick="goBack()" class="form-buttons">Cancel</a>
+        {% if count_dogs != 0 %}
+        <a href="{{url_for('view_dashboard', user_id=user_id, dog_id=dog_id)}}" onclick="goBack()" class="form-buttons">Cancel</a>
         {% else %}
         <a href="{{url_for('blank_dashboard', user_id=user_id)}}" class="form-buttons">Cancel</a>
         {% endif %}

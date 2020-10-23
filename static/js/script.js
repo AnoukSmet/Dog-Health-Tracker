@@ -39,14 +39,6 @@ $('.dropdown-trigger').dropdown({
 });
 
 /**
- * Function to go back to dashboard 
- * when cancel button add dog is clicked
- */
-function goBack() {
-  window.history.back();
-}
-
-/**
  * Modal to open when user wants to delete dog profile
  */
 

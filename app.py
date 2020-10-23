@@ -211,11 +211,21 @@ def add_dog(user_id):
 
     elif request.method == 'GET':
         # Get count of dogs related to user
-        # in order to disable cancel button when count is 0
         dogs = mongo.db.dogs.find({"user_id": user_id})
         count_dogs = dogs.count()
-        return render_template("pages/adddog.html", user_id=user_id,
-                               count_dogs=count_dogs)
+        # if count is not equal to 0,
+        # get dog_id for in case user clicks cancel button
+        if count_dogs != 0:
+            dog = mongo.db.dogs.find_one({"user_id": user_id})
+            dog_id = dog["_id"]
+            return render_template("pages/adddog.html", user_id=user_id,
+                                   dog_id=dog_id,
+                                   count_dogs=count_dogs)
+        # if count is 0,
+        # no need to get dog_id as blank_dashboard doesn't require dog_id
+        else:
+            return render_template("pages/adddog.html", user_id=user_id,
+                                   count_dogs=count_dogs)
 
 
 @app.route('/api/dog/edit/<user_id>/<dog_id>', methods=['GET', 'POST'])
