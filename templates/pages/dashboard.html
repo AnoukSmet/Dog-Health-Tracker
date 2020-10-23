@@ -47,7 +47,7 @@
             {% if count_dogs > 1 %}
             <form action="{{ url_for('view_dashboard', dog_id = dog_id, user_id=user_id)}}" id="dog-profile-selection" method="POST" class="row">
                 <div class="col s12">
-                    <select id="dog-dropdown" name="dog_name" onchange="submitForm();">
+                    <select id="dog-dropdown" name="dog_name" onchange="submitForm()">
                         <option value="default" selected disabled>Select the dog profile you want to see</option>
                     {% for dog in dogs %}
                         <option id="dog_name" value="{{dog.dog_name}}">{{dog.dog_name}}</option>
