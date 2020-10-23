@@ -210,15 +210,6 @@ button:focus {
     width: 90%;
 }
 
-#register-signin-link a{
-    text-decoration: underline;
-    color: #284B63;
-}
-
-#register-signin-link a:hover {
-    color: #4e88af;
-}
-
 /* Dashboard */
     
 .dashboard {

@@ -11,9 +11,10 @@
         <div class="col s12">
             <button type="submit" class="form-buttons" name="action">Sign in</button>
         </div>
-        <div class="col s12" id="register-signin-link">
+        <div class="col s12">
             <h4> You don't have an account yet?</h4>
-            <a href="{{ url_for('register') }}">Click here to register</a>
+            <a href="{{ url_for('register') }}" class="form-buttons">Click here to register</a>
+            <a href="{{ url_for('home') }}" class="form-buttons">Go back to the home page</a>
         </div>
     </div>
 </form>
