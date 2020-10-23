@@ -13,8 +13,14 @@
         </div>
         <div class="col s12">
             <h4>Do you already have an account?</h4>
-            <a href="{{ url_for('sign_in') }}" class="form-buttons col s12">Click here to sign in</a>
-            <a href="{{ url_for('home') }}" class="form-buttons col s12">Return to homepage</a>
+            <div class="row">
+                <div class="col s12 link-container">
+                    <a href="{{ url_for('sign_in') }}" class="form-buttons">Click here to sign in</a>
+                </div>
+                <div class="col s12 link-container">
+                    <a href="{{ url_for('home') }}" class="form-buttons">Go back to the home page</a>
+                </div>
+            </div>
         </div>
     </div>
 </form>
