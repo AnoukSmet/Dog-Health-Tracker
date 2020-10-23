@@ -1,10 +1,10 @@
 {% extends 'layout/base.html' %}
-{% include 'components/navigation/basic_navigation.html' %}
 {% block content %}
+{% include 'components/navigation/basic_navigation.html' %}
 
 <div class="container" id="sign-in">
     <h2 class="heading">Sign in to your account</h2>
-    {% include 'components/flash_messages.html' %}
+    {% include 'components/flash_messages/flash_messages.html' %}
     {% include 'components/forms/signin.html' %}
     </div>
 {% endblock %}

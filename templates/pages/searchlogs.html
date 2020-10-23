@@ -1,11 +1,6 @@
 {% extends 'layout/base.html' %}
-
-{% include 'components/navigation/extensive_navigation.html' %}
-
 {% block content %}
-<div>
-{% include 'components/flash_messages.html' %}
-</div>
+{% include 'components/navigation/extensive_navigation.html' %}
 
 <div class="container">
     <div class="row">
@@ -20,12 +15,16 @@
     </div>
 </div>
 
-<!-- <div class="dashboard"> -->
 <div class="container" >
     <div class="row" id="search-dashboard">
         <div class="col s12">
             {% if count_logs == 0 %}
-            <div id="default-log">There are no logs for this date</div>
+            <div id="default-log">
+                <p id="no-logs">
+                    There are no logs for this date.<br>
+                    Search on another date or go back to the dashboard.
+                </p>
+            </div>
             {% else %}
             {% for log in logs %}
             <div class="log-container">
@@ -52,7 +51,6 @@
         </div>
     </div>
 </div>
-<!-- </div> -->
+{% include 'components/footer/footer.html' %}
 {% endblock %}
 
-{% include 'components/footer/footer.html' %}

@@ -1,14 +1,11 @@
 {% extends 'layout/base.html' %}
-
+{% block content %}
 {% include 'components/navigation/extensive_navigation.html' %}
 
-{% block content %}
-
 <div class="container">
-<h2>Edit dog profile</h2>
-{% include 'components/forms/editdog.html' %}
+    <h2>Edit dog profile</h2>
+    {% include 'components/forms/editdog.html' %}
 </div>
 
-{% endblock %}
-
 {% include 'components/footer/footer.html' %}
+{% endblock %}

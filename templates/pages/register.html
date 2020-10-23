@@ -1,10 +1,10 @@
 {% extends 'layout/base.html' %}
-{% include 'components/navigation/basic_navigation.html' %}
 {% block content %}
+{% include 'components/navigation/basic_navigation.html' %}
 
 <div class="container" id="register">
     <h2 class="heading">Register here to start tracking your dog's health!</h2>
-    {% include 'components/flash_messages.html' %}
+    {% include 'components/flash_messages/flash_messages.html' %}
     {% include 'components/forms/register.html' %}
 </div>
 {% endblock %}

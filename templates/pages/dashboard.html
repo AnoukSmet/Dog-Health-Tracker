@@ -1,11 +1,6 @@
 {% extends 'layout/base.html' %}
-
-{% include 'components/navigation/extensive_navigation.html' %}
-
 {% block content %}
-<div>
-{% include 'components/flash_messages.html' %}
-</div>
+{% include 'components/navigation/extensive_navigation.html' %}
 
 {% if count_dogs == 0 %}
 <div class="container">
@@ -25,7 +20,7 @@
                             </div>
                         </div>
                         <div class="col s12" >
-                            <h2 class="dog-heading"></h2>
+                            <h2 class="dog-heading">Name</h2>
                             <h5 class="dog-subheading"><strong>Breed</strong></h5>
                             <span class="dog-body"></span>
                             <h5 class="dog-subheading"><strong>Date of birth</strong></h5>
@@ -91,13 +86,13 @@
                         <span class="dog-body">{{ dog.dog_description }}</span>
                         <div class="profile-icons">
                             <a href="{{ url_for('edit_dog', dog_id = dog_id , user_id=user_id) }}" title="Edit dog profile"><i class="material-icons icons">edit</i></a>
-                            <a href="{{ url_for('delete_dog', dog_id = dog_id, user_id=user_id) }}" title="Delete dog profile"><i class="material-icons icons">delete</i></a>
+                            <a href="#delete-modal" title="Delete dog profile" class="modal-trigger"><i class="material-icons icons">delete</i></a>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="col m9">
+            <div class="col s12 m9">
                 
             {% if count_logs == 0 %}
                 <div class="default-log">Click <a href="{{ url_for('add_log', user_id=user_id, dog_id=dog_id)}}">here </a>to add your first log! </div>
@@ -133,7 +128,6 @@
                 </div>
         {% endfor %}
         {% endif %}
-
                 <div class="fixed-action-btn hide-on-small-only"> 
                     <a class="btn-floating btn-large" href="{{ url_for('add_log',  dog_id=dog_id, user_id=user_id) }}" title="Add another log">
                         <i class="material-icons bg-color">add</i>
@@ -144,5 +138,6 @@
     </div>
 </div>
 {% endif %}
+{% include 'components/modals/delete_modal.html' %}
 {% include 'components/footer/footer.html' %}
 {% endblock %}

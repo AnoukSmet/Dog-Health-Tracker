@@ -45,3 +45,11 @@ $('.dropdown-trigger').dropdown({
 function goBack() {
   window.history.back();
 }
+
+/**
+ * Modal to open when user wants to delete dog profile
+ */
+
+ $(document).ready(function(){
+    $('.modal').modal();
+  });
