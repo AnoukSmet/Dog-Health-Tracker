@@ -27,7 +27,7 @@ $(document).ready(function(){
  * Function to submit selected profile without submit button 
  */
  function submitForm(){ 
-  document.getElementById('dog-profile-selection').submit(); 
+  document.querySelector('#dog-profile-selection').submit(); 
 } 
 
 /**
