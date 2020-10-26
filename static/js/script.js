@@ -28,6 +28,8 @@
         yearRange: [min, today],
         minDate: new Date('1990,0,13'),
         maxDate: new Date(),
+        defaultDate: date,
+        setDefaultDate: true
       });
    })
 

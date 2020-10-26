@@ -408,6 +408,11 @@ button:focus {
     background-color: #D9D9D9;
 }
 
+.datepicker-table td.is-selected {
+    background-color: #284B63;
+    color: #D9D9D9;
+}
+
 .btn-flat {
     color: #284B63;
 }
