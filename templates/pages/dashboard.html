@@ -32,7 +32,7 @@
                 </div>
                 <div class="col s12 m9">
                     <div class="default-log" id="start-tracking">
-                        <p>After you have added your dog, come here to start tracking!</p>
+                        <p>After you added your dog, come here to start tracking!</p>
                     </div>
                 </div>
             </div>
@@ -98,12 +98,12 @@
                 <div class="default-log">Click <a href="{{ url_for('add_log', user_id=user_id, dog_id=dog_id)}}">here </a>to add your first log! </div>
             {% else %}
                 <div class="row">
-                <div id="search-button" class="col s12">
-                    <a href="{{url_for('search_logs', dog_id=dog_id, user_id=user_id) }}" class="form-buttons">Click here to search logs by date</a>
-                </div>
-                <div class="hide-on-med-and-up col s12" id="add-log-s">
-                    <a href="{{ url_for('add_log',  dog_id=dog_id, user_id=user_id) }}" class="form-buttons" title="Add another log">Add another log</a>
-                </div>
+                    <div id="search-button" class="col s12">
+                        <a href="{{url_for('search_logs', dog_id=dog_id, user_id=user_id) }}" class="form-buttons">Click here to search logs by date</a>
+                    </div>
+                    <div class="hide-on-med-and-up col s12" id="add-log-s">
+                        <a href="{{ url_for('add_log',  dog_id=dog_id, user_id=user_id) }}" class="form-buttons" title="Add another log">Add another log</a>
+                    </div>
                 </div>
                 {% for log in logs %}
                 <div class="log-container">

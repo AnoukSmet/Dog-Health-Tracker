@@ -24,12 +24,12 @@
     var min = today - 30;
      $('.datepicker').datepicker({
         format: 'yyyy mmmm dd',
-        autoClose: false,
+        autoClose: true,
         yearRange: [min, today],
         minDate: new Date('1990,0,13'),
         maxDate: new Date(),
         defaultDate: date,
-        setDefaultDate: true
+        setDefaultDate: true,
       });
    })
 

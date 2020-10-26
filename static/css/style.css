@@ -12,7 +12,6 @@ body {
     font-size: 2rem;
     font-family: "Cormorant Garamond", Arial, Helvetica, sans-serif;
     color: #284B63;
-    /* min-height: 100vh; */
 }
 
 input,
@@ -81,6 +80,21 @@ button:focus {
     color: #4e88af;
 }
 
+.form-buttons {
+    font-family: "Cormorant Garamond", Arial, Helvetica, sans-serif;
+    background-color: #284B63;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin: 1rem 0; 
+    color: #fff !important;
+    font-size: 1.6rem;
+    line-height: 2.1rem;
+}
+
+.form-buttons:hover {
+    background-color: #152c3c;
+} 
+
 
 /* Navigation */
 
@@ -106,27 +120,33 @@ button:focus {
     position: absolute;
 }
 
-#account-icon {
-    margin: 0;
-    font-size: 4rem;
-}
+    /* Profile dropdown Navigation */
+    #account-icon {
+        margin: 0;
+        font-size: 4rem;
+    }
 
-#dropdown-icon {
-    margin: 0;
-}
+    #dropdown-icon {
+        margin: 0;
+    }
 
-#account-icon:hover {
-    color: #4e88af;
-}
+    #account-icon:hover {
+        color: #4e88af;
+    }
 
-#profile-dropdown a {
-    padding: 1rem 1rem 0 1rem;
-    color: #284B63;
-    background-color: #fff;
-}
+    #profile-dropdown a {
+        padding: 1rem 1rem 0 1rem;
+        color: #284B63;
+        background-color: #fff;
+    }
 
 
 /* Home page */
+
+#hero-container {
+    position: relative;
+    text-align: center;
+}
 
 #dog-image {
     background: url('../images/dog-image.jpg') ;
@@ -140,11 +160,6 @@ button:focus {
     height: 100vh;
 }
 
-#hero-container {
-    position: relative;
-    text-align: center;
-}
-
 #welcome-text {
     position: absolute;
     top: 0%;
@@ -155,19 +170,11 @@ button:focus {
 }
 
 .homepage-buttons {
-    font-family: "Cormorant Garamond", Arial, Helvetica, sans-serif;
-    text-decoration: none;
-    background-color: #284B63;
-    border-radius: 2rem;
     padding: 1rem 2rem;
-    margin: 1rem;
-    color: #fff;
     font-size: 2.5rem;
+    text-decoration: none;
 }
 
-.homepage-buttons:hover {
-    background-color: #152c3c;
-}
 
 /* Register & Sign In */
 
@@ -196,22 +203,6 @@ button:focus {
     border-bottom: 0.05rem solid #284B63 !important;
 }
 
-.form-buttons {
-    font-family: "Cormorant Garamond", Arial, Helvetica, sans-serif;
-    background-color: #284B63;
-    border: 0.1rem solid #284B63;
-    border-radius: 1rem;
-    padding: 1rem;
-    margin: 1rem 0; 
-    color: #fff !important;
-    font-size: 1.6rem;
-    line-height: 2.1rem;
-}
-
-.form-buttons:hover {
-    background-color: #152c3c;
-} 
-
 #sign-in {
     border: 0.3rem solid #284B63;
     margin-top: 1rem;
@@ -230,9 +221,7 @@ button:focus {
     margin-bottom: 1rem;
 }
 
-#search-dashboard {
-    margin-bottom: 5rem;
-}
+/* Select dog profile when multiple dogs */
 
 #dog-selection {
     text-align: right;
@@ -240,14 +229,14 @@ button:focus {
     padding: 0;
 }
 
-#profile-selection-button {
+/* #profile-selection-button {
     background-color: #284B63;
-    border: 0.1rem solid #284B63;
+    border: 0.1rem solid;
     border-radius: 1rem;
     padding: 1rem;
     color: #fff;
     font-size: 1.6rem;
-}
+} */
 
 .dropdown-content li>a, .dropdown-content li>span {
     color: #284B63 !important;
@@ -315,6 +304,8 @@ button:focus {
         font-size: 1.6rem;
     }
 
+    /* Links - Icons */
+
     .add-dog {
     float: left;
     margin-top: 1rem;
@@ -324,17 +315,9 @@ button:focus {
         margin-top: 2rem;
     }
 
-    /* Log Display */
+    /* Log Dashboard */
 
-    .default-log {
-        background-color: #F5F5F5;
-        padding: 2rem;
-        margin-top: 2rem;
-        box-shadow: 0.2rem -0.3rem 0.2rem #c7c7c7;
-        text-align: center;
-        margin-bottom: 1rem;
-    }
-
+    /* Log display when no dog is added yet, centered on page */
     #start-tracking {
         display: flex;
         justify-content: center;
@@ -348,6 +331,16 @@ button:focus {
         font-size: 3rem;
     }
 
+    /* Log display after dog is added but no logs yet */
+    .default-log {
+        background-color: #F5F5F5;
+        padding: 2rem;
+        margin-top: 2rem;
+        box-shadow: 0.2rem -0.3rem 0.2rem #c7c7c7;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
     .default-log a {
         text-decoration: underline;
         color: #284B63;
@@ -355,8 +348,9 @@ button:focus {
 
     .default-log a:hover {
         color: #4e88af;
-
     }
+
+    /* Display of logs */
     .log {
         background-color: #F5F5F5   ;
         padding: 1rem 1rem 0 1rem;
@@ -389,15 +383,22 @@ button:focus {
         float: right;
     }
 
+    /* Floating Action Button */
+
     .btn-floating {
         margin-bottom: 3rem;
     }
 
+    /* Add log button for small devices instead of FAB */
+
+    #add-log-s {
+    display: flex;  
+    justify-content: center;
+}
+
 /* Add dog - Add log */
 
-#profile-selection {
-    margin-bottom: 2rem;
-}
+/* Datepicker */
 
 .datepicker-date-display {
     background-color: #284B63;
@@ -425,8 +426,10 @@ button:focus {
     margin-bottom: 0;
 }
 
+.input-bottom {
+    border-bottom: 0.03rem solid #284B63 !important;
+}
 /* Date icon as placeholder for datepicker */
-
 
 .mainLoginInput{
   height: 40px;
@@ -468,25 +471,19 @@ padding-top: 2px;
 color: #284B63;
 }
 
-.input-bottom {
-    border-bottom: 0.03rem solid #284B63 !important;
-}
-
-
-/* search form */
-
-#search-form {
-    margin-top: 3rem;
-}
+/* Search logs */
 
 #search-button {
     display: flex;
     justify-content: center;
 }
 
-#add-log-s {
-    display: flex;  
-    justify-content: center;
+#search-dashboard {
+    margin-bottom: 5rem;
+}
+
+#search-form {
+    margin-top: 3rem;
 }
 
 #no-logs {
@@ -530,17 +527,12 @@ color: #284B63;
         font-size: 3rem;
     }
 
-    #blank-dashboard {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
     .heading {
         font-size: 3rem;
     }
 
     .sub-heading {
-        font-size: 2.5 rem
+        font-size: 2.5rem;
     }
 
     #register {
@@ -551,6 +543,12 @@ color: #284B63;
         width: 70%;
     }
 
+    #blank-dashboard {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
     .log-date {
         text-align: center;
     }
