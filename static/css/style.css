@@ -178,6 +178,11 @@ button:focus {
     width: 90%;
 }
 
+.pattern {
+    font-size: 1.2rem;
+    display: block;
+}
+
 .link-container {
     margin: 1rem 0;
 }

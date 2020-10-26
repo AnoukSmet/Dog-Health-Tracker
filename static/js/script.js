@@ -1,4 +1,20 @@
 /**
+ * Displays request format when incorrect input was given
+ */
+
+// const username = document.querySelector('#username');
+// const password = document.querySelector('#password');
+
+// username.oninvalid = function(event) {
+//     event.target.setCustomValidity('Username should only have letters (either case) and numbers. No special characters');
+// }
+
+// password.oninvalid = function(event) {
+//     event.target.setCustomValidity('Password should have six or more characters');
+// }
+
+
+/**
  * Function to enable datepicker
  */
     
