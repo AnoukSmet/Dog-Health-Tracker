@@ -110,7 +110,7 @@ def log_out():
     return render_template("pages/home.html")
 
 
-@app.route('/dashboard/<user_id>')
+@app.route('/api/dashboard/<user_id>')
 def blank_dashboard(user_id):
     dogs = mongo.db.dogs.find({"user_id": user_id})
     count_dogs = dogs.count()
@@ -119,7 +119,7 @@ def blank_dashboard(user_id):
                            count_dogs=count_dogs)
 
 
-@app.route('/dashboard/<user_id>/<dog_id>', methods=["GET", "POST"])
+@app.route('/api/dashboard/<user_id>/<dog_id>', methods=["GET", "POST"])
 def view_dashboard(user_id, dog_id):
     user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
     dogs = mongo.db.dogs.find({"user_id": user_id})

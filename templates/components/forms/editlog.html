@@ -13,9 +13,9 @@
             <select name="weight_metric">
                 {% for metric in weight_metrics %}
                     {% if metric.metric_name == log.weight_metric %}
-                        <option value="{{metric.metric_name}}" selected >{{metric.metric_name}}</option>
+                        <option value="{{metric.metric_name}}" aria-label="weigth metric" selected >{{metric.metric_name}}</option>
                     {% else %}
-                        <option value="{{metric.metric_name}}" >{{metric.metric_name}}</option>
+                        <option value="{{metric.metric_name}}" aria-label="weigth metric">{{metric.metric_name}}</option>
                     {% endif %}
                 {% endfor %}
             </select>
@@ -34,9 +34,9 @@
             <select name="food_metric">
                 {% for metric in food_metrics %}
                     {% if metric.metric_name == log.food_metric %}
-                        <option value="{{metric.metric_name}}" selected >{{metric.metric_name}}</option>
+                        <option value="{{metric.metric_name}}" aria-label="food metric" selected >{{metric.metric_name}}</option>
                     {% else %}
-                        <option value="{{metric.metric_name}}" >{{metric.metric_name}}</option>
+                        <option value="{{metric.metric_name}}" aria-label="food metric">{{metric.metric_name}}</option>
                     {% endif %}
                 {% endfor %}
             </select>

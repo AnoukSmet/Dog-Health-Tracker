@@ -285,12 +285,14 @@ metric_name     | String
 * Currently the user can only insert image url. In the future I would like that the user can upload an image from its computer.
 * Have a more extensive user profile with email where you can send updates, newsletters to. 
 * Have a 'forget password' functionality.
+* Include a confirm password to make sure the user has chosen the password he/she wanted. 
 * Possibility for the user to be able to add (and remove) categories they would like to specificely track for their dog like medication etc. 
 * The possibility to filter the logs based on range of data or by month.
 * Expand search function so user can filter on more keywords except for log_date.
 * Add pagination so the list of logs will be display with a max of 20 logs per page.
 * When the user has added their first log, I would like to remember the chosen metrics for any futher logs so they don't have to update this every time they add a log.
     This would be done through profile preferences or store the data in a cookie. 
+* Give the user the possibility to add a 'Picture of the day' to the log and display it on the dashboard.
 
 [Back to Top](#table-of-contents)gi
 
@@ -461,6 +463,8 @@ From own experience, I have decided to include the following input fields:
 Also here I have created a form with the various inputfields. 
 For date I have again used the datepicker with future dates disabled as you shouldn't be able to log for future data. 
 I have set the default date to 'today' to improve the user experience as most often, you will add a log for 'today'.
+I have made the decision to allow multiple logs per day as some users would like to create a log in the morning and one in the evening for example. 
+This can depend on the user wanting to add a log twice per day as he/she feeds the dog twice per day etc. 
 For the activity I have not added any metrics etc because it can vary a lot depending on the user and the dog (example: playing with a stick can also be seen as activity for some users)
 For the weigth I have inlucded metrics (kg, grams, pounds and ounces) which are the most important weight metrics being used. 
 For the food I have included the same metrics. 
@@ -910,7 +914,11 @@ For more information, visit [Cloning a repository](https://docs.github.com/en/fr
 
 ## **Credits**
 
+* I want to thank Unsplash for making their pictures publicly available and special thank you to [Anna Dudkova](https://unsplash.com/photos/7T5vvPgvaYA) for the dog image that I have used for my homescreen. 
+
 * While I was developing this website, I ran into some difficulties that I didn't know how to tackle. I want to thank the [Stackoverflow](https://stackoverflow.com/) community for making their useful content available online. 
+
+* [The Art of Routing in Flask](https://hackersandslackers.com/flask-routes/) Documentation has also helped me understanding the concept of routing (register, sign in, error handling etc) and how to best implement this into my project.
 
 * I would like to thank my mentor Simen [Eventyret_mentor](https://github.com/Eventyret) for his endless support and guiding me into becomming a better developer!
 

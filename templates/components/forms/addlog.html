@@ -12,7 +12,7 @@
         <div class="col s4">
             <select name="weight_metric">
                 {% for metric in weight_metrics %}
-                <option value="{{metric.metric_name}}">{{metric.metric_name}}</option>
+                <option value="{{metric.metric_name}}" aria-label="weigth metrics">{{metric.metric_name}}</option>
                 {% endfor %}
             </select>
         </div>
@@ -29,7 +29,7 @@
         <div class="col s4">
             <select name="food_metric">
                 {% for metric in food_metrics %}
-                <option value="{{ metric.metric_name }}">{{ metric.metric_name }}</option>
+                <option value="{{ metric.metric_name }}" aria-label="food metric">{{ metric.metric_name }}</option>
                 {% endfor %}
             </select>
         </div>
