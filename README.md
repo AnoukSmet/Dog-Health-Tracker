@@ -131,7 +131,8 @@ If you have any feedback or questions, head over to my GitHub contact details an
 
 I have used [Coolors](https://coolors.co/ "Coolors.co") to come up with a color scheme that matches the atmosphere of a Health Tracker.
 For this website I have deciced to keep design simple, meaning I opted for a white background color with some light gray for the profile and logs.
-I have added some color for the buttons to make the design more visually appealing to the user. 
+I have added some color (blue) for the buttons, navigation bar and footer to make the design more visually appealing to the user. 
+The reason for this is that for this project, the functionality is much more important and as there are a lot of functionalities I don't want to distract the user with overwhelming colors. 
 
 <a></a>
 
@@ -162,9 +163,9 @@ This way my content will be easily readable.
 
 #### Structure
 
-I have chosen to use [Bootstrap](https://getbootstrap.com/) to create an overall structure for my website. 
-Bootstrap provides various elements of CSS and Javascript which is very helpful to keep a good structure on your page. 
-As Bootstrap is designed for mobile first, I will be certain that my website functions well on mobile.
+I have chosen to use [Materialize](https://materializecss.com/) to create an overall structure for my website. 
+Materialize provides various elements of CSS and Javascript which is very helpful to keep a good structure on your page. 
+The reason why I choose Materiaize is mainly due to the various features they offer like a datepicker, floating action button etc. 
 
 [Back to Top](#table-of-contents)
 
@@ -275,6 +276,7 @@ metric_name     | String
     * Read: dashboard where you can view the dog profile(which was selected) and its logs
     * Update: possibility to update the dog profile and logs
     * Delete: possibility to delete the dog profiles and logs
+* Search logs by log date
 
 <a></a>
 
@@ -283,10 +285,12 @@ metric_name     | String
 * Currently the user can only insert image url. In the future I would like that the user can upload an image from its computer.
 * Have a more extensive user profile with email where you can send updates, newsletters to. 
 * Have a 'forget password' functionality.
-* Possibility for the user to be able to add categories they would like to specificely track for their dog like medication etc. 
+* Possibility for the user to be able to add (and remove) categories they would like to specificely track for their dog like medication etc. 
 * The possibility to filter the logs based on range of data or by month.
 * Expand search function so user can filter on more keywords except for log_date.
 * Add pagination so the list of logs will be display with a max of 20 logs per page.
+* When the user has added their first log, I would like to remember the chosen metrics for any futher logs so they don't have to update this every time they add a log.
+    This would be done through profile preferences or store the data in a cookie. 
 
 [Back to Top](#table-of-contents)gi
 
@@ -356,10 +360,19 @@ I have tried to create an account with an already existing username. Correct fee
 Whenever I didn't meet the pattern criteria, the correct feedback was displayed, explaining which charachters etc are allowed. 
 User acccount is created whenever all criteria was met and user is being redirect to blank_dashboard.
 
+I noticed that the feedback provided to the user when their input didn't match the required format was not being displayed on all devices. 
+After some research I have decided to add the required pattern right above the input fields so the user will always know which format to use.
+
+After receiving some feedback from friends and family who have tested the website, I have decided to make the feedback message stand out more. 
+It took the user a while to notice the feedback when the username already exists. I have reversed the colors (Blue background with white text color)
+
 * **Result**  
 Registration form is working as planned and user information is stored safely in the mongodb Users collection.
+Feedback provided stands out nicely to inform the user. 
 Redirection to blank_dashboard works as well as planned so the user can choose to add its dog right away. 
 Tested the registration on various browers and devices and the form is responsive and userfriendly. 
+Having the pattern as a fixed element on the page, improved the user experience. 
+Instead of filling in the fields without knowing the pattern, receiving the feedback and then filling in the fields again, the user can now insert right away the fields with the correct pattern. 
 
 * **Verdict**
 The test has passed all the criteria and works like planned.
@@ -381,12 +394,14 @@ In case the user wrongfully clicked on sign in instead of register, a link to th
 * **Test**  
 Signing in with the correct username and password works as planned and the correct dashboard of that user will be displayed. 
 When the user fills in the wrong username and/or password, the correct message is being displayed on the screen. 
+Also here the feedback message didn't stand out well enough so I have reversed the colors (Blue background with white text color)
 Redirecting to register page works as well. 
 
 * **Result**  
 Sign in form is working as planned and the input is being verified correctly with the stored information of the database.
 Redirection to the correct dashboard works as well as planned so the user can either add a dog on the blank dashboard or view its previously inserted information.
 Tested the sign in form on various browers and devices and the form is responsive and userfriendly. 
+Feedback provided to the user stands out nicely. 
 
 * **Verdict**    
 The test has passed all the criteria and works like planned.
@@ -401,10 +416,10 @@ Possible input fields should be the name of the dog, breed, date of birth, descr
 A summary of the dog profile will be displayed on the dashboard overview. 
 
 * **Implementation**  
-Created a form with the various input fields where the user can fill in the information. 
-I didn't make any of the fields required as for some dogs, the date of birth etc is unknown and the user might not want to fill this in. 
+I have created a form with the various input fields where the user can fill in the information. 
+I have only made the dog_name fields required as for the other fields, the user might not want to fill in this information. Some user might not know the date of birth etc so he/she might not want to fill this in. 
 For the image, I worked with an url that has to be filled in. I don't have the required knowledge and skills yet to enable the user to upload an image from its device. 
-This will be implemented at a later stage when I have the required knowledge and skills. 
+This will be implemented at a later stage when I have the required knowledge and skills. See [Features to be implemented](#features-to-be-implemented)
 For the date of birth, I have implemented the datepicker from materialize so the user can select the date on the calendar. 
 The range for years, goes until 30 years back (Research told me that the oldest dog in the world was 29 years old). 
 The user can not pick a date in the future as that information is unknown. 
@@ -415,8 +430,11 @@ I have also added a cancel button that allows the user to go back to the dashboa
 I have tested the add dog form various times to make sure it works properly.
 The input is stored correctly in the dogs collection in the database. 
 Calendar works as planned with the correct year range being displayed and when clicking a day on the calendar, the calendar automatically closes. 
-Cancel button works as planned and takes the user back to the dashboard. Cancel button is hidden whenever the count of dogs from the user equals to 0. 
+Cancel button works as planned and takes the user back to the dashboard after resolving some issues. See [Bugs](#bugs)
 In order to display the correct dogs for the user, I have addded the _id of the user as a hidden inputfield for the add dog which is stored in the database.
+
+When testing this on mobile devices (iPhoneSE and iPhone8), I noticed that the datepicker was not working how it should.
+After conducting various reseach, I have come up with solution which you can find under [Bugs](#bugs)
 
 * **Result**  
 Adding a profile for the dog works as planned and looks good across various browsers and devices. 
@@ -430,7 +448,6 @@ The test has passed all the criteria and works like planned.
 
 #### User story: As a user, I would like to track activity, food and weigth. 
 
-
 * **Plan**  
 The user should be able to add logs with the various information that needs to be tracked.   
 From own experience, I have decided to include the following input fields:  
@@ -443,6 +460,7 @@ From own experience, I have decided to include the following input fields:
 * **Implementation**  
 Also here I have created a form with the various inputfields. 
 For date I have again used the datepicker with future dates disabled as you shouldn't be able to log for future data. 
+I have set the default date to 'today' to improve the user experience as most often, you will add a log for 'today'.
 For the activity I have not added any metrics etc because it can vary a lot depending on the user and the dog (example: playing with a stick can also be seen as activity for some users)
 For the weigth I have inlucded metrics (kg, grams, pounds and ounces) which are the most important weight metrics being used. 
 For the food I have included the same metrics. 
@@ -455,6 +473,7 @@ The correct input is stores in the logs collection in the database.
 In order to be able to display the relevant logs of the dog, I have added 2 hidden fields on the form: user_id and dog_id. 
 This information is also being stored in the database and through this, I'm able to display the logs of a specific dog from the user. 
 Cancel button brings the user back to the dashboard as planned. 
+Here we also encountered the same issue concerning the datepicker for which you can find the solution under [Bugs](#bugs).
 
 * **Result**  
 Add log form for tracking purpose works as planned for various browsers and devices. 
@@ -470,11 +489,13 @@ The test has passed all the criteria and works like planned.
 
 * **Plan**  
 I would like to create a dashboard where the user can see the profile of the dog on the left and the logs of the dog on the right. 
+On small devices the profile will be displayed on top of the page with the logs of the dog below. 
 Whenever the user has multiple dogs, I want that the user is able to select the profile that should be displayed on the dashboard. 
+This will be displayed above the dog profile on small devices and on top of the dashboard for large screen. 
 The dashboard should be very clear and intuitive to use.   
 
 When the user doesn't have any dog yet added to its useraccount, a blank dashboard will be displayed with a very clear call-to-action to add the first dog. 
-On the place where normally the logs would show, I will the following text: "After you have added your dog, come here to start tracking!"
+On the place where normally the logs would show, I will the following text: "After you added your dog, come here to start tracking!"
 
 * **Implementation**  
 My dashboard exists out of 2 main parts, the dog profile and the logs display. 
@@ -488,23 +509,23 @@ My dashboard exists out of 2 main parts, the dog profile and the logs display.
 
     *Logs display*   
     The logs that will be displayed are from the dog profile selected. 
-    When no dog profile is added yet, here it will show that as soon as they have added a dog, they can come here to start tracking.
+    When no dog profile is added yet, here it will show that as soon as they added a dog, they can come here to start tracking.
     When a dog profile is added but no logs are submitted yet, it shows 'Click here or on the plus sign right below to add your first log" which takes you to the add log page. 
     From the moment the user has at least submitted 1 log, another button will appear above the logs with the following text: Click here to search dogs by date'. 
     This will take the user to the search logs page where a search can be performed by date. 
-    For medium devices and up I have included a Floating action button which is displayed right below on the screen. 
+    For medium devices and up I have included a floating action button which is displayed right below on the screen. 
     Even if the user is in the middle of the screen, the button will be displayed, giving the user the possibility the add a log without having to scroll up to the top. 
     The floating action button will be hidden on small screens and a normal button will appear on below the search button. 
     I have implemented this because the floating action button was appearing on top of the dog profile which might have confused the user with the add another dog button. 
 
     Whenever the user has more than 1 dog in its profile, a select element will appear above the dashboard saying: "Select the dog profile you want to see". 
     Here the names of all the dogs that the user has will be displayed. 
-    When the user clicks on the name, the form will be submitted (without submit button) and the profile and logs of that dog will be displayed on the dashboard. 
+    When the user clicks on the name, the form will be submitted (without submit button, by using javascript) and the profile and logs of that dog will be displayed on the dashboard. 
 
 * **Test**  
 The correct dashboard is being displayed depending on if the user has already added a dog profile.
 When the dashboard is being displayed after registring and adding the first dog profle, the correct profile is being displayed under dog profile. 
-Under logs the text to add first log is being displayed correctly. The dog profile doesn't show the delete button as the user only has 1 dog added on that moment. 
+Under logs the text to add first log is being displayed correctly.  
 From the moment the user adds a first log, the log is being displayed nicely on the screen with nice focus on the date to make the dashboard more appealing. 
 The text to add first log disappears and the button to search logs by date appears nicely above the log. 
 When multiple logs have been added, the logs are ordered by log date with the most recent one first. 
@@ -527,8 +548,8 @@ The test has passed all the criteria and works like planned.
 
 * **Plan**  
 After a while the user will have a lot of logs which will make it more complicated to find a certain log. 
-I want that the user is able to filter on the logs depending on the log date to make it easier find a certain log. 
-In the future I would also like to add pagination to the logs so it doesn't look like an endless list of logs. 
+I want the user to be able to filter on the logs depending on the log date to make it easier find a certain log. 
+In the future I would also like to add pagination to the logs so it doesn't look like an endless list of logs. See [Features to be implemented](#features-to-be-implemented)
 Currently I don't have the required skills or knowledge for this so I will only implement the search function.
 
 * **Implementation**  
@@ -548,7 +569,7 @@ The button to take the user back to the dashboard works as planned and the dashb
 * **Result**  
 The search logs page works as planned across various browsers and devices. 
 Search function works as planned and return the correct logs or feedback message depending on the user input. 
-Button to take the user back to the dashboard functions as planned. 
+Button to take the user back to the relevant dashboard functions as planned. 
 
 * **Verdict**  
 The test has passed all the criteria and works like planned.
@@ -583,6 +604,9 @@ Whenever the user has more than 1 dog, the select box is being displayed with th
 Upon clicking the dog name for which the user would like to see the dashboard, the form is submitted and the correct info is being displayed. 
 When the user removes the previously last dog (and has only 1 dog remaining), the select box disappears and profile of the remaining dog is displayed. 
 I made sure that whenever a new log was added, edited or deleted, the dashboard of the relevant dog kept on being displayed on the screen. 
+
+When testing on other devices (iPhone SE and iPhone8 in this case), we noticed that the select box was not working properly. 
+This is was the same issue as I had for the datepicker. See solution under [Bugs](#bugs)
 
 * **Result**  
 Having multiple dogs on the profile was a big challenge which has taken a lot of time and testing. 
@@ -641,6 +665,7 @@ When the user still has multiple dog and deletes a profile, the dashboard of the
 I have added the delete button to every log, next to the edit button. 
 I have worked with selfexplanatory icons which improves the overall look of the dashboard. 
 When the users clicks on the button, the log with the relevant log_id will be removed from the database and is being redirected to the correct dashboard.
+Below each dog profile, the same delete icon will be displayed. 
 
 * **Test**  
 When the delete button for the log is clicked, the relevant log is being removed and the user stays on the relevant dashboard. 
@@ -648,8 +673,13 @@ When delete button of the dog profile has been clicked, the relevant dog is bein
 When user removes last dog, the user being redirect to the blank_dashboard.
 When the user has multiple dogs in its profile and removes 1, user is redirected to view_dashboard of (one of) the remaining dog(s).
 
+While I was testing the delete functionality, I realised that by deleting a complete dog profile, you will lose all the profile info and all of the logs associated with that profile. 
+To make sure that the user doesn't click the delete button by accident, I have included a modal to confirm that the user would like to proceed with deleting the dog profile. 
+
 * **Result**  
 The delete funtionality works as planned across various browsers and devices. 
+The modal opens up when the button is clicked asking the user if they are sure they would like to delete the profile. 
+When no is selected, the user is taken back the dashboard. When yes, the dog_profile is deleted from the database. 
 The delete button for the dog profile is correctly being displayed and works as planned.
 
 * **Verdict**  
@@ -774,13 +804,33 @@ I think that my second approach to this issue is a better solution than the firs
 Especially when thinking about the user experience. 
 I'm satisfied with the fix and the user is now able to remove their dog profile, even if there is only 1 remaining. 
 
-### ****
+### **Select dropdown and Datepicker on mobile devices**
 
 * **Bug**  
+When I was testing the website on mobile devives, I ran into some difficulties with the profile selection when the user has multiple profile. 
+When select a dog, another dog was being displayed on the dashboard. The same happened with the selection of the months and years from the datepicker. 
+Whenever 2017 was selected, 2018 was displayed and so on. 
 
 * **Fix**       
+After various research I came across some information that this was a general bug from Materialize which can be found [here](https://github.com/Dogfalo/materialize/issues/6444#event-2671340700
+). There it was mentioned that a temporary solution would be to download and add the pathed js file, [select.js](https://github.com/Dogfalo/materialize/blob/v1-dev/js/select.js)
+After including this file in my project, the problem has been resolved and the dropdown works as planned. 
 
 * **Verdict**   
+This is a temporary solution as mentioned in the documentation so I will need to revisit this bug in the future. 
+For now, the fix resolves the bug and the select dropdown and dropdown from datepicker works as planned. 
+
+
+### **Year range for Datepicker**
+
+* **Bug**
+WHen I go the the last year available in the datepicker which is 1990 in this case, the back arrow is still available and can be clicked. 
+The year displayed keeps on being 1990 but when you select a day, you will see in the inputfield that the datipicker can go more than 30 years back. 
+
+* **Verdict**
+For now I haven't found a fix yet for this issue.
+Luckily this doesn't influence the user experience as normally the user wouldn't go that far back. 
+Nonetheless I would still like to resolve this under future releases by disabling the back arrow when the user is 30 years in the past. 
 
 [Back to Top](#table-of-contents)
 

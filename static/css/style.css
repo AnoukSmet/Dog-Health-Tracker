@@ -89,6 +89,7 @@ button:focus {
     color: #fff !important;
     font-size: 1.6rem;
     line-height: 2.1rem;
+    border-width: 0;
 }
 
 .form-buttons:hover {
@@ -208,6 +209,14 @@ button:focus {
     margin-top: 1rem;
     text-align: center;
     width: 90%;
+}
+
+#flash-message {
+    background-color: #284B63;
+    color: #fff;
+    display: inline-block;
+    padding: 1rem;
+    border-radius: 1rem;
 }
 
 /* Dashboard */
