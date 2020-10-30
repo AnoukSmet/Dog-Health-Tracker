@@ -58,7 +58,7 @@ def register():
             return redirect(url_for("blank_dashboard", user_id=user_id,
                                     count_dogs=count_dogs))
 
-    return render_template("pages/register.html")
+    return render_template("pages/authentication.html", register=True)
 
 
 @app.route('/signin', methods=["GET", "POST"])
@@ -101,7 +101,7 @@ def sign_in():
             flash("Incorrect username and/or Password")
             return redirect(url_for("sign_in"))
 
-    return render_template("pages/sign_in.html")
+    return render_template("pages/authentication.html")
 
 
 @app.route('/logout')
