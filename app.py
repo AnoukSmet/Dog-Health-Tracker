@@ -222,12 +222,14 @@ def add_dog(user_id):
         if count_dogs != 0:
             dog = mongo.db.dogs.find_one({"user_id": user_id})
             dog_id = dog["_id"]
-            return render_template("pages/adddog.html", user_id=user_id,
+            return render_template("pages/dogprofile.html", user_id=user_id,
                                    dog_id=dog_id,
-                                   count_dogs=count_dogs)
+                                   count_dogs=count_dogs,
+                                   add=True)
         else:
-            return render_template("pages/adddog.html", user_id=user_id,
-                                   count_dogs=count_dogs)
+            return render_template("pages/dogprofile.html", user_id=user_id,
+                                   count_dogs=count_dogs,
+                                   add=True)
 
 
 @app.route('/dog/edit/<user_id>/<dog_id>', methods=['GET', 'POST'])
@@ -255,7 +257,7 @@ def edit_dog(user_id, dog_id):
     elif request.method == "GET":
         dog = mongo.db.dogs.find_one({"_id": ObjectId(dog_id)})
         dog_id = dog["_id"]
-        return render_template('pages/editdog.html',
+        return render_template('pages/dogprofile.html',
                                dog_id=dog_id,
                                dog=dog,
                                user_id=user_id)
@@ -306,11 +308,12 @@ def add_log(user_id, dog_id):
         weight_metrics = mongo.db.weight_metrics.find()
         food_metrics = mongo.db.food_metrics.find()
 
-        return render_template("pages/addlog.html",
+        return render_template("pages/logs.html",
                                weight_metrics=weight_metrics,
                                food_metrics=food_metrics,
                                dog_id=dog_id,
-                               user_id=user_id)
+                               user_id=user_id,
+                               add=True)
 
 
 @app.route('/log/edit/<user_id>/<dog_id>/<log_id>',
@@ -343,7 +346,7 @@ def edit_log(user_id, dog_id, log_id):
     elif request.method == 'GET':
         log_to_update = mongo.db.logs.find_one({"_id": ObjectId(log_id)})
 
-        return render_template('pages/editlog.html',
+        return render_template('pages/logs.html',
                                log=log_to_update,
                                dogs=mongo.db.dogs.find({"user_id": user_id}),
                                weight_metrics=mongo.db.weight_metrics.find(),

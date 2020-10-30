@@ -1,0 +1,27 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+{% include 'components/navigation/extensive_navigation.html' %}
+
+{% if add == True %}
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <h2>Add log</h2>
+                {% include 'components/forms/log_form.html' %}
+            </div>
+        </div>
+    </div>
+
+{% else %}
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <h2>Edit log</h2>
+                {% include 'components/forms/log_form.html' %}
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% include 'components/footer/footer.html' %}
+{% endblock %}
