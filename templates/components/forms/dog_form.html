@@ -19,7 +19,7 @@
 
     <button type="submit" class="form-buttons" id="add-dog-submit">Add dog</button>
         {% if count_dogs != 0 %}
-        <a href="{{url_for('view_dashboard', user_id=user_id, dog_id=dog_id)}}" class="form-buttons">Cancel</a>
+        <a href="#" onclick="goBack()" class="form-buttons">Cancel</a>
         {% else %}
         <a href="{{url_for('blank_dashboard', user_id=user_id)}}" class="form-buttons">Cancel</a>
         {% endif %}

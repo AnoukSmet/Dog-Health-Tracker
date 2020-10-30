@@ -179,9 +179,8 @@ def search_logs(user_id, dog_id):
                                    "log_date": log_date})
         count_logs = logs.count()
 
-    elif request.method == 'GET':
-        logs = ''
-        count_logs = logs.count(logs)
+    logs = ''
+    count_logs = logs.count(logs)
 
     return render_template("pages/searchlogs.html",
                            user_id=user_id,
@@ -216,20 +215,11 @@ def add_dog(user_id):
                                 user_id=user_id, dog_id=dog_id,
                                 count_dogs=count_dogs))
 
-    elif request.method == 'GET':
-        dogs = mongo.db.dogs.find({"user_id": user_id})
-        count_dogs = dogs.count()
-        if count_dogs != 0:
-            dog = mongo.db.dogs.find_one({"user_id": user_id})
-            dog_id = dog["_id"]
-            return render_template("pages/dogprofile.html", user_id=user_id,
-                                   dog_id=dog_id,
-                                   count_dogs=count_dogs,
-                                   add=True)
-        else:
-            return render_template("pages/dogprofile.html", user_id=user_id,
-                                   count_dogs=count_dogs,
-                                   add=True)
+    dogs = mongo.db.dogs.find({"user_id": user_id})
+    count_dogs = dogs.count()
+    return render_template("pages/dogprofile.html", user_id=user_id,
+                           count_dogs=count_dogs,
+                           add=True)
 
 
 @app.route('/dog/edit/<user_id>/<dog_id>', methods=['GET', 'POST'])
@@ -254,13 +244,12 @@ def edit_dog(user_id, dog_id):
                                 dog_id=dog_id,
                                 count_dogs=count_dogs))
 
-    elif request.method == "GET":
-        dog = mongo.db.dogs.find_one({"_id": ObjectId(dog_id)})
-        dog_id = dog["_id"]
-        return render_template('pages/dogprofile.html',
-                               dog_id=dog_id,
-                               dog=dog,
-                               user_id=user_id)
+    dog = mongo.db.dogs.find_one({"_id": ObjectId(dog_id)})
+    dog_id = dog["_id"]
+    return render_template('pages/dogprofile.html',
+                           dog_id=dog_id,
+                           dog=dog,
+                           user_id=user_id)
 
 
 @app.route('/dog/delete/<user_id>/<dog_id>')
@@ -304,23 +293,22 @@ def add_log(user_id, dog_id):
                                 user_id=user_id, dog_id=dog_id,
                                 count_dogs=count_dogs))
 
-    elif request.method == "GET":
-        weight_metrics = mongo.db.weight_metrics.find()
-        food_metrics = mongo.db.food_metrics.find()
+    weight_metrics = mongo.db.weight_metrics.find()
+    food_metrics = mongo.db.food_metrics.find()
 
-        return render_template("pages/logs.html",
-                               weight_metrics=weight_metrics,
-                               food_metrics=food_metrics,
-                               dog_id=dog_id,
-                               user_id=user_id,
-                               add=True)
+    return render_template("pages/logs.html",
+                           weight_metrics=weight_metrics,
+                           food_metrics=food_metrics,
+                           dog_id=dog_id,
+                           user_id=user_id,
+                           add=True)
 
 
 @app.route('/log/edit/<user_id>/<dog_id>/<log_id>',
            methods=['GET', 'POST'])
 def edit_log(user_id, dog_id, log_id):
     """
-    Allows the user to edit logs 
+    Allows the user to edit logs
     Redirects user to the dashboard
     """
     if request.method == "POST":
@@ -343,16 +331,15 @@ def edit_log(user_id, dog_id, log_id):
                                 dog_id=dog_id,
                                 count_dogs=count_dogs))
 
-    elif request.method == 'GET':
-        log_to_update = mongo.db.logs.find_one({"_id": ObjectId(log_id)})
+    log_to_update = mongo.db.logs.find_one({"_id": ObjectId(log_id)})
 
-        return render_template('pages/logs.html',
-                               log=log_to_update,
-                               dogs=mongo.db.dogs.find({"user_id": user_id}),
-                               weight_metrics=mongo.db.weight_metrics.find(),
-                               food_metrics=mongo.db.food_metrics.find(),
-                               user_id=user_id,
-                               dog_id=dog_id)
+    return render_template('pages/logs.html',
+                           log=log_to_update,
+                           dogs=mongo.db.dogs.find({"user_id": user_id}),
+                           weight_metrics=mongo.db.weight_metrics.find(),
+                           food_metrics=mongo.db.food_metrics.find(),
+                           user_id=user_id,
+                           dog_id=dog_id)
 
 
 @app.route('/log/delete/<user_id>/<dog_id>/<log_id>')
@@ -391,4 +378,4 @@ def server_error(error):
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
-            debug=True)
+            debug=os.environ.get("DEBUG"))
