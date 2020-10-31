@@ -848,6 +848,11 @@ I have created the Dog Health Tracker project using Github, from there I used Gi
 Then I used commits to git followed by "git push" to my GitHub repository. 
 I've deployed this project to Heroku and used "git push heroku master" to make sure my pushes to GitHub were also made to Heroku. 
 
+This project can be ran locally by following the following steps: (
+I used Gitpod for development, so the following steps will be specific to Gitpod. 
+You will need to adjust them depending on your IDE. You can find more information about installing packages using pip and virtual environments [here](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/)
+
+
 To clone the project: 
 
 1. From the application's repository, click the "code" button and download the zip of the repository.
@@ -866,7 +871,7 @@ To clone the project:
 1. Sign in or sign up to MongoDB and create a new cluster
 1. Clicking on the "Connect" button will enable you to connect to this cluster
 1. Under the Collections tab, click Create Database called dog_health_tracker
-1. Set up the following collections: users, dogs, logs, food_metrics and weigth_metrics
+1. Set up the following collections: users, dogs, logs, food_metrics and weigth_metrics [Click here to see the exact Database Structure](#database-structure)
 1. Under food_metrics and weigth_metrics, add your preferred metric in the collection with the following structure: 
     ```
     Key             | Value
