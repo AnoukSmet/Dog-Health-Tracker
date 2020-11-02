@@ -9,7 +9,7 @@
     <div class="row metrics">
         <label class="labels col s12" for="dog_weight">Weight: </label>
         <div class="col s8" > 
-            <input type="number" id="dog_weight" name="dog_weight" class="input-bottom">
+            <input type="number" step=".1" id="dog_weight" name="dog_weight" class="input-bottom">
         </div>
         <div class="col s4">
             <select name="weight_metric">
@@ -26,7 +26,7 @@
     <div class="row metrics">
         <label class="labels col s12" for="dog_food">Food:</label>
         <div class="col s8">
-            <input type="number" id="dog_food" name="dog_food" class="input-bottom">
+            <input type="number" step=".1" id="dog_food" name="dog_food" class="input-bottom">
         </div>
         <div class="col s4">
             <select name="food_metric">
@@ -55,7 +55,7 @@
     <div class="row metrics">
         <label class="labels col s12" for="dog_weight">Weight: </label>
         <div class="col s8" > 
-            <input type="number" id="dog_weight" name="dog_weight" value="{{ log.dog_weight }}" class="input-bottom">
+            <input type="number" step=".1" id="dog_weight" name="dog_weight" value="{{ log.dog_weight }}" class="input-bottom">
         </div>
         <div class="col s4">
             <select name="weight_metric">
@@ -76,7 +76,7 @@
     <div class="row metrics">
         <label class="labels col s12" for="dog_food">Food:</label>
         <div class="col s8">
-            <input type="number" id="dog_food" name="dog_food" class="input-bottom" value="{{ log.dog_food }}">
+            <input type="number" step=".1" id="dog_food" name="dog_food" class="input-bottom" value="{{ log.dog_food }}">
         </div>
         <div class="col s4">
             <select name="food_metric">

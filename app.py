@@ -77,10 +77,10 @@ def sign_in():
                 user_id = str(user['_id'])
                 session['user_id'] = str(user_id)
 
-                dog = mongo.db.dogs.find_one({"user_id": user_id})
+                dog_profile = mongo.db.dogs.find_one({"user_id": user_id})
 
-                if dog:
-                    dog_id = dog["_id"]
+                if dog_profile:
+                    dog_id = dog_profile["_id"]
                     dogs = mongo.db.dogs.find({"user_id": user_id})
                     count_dogs = dogs.count()
                     return redirect(url_for("view_dashboard",
@@ -144,16 +144,17 @@ def view_dashboard(user_id, dog_id):
         if session['user_id'] == str(user["_id"]):
             if request.method == 'POST':
                 selected_profile = request.form.get('dog_name')
-                dog = mongo.db.dogs.find_one({"dog_name": selected_profile,
+                dog_profile = mongo.db.dogs.find_one({
+                                              "dog_name": selected_profile,
                                               "user_id": user_id})
-                dog_id = str(dog["_id"])
+                dog_id = str(dog_profile["_id"])
                 logs = mongo.db.logs.find({'dog_id': dog_id}).sort(
                     "log_date", -1)
                 count_logs = logs.count()
 
             else:
-                dog = mongo.db.dogs.find_one({"_id": ObjectId(dog_id)})
-                dog_id = str(dog["_id"])
+                dog_profile = mongo.db.dogs.find_one({"_id": ObjectId(dog_id)})
+                dog_id = str(dog_profile["_id"])
                 logs = mongo.db.logs.find({'dog_id': dog_id}).sort(
                     "log_date", -1)
                 count_logs = logs.count()
@@ -163,7 +164,7 @@ def view_dashboard(user_id, dog_id):
                                    dogs=dogs,
                                    logs=logs,
                                    dog_id=dog_id,
-                                   dog=dog,
+                                   dog_profile=dog_profile,
                                    count_dogs=count_dogs,
                                    count_logs=count_logs)
 
@@ -197,7 +198,7 @@ def add_dog(user_id):
     """
     if request.method == 'POST':
         dogs = mongo.db.dogs.find({"user_id": user_id})
-        dog = {
+        dog_profile = {
             'user_id': request.form.get('user_id'),
             'dog_name': request.form.get('dog_name'),
             'dog_breed': request.form.get('dog_breed'),
@@ -205,11 +206,11 @@ def add_dog(user_id):
             'dog_description': request.form.get('dog_description'),
             'dog_image': request.form.get('dog_image')
         }
-        mongo.db.dogs.insert_one(dog)
-        dog = mongo.db.dogs.find_one({
+        mongo.db.dogs.insert_one(dog_profile)
+        dog_profile = mongo.db.dogs.find_one({
              "dog_name": request.form.get('dog_name'),
              "user_id": request.form.get('user_id')})
-        dog_id = dog["_id"]
+        dog_id = dog_profile["_id"]
         count_dogs = dogs.count()
         return redirect(url_for("view_dashboard",
                                 user_id=user_id, dog_id=dog_id,
@@ -244,11 +245,11 @@ def edit_dog(user_id, dog_id):
                                 dog_id=dog_id,
                                 count_dogs=count_dogs))
 
-    dog = mongo.db.dogs.find_one({"_id": ObjectId(dog_id)})
-    dog_id = dog["_id"]
+    dog_profile = mongo.db.dogs.find_one({"_id": ObjectId(dog_id)})
+    dog_id = dog_profile["_id"]
     return render_template('pages/dogprofile.html',
                            dog_id=dog_id,
-                           dog=dog,
+                           dog_profile=dog_profile,
                            user_id=user_id)
 
 
@@ -262,8 +263,8 @@ def delete_dog(user_id, dog_id):
 
     if dogs.count() > 1:
         mongo.db.dogs.remove({'_id': ObjectId(dog_id)})
-        dog = mongo.db.dogs.find_one({"user_id": user_id})
-        dog_id = dog["_id"]
+        dog_profile = mongo.db.dogs.find_one({"user_id": user_id})
+        dog_id = dog_profile["_id"]
         dogs = mongo.db.dogs.find({"user_id": user_id})
         count_dogs = dogs.count()
         return redirect(url_for('view_dashboard', user_id=user_id,
