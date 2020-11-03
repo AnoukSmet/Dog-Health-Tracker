@@ -2,26 +2,22 @@
 {% block content %}
 {% include 'components/navigation/extensive_navigation.html' %}
 
-{% if add == True %}
     <div class="container">
         <div class="row">
             <div class="col s12">
-                {% if count_dogs == 0 %}
-                <h3>Add a dog profile to start tracking!</h3>
+                {% if add == True %}
+                    {% if count_dogs == 0 %}
+                        <h2>Add a dog profile to start tracking!</h2>
+                    {% else %}
+                        <h2>Add your another dog profile to your account!</h2>
+                    {% endif %}
                 {% else %}
-                <h3>Add your another dog profile to your account!</h3>
+                    <h2>Edit dog profile</h2>
                 {% endif %}
                 {% include 'components/forms/dog_form.html' %}
             </div>
         </div>
     </div>
-
-{% else %}
-    <div class="container">
-        <h2>Edit dog profile</h2>
-        {% include 'components/forms/dog_form.html' %}
-    </div>
-{% endif %}
 {% include 'components/footer/footer.html' %}
 {% endblock %}
 

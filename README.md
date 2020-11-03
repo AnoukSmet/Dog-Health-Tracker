@@ -344,33 +344,41 @@ metric_name     | String
 * **Plan**  
 I want to create a page where the user can register for its personal account to which only the user has access.
 My first plan was to redirect the user to the add_dog form right away to add the first dog but I realised it might confuse the user. 
-Therefor after registration, the user will be taken to a "blank_dashboard" where the only call-to-action will be to add their first dog.
+Therefor after registration, the user will be taken to a "blank dashboard" where the only call-to-action will be to add their first dog.
 This way the user can make 'the decision' to add a dog profile themselves and I don't make that choice for them.
 
 * **Implementation**  
-I created a form where the user can fill choose a username and a password. 
+I created a form where the user can choose a username and a password. 
 I have used the pattern attribute to only allow certain characters for the username and password. 
 Correct feedback will be displayed whenever the user doesn't meet the pattern critera. 
 Before creating the new account, I will check in the database if the username already exists. 
 If so, correct feedback will be displayed to the user so he can choose another username. 
 Password will be stored with the help of the password generate hash so it is stored safely.
-After the registration was succesfull, the user will be redirected to the blank_dashboard to add their first dog.
+After the registration was succesfull, the user will be redirected to the blank dashboard to add their first dog.
+In case the user wrongfully clicked on register instead of sign in, a link to the sign in page is provided so the user doesn't have to go back. 
+I have also implemented a 'Go back to the homepage' link so the user doesn't have to use the back button of the browser in case he/she wants to go back to the homepage.
+
+I have used a variable (register) to make the difference between the register and signin form.
+When register is equal to True, I added the span which explains the requested format.
+By implementing this, I have managed to merge the register and sign in form into 1 form which simplifies my code. 
+
 
 * **Test**  
 I have tried to create an account with an already existing username. Correct feedback is displayed.
 Whenever I didn't meet the pattern criteria, the correct feedback was displayed, explaining which charachters etc are allowed. 
-User acccount is created whenever all criteria was met and user is being redirect to blank_dashboard.
+User acccount is created whenever all criteria was met and user is being redirect to blank dashboard.
 
 I noticed that the feedback provided to the user when their input didn't match the required format was not being displayed on all devices. 
 After some research I have decided to add the required pattern right above the input fields so the user will always know which format to use.
 
 After receiving some feedback from friends and family who have tested the website, I have decided to make the feedback message stand out more. 
-It took the user a while to notice the feedback when the username already exists. I have reversed the colors (Blue background with white text color)
+It took the user a while to notice the feedback when the username already exists. I have reversed the colors (Blue background with white text color) in order to stand out better.
 
 * **Result**  
 Registration form is working as planned and user information is stored safely in the mongodb Users collection.
 Feedback provided stands out nicely to inform the user. 
-Redirection to blank_dashboard works as well as planned so the user can choose to add its dog right away. 
+Redirection to blank dashboard works as well as planned so the user can choose to add its dog right away. 
+'Back to homepage' link works as well and takes the user back to the homepage
 Tested the registration on various browers and devices and the form is responsive and userfriendly. 
 Having the pattern as a fixed element on the page, improved the user experience. 
 Instead of filling in the fields without knowing the pattern, receiving the feedback and then filling in the fields again, the user can now insert right away the fields with the correct pattern. 
@@ -391,12 +399,13 @@ In case the user doesn't have any dog added to its profile, the user will be red
 I created a form where the user can fill in its username and password which will be verified with the information stored in the database. 
 When the wrong information is being filled in, the correct feedback will be provided to the user. 
 In case the user wrongfully clicked on sign in instead of register, a link to the register page is provided so the user doesn't have to go back. 
+I have also implemented a 'Go back to the homepage' link so the user doesn't have to use the back button of the browser in case he/she wants to go back to the homepage.
 
 * **Test**  
 Signing in with the correct username and password works as planned and the correct dashboard of that user will be displayed. 
 When the user fills in the wrong username and/or password, the correct message is being displayed on the screen. 
 Also here the feedback message didn't stand out well enough so I have reversed the colors (Blue background with white text color)
-Redirecting to register page works as well. 
+Redirecting to register page and 'back to homepage' link works as well. 
 
 * **Result**  
 Sign in form is working as planned and the input is being verified correctly with the stored information of the database.
@@ -461,7 +470,8 @@ From own experience, I have decided to include the following input fields:
 * **Implementation**  
 Also here I have created a form with the various inputfields. 
 For date I have again used the datepicker with future dates disabled as you shouldn't be able to log for future data. 
-I have set the default date to 'today' to improve the user experience as most often, you will add a log for 'today'.
+The log_date field is the only field that is required to be filled in by the user as it's important for tracking purpose. 
+The other fields are not required as some users might not want to track certain fields. 
 I have made the decision to allow multiple logs per day as some users would like to create a log in the morning and one in the evening for example. 
 This can depend on the user wanting to add a log twice per day as he/she feeds the dog twice per day etc. 
 For the activity I have not added any metrics etc because it can vary a lot depending on the user and the dog (example: playing with a stick can also be seen as activity for some users)
@@ -479,7 +489,7 @@ Cancel button brings the user back to the dashboard as planned.
 Here we also encountered the same issue concerning the datepicker for which you can find the solution under [Bugs](#bugs).
 
 * **Result**  
-Add log form for tracking purpose works as planned for various browsers and devices. 
+Log form for tracking purpose works as planned for various browsers and devices. 
 Correct information is stored and relevant logs can be retrieved to display on dashboard. 
 
 * **Verdict**  
@@ -513,7 +523,7 @@ My dashboard exists out of 2 main parts, the dog profile and the logs display.
     *Logs display*   
     The logs that will be displayed are from the dog profile selected. 
     When no dog profile is added yet, here it will show that as soon as they added a dog, they can come here to start tracking.
-    When a dog profile is added but no logs are submitted yet, it shows 'Click here or on the plus sign right below to add your first log" which takes you to the add log page. 
+    When a dog profile is added but no logs are submitted yet, it shows 'Click here or on the plus sign right below to add your first log" which takes you to the logs page. 
     From the moment the user has at least submitted 1 log, another button will appear above the logs with the following text: Click here to search dogs by date'. 
     This will take the user to the search logs page where a search can be performed by date. 
     For medium devices and up I have included a floating action button which is displayed right below on the screen. 
@@ -537,10 +547,15 @@ On small devices the floating action button disappears and a normal button appea
 
     When the user has added more than 1 dog, the select box appears above the dashboard, allowing the user to select the profile that should be displayed on the dashboard. 
 
+During testing I noticed that the order of logs was not correct. In app.py I sorted the logs by log_date with the most recent first. 
+This was not going correctly as I had set a different format for the date, with the month written in full. 
+The logs were being sorted incorrectly because of this. See [Bugs](#bugs) for the solution to this problem.
+
 * **Result**  
 The dashboard looks as planned across various browers and devices. 
 All the functionalities work as planned and the correct information is being displayed on the screen. 
 Hiding the floating action button on small devices works well and improves the user experience. 
+After resolving the issue with the date format, the logs are being sorted correctly. 
 
 * **Verdict**  
 The test has passed all the criteria and works like planned.
@@ -554,6 +569,7 @@ After a while the user will have a lot of logs which will make it more complicat
 I want the user to be able to filter on the logs depending on the log date to make it easier find a certain log. 
 In the future I would also like to add pagination to the logs so it doesn't look like an endless list of logs. See [Features to be implemented](#features-to-be-implemented)
 Currently I don't have the required skills or knowledge for this so I will only implement the search function.
+As the log_date is a required field for adding a log, the user will be able to search for all the logs. 
 
 * **Implementation**  
 As of the moment the user has added at least 1 log for the dog profile, a button will appear on top where the user can click to go to the search logs page. 
@@ -629,7 +645,10 @@ Here it is important that the information that the user inserted before remains 
 Every log and dog profile will have an edit button which will take the user to the editlog or editprofile screen. 
 
 * **Implementation**  
-For this functionality I have reused the form of the add dog or add log with some small differences. 
+For this functionality I have reused dog-form / log-form with some small differences. 
+I have used a variable (add) to make the difference between adding and editing a dog/log. 
+When add is not equal to True, I added a value attribute with the previous filled in information. 
+By implementing this, I have managed to merge the add and edit form into 1 form which simplifies my code. 
 The value of the input fields will already be filled in with the information that the user has inserted before. 
 When the user submits the form, all the fields will be updated in the relevant collection in the database. 
 In order to make this function work, I had to include the dog_id for the edit dog profile and the log_id for the edit log profile. 
@@ -668,7 +687,7 @@ When the user still has multiple dog and deletes a profile, the dashboard of the
 I have added the delete button to every log, next to the edit button. 
 I have worked with selfexplanatory icons which improves the overall look of the dashboard. 
 When the users clicks on the button, the log with the relevant log_id will be removed from the database and is being redirected to the correct dashboard.
-Below each dog profile, the same delete icon will be displayed. 
+Below each dog profile, the same delete icon is being displayed. 
 
 * **Test**  
 When the delete button for the log is clicked, the relevant log is being removed and the user stays on the relevant dashboard. 
@@ -725,22 +744,15 @@ To add another dog, you will not 'send' a dog_id in the url but only the user_id
 To load the view_dashboard, you need a user_id AND a dog_id in order to display the dashboard of a certain dog. 
 This was not working as the dog_id will not be generated in case the add dog was cancelled. 
 
-When the user would add a dog, coming from the blank_dashboard there was no issue as the blank_dashboard doesn't require a dog_id. 
-Here I could just implement my redirect to the blank_dashboard function. 
+When the user would add a dog, coming from the blank dashboard there was no issue as the blank dashboard doesn't require a dog_id. 
+Here I could just implement my redirect to the blank dashboard function. 
 
 * **Fix**       
-My first idea was to use the javascript window.history.back() which resolved the issue. 
-But after some additional research, I noticed that this might have not been the best way to approach this. 
-
-Instead I have decided that when the add dog page is loaded (request.method == "GET"), to "find" a dog in the dogs collection from the user and store that id. 
-In case the user would want to cancel, that dog would be displayed on the dashboard. 
-
-Ideally the dog that was displayed before would appear on the screen but due to lack of knowledge, I haven't figured out how to implement that. 
+After some research on how to approach this, I have decided to use the javascript window.history.back() which resolved the issue. 
+This might not be the best solution for this problem but it resolves the bug and takes the user back to the dashboard of dog who was displayed on the screen before.
 
 * **Verdict**    
-I'm not 100% satisfied with the fix as the dog profile that will be loaded is not the one who the user had open before. 
-This will be resolved in future releases.
-Nonetheless the cancel button is currently working. 
+Cancel add dog button is now working as planned. 
 
 ### **Dashboard of first dog of user always displaying after adding/editing logs for other profile**
 
@@ -807,6 +819,23 @@ I think that my second approach to this issue is a better solution than the firs
 Especially when thinking about the user experience. 
 I'm satisfied with the fix and the user is now able to remove their dog profile, even if there is only 1 remaining. 
 
+### **Order of logs on dashboard**
+
+* **Bug**  
+After various testing, I noticed that the order of my logs was not correct. 
+Logs of November were only being displayed after the ones of October for example.
+
+* **Fix**
+After some research, I figured out it was due to the date format that I set in script.js. 
+The date was being sorted in app.py in reversed order, but as my months were written in full, the was being sorted alphabetically reversed. 
+To resolve this, I have change the format so the months will be written in numbers as well. 
+As on my dashboard, for visual impact, I wanted to keep on working with the full months, I have implemented another function in javascript. 
+This function loops through the log_months and sets the innerText depending on which month.
+
+* **Verdict**
+I can imagine there might be a better solution for this but the above fix resolved the issue of the sorting while being able to keep my original design for the dashboard.
+
+
 ### **Select dropdown and Datepicker on mobile devices**
 
 * **Bug**  
@@ -827,13 +856,24 @@ For now, the fix resolves the bug and the select dropdown and dropdown from date
 ### **Year range for Datepicker**
 
 * **Bug**
-WHen I go the the last year available in the datepicker which is 1990 in this case, the back arrow is still available and can be clicked. 
+When I go the the last year available in the datepicker which is 1990 in this case, the back arrow is still available and can be clicked. 
 The year displayed keeps on being 1990 but when you select a day, you will see in the inputfield that the datipicker can go more than 30 years back. 
 
 * **Verdict**
 For now I haven't found a fix yet for this issue.
 Luckily this doesn't influence the user experience as normally the user wouldn't go that far back. 
 Nonetheless I would still like to resolve this under future releases by disabling the back arrow when the user is 30 years in the past. 
+
+
+### **Loading time css**
+
+* **Bug**  
+I noticed that in some cases where the internet speed is not optimal that my style.css has a small delay in loading after the css of Materialize. 
+This results in the colors of Materialize showing for a split second before the colors of style.css are loaded.
+
+* **Verdict**
+If have double checked if I have placed my links in my head element in the correct order which is the takes. 
+For now no concrete solution yet but more research will be done on this and be updated in future releases.
 
 [Back to Top](#table-of-contents)
 

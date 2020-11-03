@@ -374,6 +374,7 @@ button:focus {
     .log-date {
         margin-bottom: 1rem;
         font-family: "Play", Arial, Helvetica, sans-serif;
+        padding: 0 !important;
     }
 
     #log-day {

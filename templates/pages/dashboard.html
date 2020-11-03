@@ -50,7 +50,7 @@
                     <select id="dog-dropdown" name="dog_name" onchange="submitForm()" aria-label="Select dog profile">
                         <option value="default" selected disabled aria-label="Select dog name">Select the dog profile you want to see</option>
                     {% for dog in dogs %}
-                        <option id="dog_name" value="{{dog.dog_name}}" aria-label="Dog Name">{{dog.dog_name}}</option>
+                        <option id="dog_name" value="{{dog.dog_name}}" aria-label="Dog Name">{{ dog.dog_name }}</option>
                     {% endfor %}
                     </select>
                 </div>
@@ -106,25 +106,27 @@
                     </div>
                 </div>
                 {% for log in logs %}
+                    <!-- <p>
+                    {{ log.log_date[4:-2] }}
+                    </p> -->
                 <div class="log-container">
-                <div class="row log">
-                    <div class="col s12 m3 log-date">
-                        <span id="log-day">{{ log.log_date[-2:] }}</span>
-                        <span id="log-month"> {{log.log_date[4:-2]}}</span>
-                        <span id="log-year"> {{ log.log_date[0:4]}}</span>
+                    <div class="row log">
+                        <div class="col s12 m3 log-date">
+                            <span id="log-day">{{ log.log_date[-2:] }}</span>
+                            <span id="log-month"> {{ log.log_date[4:-2] }}</span>
+                            <span id="log-year"> {{ log.log_date[0:4]}}</span>
+                        </div>
+                        <div class="col s12 m7">
+                            <p class="log-element">Weight: {{ log.dog_weight }} {{ log.weight_metric }}</p>
+                            <p class="log-element">Activity: {{ log.dog_activity }}</p>
+                            <p class="log-element">Food: {{ log.dog_food }} {{ log.food_metric }}</p>
+                            <p class="log-element">Other notes: {{ log.other_notes }}</p>
+                        </div>
+                        <div class="log-icons s12 m2">
+                            <a href="{{ url_for('edit_log', log_id = log._id , user_id=user_id, dog_id=dog_id) }}" title="Edit log"><i class="material-icons icons">edit</i></a>
+                            <a href="{{ url_for('delete_log', log_id = log._id , user_id=user_id, dog_id=dog_id) }}" title="Delete log"><i class="material-icons icons">delete</i></a>
+                        </div>
                     </div>
-                    <div class="col s12 m7">
-                        <p class="log-element">Activity: {{ log.dog_activity }}</p>
-                        <p class="log-element">Food: {{ log.dog_food }} {{log.food_metric}}</p>
-                        <p class="log-element">Weight: {{ log.dog_weight }} {{log.weight_metric}}</p>
-                        <p class="log-element">Other notes: {{ log.other_notes }}</p>
-                    </div>
-                    <div class="log-icons s12 m2">
-                        <a href="{{ url_for('edit_log', log_id = log._id , user_id=user_id, dog_id=dog_id) }}" title="Edit log"><i class="material-icons icons">edit</i></a>
-                        <a href="{{ url_for('delete_log', log_id = log._id , user_id=user_id, dog_id=dog_id) }}" title="Delete log"><i class="material-icons icons">delete</i></a>
-                    </div>
-
-                </div>
                 </div>
         {% endfor %}
         {% endif %}
