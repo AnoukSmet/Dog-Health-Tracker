@@ -34,7 +34,8 @@
     </div>
 
     <label class="labels" for="dog_activity">Activity </label>
-    <input type="text" id="dog_activity" name="dog_activity" class="input-bottom">
+    <input type="text" id="dog_activity" name="dog_activity" class="input-bottom"
+    {% if add != True %} value="{{ log.dog_activity }}" {% endif %}>
 
     <div class="row metrics">
         <label class="labels col s12" for="dog_food">Food:</label>

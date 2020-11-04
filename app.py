@@ -178,16 +178,20 @@ def search_logs(user_id, dog_id):
         log_date = request.form.get("log_date")
         logs = mongo.db.logs.find({"dog_id": dog_id,
                                    "log_date": log_date})
-        count_logs = logs.count()
+        count_logs = mongo.db.logs.count_documents({"dog_id": dog_id,
+                                                    "log_date": log_date})
 
-    logs = ''
-    count_logs = logs.count(logs)
+        return render_template("pages/searchlogs.html",
+                               user_id=user_id,
+                               dog_id=dog_id,
+                               logs=logs,
+                               count_logs=count_logs)
+
+    count_logs = 0
 
     return render_template("pages/searchlogs.html",
                            user_id=user_id,
-                           dog_id=dog_id,
-                           logs=logs,
-                           count_logs=count_logs)
+                           dog_id=dog_id)
 
 
 @app.route('/dog/add/<user_id>', methods=['GET', 'POST'])

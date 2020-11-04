@@ -41,7 +41,7 @@ button:focus {
 }
 
 .bg-color:hover {
-    background-color: #4e88af;
+    background-color: #152c3c;
 }
 
 
@@ -76,7 +76,7 @@ button:focus {
 }
 
 .icons:hover{
-    color: #4e88af;
+    color: #152c3c;
 }
 
 .form-buttons {
@@ -131,13 +131,19 @@ button:focus {
     }
 
     #account-icon:hover {
-        color: #4e88af;
+        color: #152c3c;
     }
 
     #profile-dropdown a {
         padding: 1rem 1rem 0 1rem;
         color: #284B63;
         background-color: #fff;
+    }
+
+    #username-dropdown {
+        background-color: #284B63;
+        color: #fff;
+        box-shadow: none;
     }
 
 
@@ -237,15 +243,6 @@ button:focus {
     padding: 0;
 }
 
-/* #profile-selection-button {
-    background-color: #284B63;
-    border: 0.1rem solid;
-    border-radius: 1rem;
-    padding: 1rem;
-    color: #fff;
-    font-size: 1.6rem;
-} */
-
 .dropdown-content li>a, .dropdown-content li>span {
     color: #284B63 !important;
 }
@@ -296,7 +293,7 @@ button:focus {
     }
 
     .no-image a:hover {
-        color: #4e88af;
+        color: #152c3c;
     }
 
     .dog-heading {
@@ -356,7 +353,7 @@ button:focus {
     }
 
     .default-log a:hover {
-        color: #4e88af;
+        color: #152c3c;
     }
 
     /* Display of logs */

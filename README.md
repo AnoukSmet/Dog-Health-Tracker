@@ -579,11 +579,14 @@ If there was no log found with that logs date, the following message will appear
 "There are no logs for this date". 
 After this, the user can either search on another date or return to the dashboard. 
 
+The user also has the option to edit or delete a log after searching it by log_date. After they edited or deleted the log, the user will be taken back to the dashboard of the relevant dog. 
+
 * **Test**  
 When I implemented the above strategy, I noticed that the logs of other dogs where showing as well with the same log date. 
 In my function I have included the dog_id in order to only display the logs of that date of the relevant dog. 
 When no logs are found, the correct message is being displayed on the screen. 
 The button to take the user back to the dashboard works as planned and the dashboard of the dog for which you were performing the search is being loaded. 
+
 
 * **Result**  
 The search logs page works as planned across various browsers and devices. 
@@ -718,6 +721,7 @@ When the button is clicked, the user will be logged out of its account and be re
 
 * **Implementation**  
 I have added a dropdown with an icon in the navbar when the user is logged in. 
+The log out dropdown will appear below the account icon by setting the coverTrigger to false in script.js.
 When the user clicks the button, it will remove the user_id from the session and the user will be redirected to the homepage.
 
 * **Test**  
