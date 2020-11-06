@@ -37,7 +37,7 @@ button:focus {
 
 .bg-color {
     background-color: #284B63;
-    color: #fff;
+    color: #f5f5f5;
 }
 
 .bg-color:hover {
@@ -85,7 +85,7 @@ button:focus {
     border-radius: 1rem;
     padding: 1rem;
     margin: 1rem 0; 
-    color: #fff !important;
+    color: #f5f5f5 !important;
     font-size: 1.6rem;
     line-height: 2.1rem;
     border-width: 0;
@@ -105,7 +105,7 @@ button:focus {
 
 .navigation a {
     text-decoration: none;
-    color: #fff;
+    color: #f5f5f5;
 }
 
 .logo {
@@ -137,13 +137,15 @@ button:focus {
     #profile-dropdown a {
         padding: 1rem 1rem 0 1rem;
         color: #284B63;
-        background-color: #fff;
+        background-color: #f5f5f5;
     }
 
     #username-dropdown {
         background-color: #284B63;
-        color: #fff;
+        color: #f5f5f5;
         box-shadow: none;
+        margin-right: 0;
+        padding-right: 0;
     }
 
 
@@ -217,11 +219,7 @@ button:focus {
 }
 
 #flash-message {
-    background-color: #284B63;
-    color: #fff;
-    display: inline-block;
-    padding: 1rem;
-    border-radius: 1rem;
+    color: red;
 }
 
 /* Dashboard */
@@ -253,6 +251,18 @@ button:focus {
     border-bottom: 0.1rem solid #284B63;
     }
 
+.select-dropdown li.disabled:hover, 
+.select-dropdown li.disabled>span:hover
+, .select-dropdown li.optgroup:hover {
+    background-color: transparent;
+    color: #284B63 !important;
+}
+
+.dropdown-content li>a:hover,
+.dropdown-content li>span:hover {
+    background-color: #284B63;
+    color: #f5f5f5 !important;
+}
     /* Dog Profile */
 
     .dog-profile {
@@ -310,7 +320,22 @@ button:focus {
         font-size: 1.6rem;
     }
 
+
+    #add-dog-icon {
+        background: url('../images/add-dog-icon.png') no-repeat center center;
+        height: 6rem;
+        width: 6rem;
+        float: left;
+    }
+
+    #add-dog-icon:hover {
+        background-color: #F5F5F5 !important;
+        border-radius: 50%;    
+        }
+       
+
     /* Links - Icons */
+
 
     .add-dog {
     float: left;
@@ -396,6 +421,10 @@ button:focus {
         margin-bottom: 3rem;
     }
 
+    .btn-large i{
+        font-size: 2.5rem
+    }
+
     /* Add log button for small devices instead of FAB */
 
     #add-log-s {
@@ -420,6 +449,20 @@ button:focus {
     background-color: #284B63;
     color: #D9D9D9;
 }
+
+/* Remove up and down arrows number input fields */
+
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+    -moz-appearance: textfield;
+    }
 
 .btn-flat {
     color: #284B63;
@@ -501,7 +544,8 @@ color: #284B63;
 
 #footer {
     background-color: #284B63;
-    color: #fff;
+    font-family: "Play", Arial, Helvetica, sans-serif;
+    color: #f5f5f5;
     width: 100%;
     text-align: center;
     height: 5rem;
@@ -514,7 +558,7 @@ color: #284B63;
 
 #footer a {
     text-decoration: none;
-    color: #fff;
+    color: #f5f5f5;
 }
 
 /* Media Queries */  
@@ -532,6 +576,10 @@ color: #284B63;
 
     .logo {
         font-size: 3rem !important;
+    }
+
+    #username-dropdown {
+        padding-right: 2rem;
     }
 
     .heading {

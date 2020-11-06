@@ -135,13 +135,6 @@ The reason for this is that for this project, the functionality is much more imp
 
 <a></a>
 
-#### Fonts
-In order to find appropriate fonts for my website, I have visited [Google Fonts](https://fonts.google.com/ "Google Fonts") to explore the various options.
-For the titles and subtitles, I have used the font [Play](https://fonts.google.com/specimen/Play "Play") 
-and for the main text I have used [Cormorant Garamond](https://fonts.google.com/specimen/Cormorant+Garamond "Cormorant Garamond"). 
-
-<a></a>
-
 #### Colors
 
 Like I mentioned before, I have decided to use some colors that fit well with the feeling of a Health Tracker.
@@ -150,13 +143,19 @@ Below I will explain more why I choose the various colors and for what I will be
 ![Color Palette](wireframes/color-palette.png)
 
 * #ffffff: I have decided to keep the background of the overall website white in order give the clean look. I will also use this color as text color for the nav bar and buttons.
-* #F5F5F5: This color I will use as a background color for the logs on the dashboard in order to have a small contract versus the white background.
-* #D9D9D9: This color I will use as a background color for the profile, to stand out a bit more and to make a clear difference between profile and logs.
-* #284B63: This will be the color that I will use for my navigation bar and buttons in order to give a bit of color to the website.
-* #000000: I will use the standard black color as my text color in order to keep the simple / clean look. 
+* #D9D9D9: This color I will use as a background color for whole dashboard. 
+* #F5F5F5: This color I will use as a background color for the logs on the dashboard in order to have a small contract versus #D9D9D9 dashboard color.
+* #284B63: This will be the color that I will use for my navigation bar and buttons in order to give a bit of color to the website. This color will also be used as the overall text color.
 
-I have used a contract checker in order to make sure that the contract is sufficient.
+I have used a contrast checker in order to make sure that the contrast is sufficient.
 This way my content will be easily readable. 
+
+<a></a>
+
+#### Fonts
+In order to find appropriate fonts for my website, I have visited [Google Fonts](https://fonts.google.com/ "Google Fonts") to explore the various options.
+For the titles and subtitles, I have used the font [Play](https://fonts.google.com/specimen/Play "Play") 
+and for the main text I have used [Cormorant Garamond](https://fonts.google.com/specimen/Cormorant+Garamond "Cormorant Garamond"). 
 
 <a></a>
 
@@ -178,8 +177,10 @@ I used [Balsamic](https://balsamiq.com/wireframes/) to create wireframes for my 
 
 You can find my wireframes below:
 
-#### Desktop Wireframes
+For the homepage I have only created 1 wireframe as the design is quite basic and looks identical on all screen sizes.
 * [Home](wireframes/desktop-home.png)
+
+#### Desktop Wireframes
 * [Dashboard](wireframes/desktop-dashboard.png)
 * [Add Dog](wireframes/desktop-adddog.png)
 * [Add Log](wireframes/desktop-addlog.png)
@@ -196,7 +197,7 @@ You can find my wireframes below:
 
 ### **Flowcharts**
 
-I have decided to make a flowchart for the sign-in / register proces to completely understand each step of the process.  
+I have decided to make a flowchart for the sign-in / register proccess to completely understand each step of the process.  
 I have used [Draw.io](https://draw.io/) to make this flowchart which you can view below: 
 
 [Flowchart](wireframes/flowchart.png)
@@ -282,16 +283,18 @@ metric_name     | String
 ### **Features to be implemented**
 
 * Currently the user can only insert image url. In the future I would like that the user can upload an image from its computer.
-* Have a more extensive user profile with email where you can send updates, newsletters to. 
+* Have a more extensive user profile with, profile image, preferences and email where you can send updates, newsletters to. 
 * Have a 'forget password' functionality.
 * Include a confirm password to make sure the user has chosen the password he/she wanted. 
 * Possibility for the user to be able to add (and remove) categories they would like to specificely track for their dog like medication etc. 
 * The possibility to filter the logs based on range of data or by month.
 * Expand search function so user can filter on more keywords except for log_date.
+* Submit search form as soon as the user selected a date to prevent confusion for the user. (Did I already click search or not)
 * Add pagination so the list of logs will be display with a max of 20 logs per page.
 * When the user has added their first log, I would like to remember the chosen metrics for any futher logs so they don't have to update this every time they add a log.
     This would be done through profile preferences or store the data in a cookie. 
 * Give the user the possibility to add a 'Picture of the day' to the log and display it on the dashboard.
+* Add a graph overview page, especially for the tracking of the weight with nice visual aspect.
 
 [Back to Top](#table-of-contents)gi
 
@@ -372,7 +375,7 @@ I noticed that the feedback provided to the user when their input didn't match t
 After some research I have decided to add the required pattern right above the input fields so the user will always know which format to use.
 
 After receiving some feedback from friends and family who have tested the website, I have decided to make the feedback message stand out more. 
-It took the user a while to notice the feedback when the username already exists. I have reversed the colors (Blue background with white text color) in order to stand out better.
+It took the user a while to notice the feedback when the username already exists. I have changed the text color to red so it really stands out. 
 
 * **Result**  
 Registration form is working as planned and user information is stored safely in the mongodb Users collection.
@@ -404,7 +407,7 @@ I have also implemented a 'Go back to the homepage' link so the user doesn't hav
 * **Test**  
 Signing in with the correct username and password works as planned and the correct dashboard of that user will be displayed. 
 When the user fills in the wrong username and/or password, the correct message is being displayed on the screen. 
-Also here the feedback message didn't stand out well enough so I have reversed the colors (Blue background with white text color)
+Also here the feedback message didn't stand out well enough so I have changed the color to red. 
 Redirecting to register page and 'back to homepage' link works as well. 
 
 * **Result**  
@@ -487,6 +490,7 @@ In order to be able to display the relevant logs of the dog, I have added 2 hidd
 This information is also being stored in the database and through this, I'm able to display the logs of a specific dog from the user. 
 Cancel button brings the user back to the dashboard as planned. 
 Here we also encountered the same issue concerning the datepicker for which you can find the solution under [Bugs](#bugs).
+My partner noticed that it was possible to fill in negative numbers on the form for weight and food. I have changed this to have a min value of 0.
 
 * **Result**  
 Log form for tracking purpose works as planned for various browsers and devices. 
@@ -551,6 +555,10 @@ During testing I noticed that the order of logs was not correct. In app.py I sor
 This was not going correctly as I had set a different format for the date, with the month written in full. 
 The logs were being sorted incorrectly because of this. See [Bugs](#bugs) for the solution to this problem.
 
+For some of my friends/family who have tested the website, it was not very clear what was the difference between the 2 + buttons. 
+Therefor I have updated the add dog button to display a dog icon with a plus and the add log button, I changed to a playlist_add icon. 
+This to improve the user experience and prevent confusion for the user. 
+
 * **Result**  
 The dashboard looks as planned across various browers and devices. 
 All the functionalities work as planned and the correct information is being displayed on the screen. 
@@ -587,6 +595,8 @@ In my function I have included the dog_id in order to only display the logs of t
 When no logs are found, the correct message is being displayed on the screen. 
 The button to take the user back to the dashboard works as planned and the dashboard of the dog for which you were performing the search is being loaded. 
 
+When you click a day, it is clear you still have to click search in order to see the results. But when you then select another date it migth be confusing to see if the form was already submitted or not. 
+See [Features to be implemented](#features-to-be-implemented) for further explanation. 
 
 * **Result**  
 The search logs page works as planned across various browsers and devices. 
@@ -648,7 +658,7 @@ Here it is important that the information that the user inserted before remains 
 Every log and dog profile will have an edit button which will take the user to the editlog or editprofile screen. 
 
 * **Implementation**  
-For this functionality I have reused dog-form / log-form with some small differences. 
+For this functionality I used the same dog-form / log-form.  
 I have used a variable (add) to make the difference between adding and editing a dog/log. 
 When add is not equal to True, I added a value attribute with the previous filled in information. 
 By implementing this, I have managed to merge the add and edit form into 1 form which simplifies my code. 
@@ -855,6 +865,20 @@ After including this file in my project, the problem has been resolved and the d
 * **Verdict**   
 This is a temporary solution as mentioned in the documentation so I will need to revisit this bug in the future. 
 For now, the fix resolves the bug and the select dropdown and dropdown from datepicker works as planned. 
+
+
+### **Require log date field**
+
+* **Bug**
+I wanted to make the field of log_date required as a log without a date doesn't make a lot of sense. 
+The required attribute was not working as planned, allowing the user to add a log without a log date.
+
+* **Fix**
+As I have disabled manual input by adding the readonly attribute, the required attribute didn't work anymore. 
+I have found an way around to still not allow manual input but through javascript instead of the readonly attribute. 
+
+* **Verdict**
+It is now working as planned. Manual input is disabled while the input is still required for the user. 
 
 
 ### **Year range for Datepicker**

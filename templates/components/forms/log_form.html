@@ -7,13 +7,13 @@
     <input type="text" class="dog_id" name="dog_id" id="dog_id" value="{{dog_id}}" hidden/>
     <input type="text" class="user_id" name="user_id" id="user_id" value="{{user_id}}" hidden/>
     <label class="labels" for="log_date">Date: </label>
-    <input type="text" id="log_date" name="log_date" readonly="readonly" class="datepicker mainLoginInput input-bottom" placeholder="&#XF133; Select date from calendar" required
+    <input type="text" id="log_date" name="log_date" class="datepicker mainLoginInput input-bottom" placeholder="&#XF133; Select date from calendar" required
     {% if add != True %} value="{{ log.log_date }}" {% endif %}>
 
     <div class="row metrics">
         <label class="labels col s12" for="dog_weight">Weight: </label>
         <div class="col s8"> 
-            <input type="number" step=".1" id="dog_weight" name="dog_weight" class="input-bottom"
+            <input type="number" step=".01" id="dog_weight" name="dog_weight" class="input-bottom" min="0"
                 {% if add != True %} value="{{ log.dog_weight }}" {% endif %}>
         </div>
         <div class="col s4">
@@ -40,7 +40,7 @@
     <div class="row metrics">
         <label class="labels col s12" for="dog_food">Food:</label>
         <div class="col s8">
-            <input type="number" step=".1" id="dog_food" name="dog_food" class="input-bottom"
+            <input type="number" step=".01" id="dog_food" name="dog_food" class="input-bottom" min="0"
             {% if add != True %} value="{{ log.dog_food }}" {% endif %}>
         </div>
         <div class="col s4">

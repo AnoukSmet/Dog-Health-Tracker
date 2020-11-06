@@ -44,6 +44,8 @@ $(document).ready(function(){
         yearRange: [min, today],
         minDate: new Date('1990,0,13'),
         maxDate: new Date(),
+        disableEntry: true 
+        
       });
 
    /**
@@ -60,6 +62,7 @@ $(document).ready(function(){
 /**
  * Function to submit selected profile without submit button 
 */
+
  function submitForm(){ 
   document.querySelector('#dog-profile-selection').submit(); 
 } 
@@ -78,3 +81,10 @@ $('.dropdown-trigger').dropdown({
 function goBack() {
   window.history.back();
 }
+
+/**
+* Prevents manual input 
+ */
+ $(".datepicker").keydown(function(e){
+        e.preventDefault();
+    });
