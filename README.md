@@ -62,9 +62,9 @@ If you have any feedback or questions, head over to my GitHub contact details an
 * The website has to work well on all kind of devices like mobile phones, tables and desktops.
 * I want to have a clear dashboard where I can see all the different logs I have created. 
 * The log should appear with the most recent one on top to be relevant. 
-* I would like to have the option to add my both dog.
 * I want to have a profile for my dog where I can enter information like the name, breed etc. 
-* The website has to be easy to use and update
+* I would like to have the option to add multiple dogs
+* The website has to be easy to use and easy to update information
 * Visually appealing website
 
 [Back to Top](#table-of-contents)
@@ -83,15 +83,15 @@ If you have any feedback or questions, head over to my GitHub contact details an
 * As a user, I want to be able to add special notes to the log whenever relevant. 
 * As a user, I want to be able to add another dog.
 * As a user, I want to be able to edit the dog profile.
-* As a user, I want to have the possibility to edit a log when I made a mistake or want to add some info. 
+* As a user, I want to have the possibility to edit a log when I made a mistake or want to add/delete some info. 
 * As a user, I want to have the possibiltiy to delete a log as well when no longer relevant. 
 * As a user, I want the website to be easy to use. 
-* As a user, I want the process to add a log to be simple to not loose too much time. 
+* As a user, I want the process to add / edit / delete info to be easy
 
 <a></a>
 
 ### **Site owners Goals**
-* To have an appealing website that dog owners use to track their dog.
+* To have an appealing website that dog owners use to track their dog's weight, activity, food, etc.
 * To have a great functionality so the user feels like this website helps them in their day-to-day life. 
 * To make the website as personal as possible by giving the user the possibility to add information about their dog in the profile.
 
@@ -269,7 +269,7 @@ metric_name     | String
 ### **Existing Features**
 
 * Registration functionality
-* Sign In and Out functionality
+* Sign-In and Out functionality
 * Add multiple dogs per user 
 * CRUD Functions:
     * Create: possibility to add various dogs and logs
@@ -282,8 +282,8 @@ metric_name     | String
 
 ### **Features to be implemented**
 
-* Currently the user can only insert image url. In the future I would like that the user can upload an image from its computer.
-* Have a more extensive user profile with, profile image, preferences and email where you can send updates, newsletters to. 
+* Currently the user can only insert image url. In the future I would like that the user can upload an image from its computer and/or cloud accounts.
+* Have a more extensive user profile with, profile image, preferences and email to which you can send updates, newsletters etc.
 * Have a 'forget password' functionality.
 * Include a confirm password to make sure the user has chosen the password he/she wanted. 
 * Possibility for the user to be able to add (and remove) categories they would like to specificely track for their dog like medication etc. 
@@ -296,7 +296,7 @@ metric_name     | String
 * Give the user the possibility to add a 'Picture of the day' to the log and display it on the dashboard.
 * Add a graph overview page, especially for the tracking of the weight with nice visual aspect.
 
-[Back to Top](#table-of-contents)gi
+[Back to Top](#table-of-contents)
 
 <a></a>
 
@@ -347,7 +347,7 @@ metric_name     | String
 * **Plan**  
 I want to create a page where the user can register for its personal account to which only the user has access.
 My first plan was to redirect the user to the add_dog form right away to add the first dog but I realised it might confuse the user. 
-Therefor after registration, the user will be taken to a "blank dashboard" where the only call-to-action will be to add their first dog.
+Therefore after registration, the user will be taken to a "blank dashboard" where the only call-to-action will be to add their first dog.
 This way the user can make 'the decision' to add a dog profile themselves and I don't make that choice for them.
 
 * **Implementation**  
@@ -358,12 +358,12 @@ Before creating the new account, I will check in the database if the username al
 If so, correct feedback will be displayed to the user so he can choose another username. 
 Password will be stored with the help of the password generate hash so it is stored safely.
 After the registration was succesfull, the user will be redirected to the blank dashboard to add their first dog.
-In case the user wrongfully clicked on register instead of sign in, a link to the sign in page is provided so the user doesn't have to go back. 
+In case the user wrongfully clicked on register instead of sign-in, a link to the sign-in page is provided so the user doesn't have to go back. 
 I have also implemented a 'Go back to the homepage' link so the user doesn't have to use the back button of the browser in case he/she wants to go back to the homepage.
 
-I have used a variable (register) to make the difference between the register and signin form.
+I have used a variable (register) to make the difference between the register and sign-in form.
 When register is equal to True, I added the span which explains the requested format.
-By implementing this, I have managed to merge the register and sign in form into 1 form which simplifies my code. 
+By implementing this, I have managed to merge the register and sign-in form into 1 form which simplifies my code. 
 
 
 * **Test**  
@@ -401,7 +401,7 @@ In case the user doesn't have any dog added to its profile, the user will be red
 * **Implementation**  
 I created a form where the user can fill in its username and password which will be verified with the information stored in the database. 
 When the wrong information is being filled in, the correct feedback will be provided to the user. 
-In case the user wrongfully clicked on sign in instead of register, a link to the register page is provided so the user doesn't have to go back. 
+In case the user wrongfully clicked on sign-in instead of register, a link to the register page is provided so the user doesn't have to go back. 
 I have also implemented a 'Go back to the homepage' link so the user doesn't have to use the back button of the browser in case he/she wants to go back to the homepage.
 
 * **Test**  
@@ -411,9 +411,9 @@ Also here the feedback message didn't stand out well enough so I have changed th
 Redirecting to register page and 'back to homepage' link works as well. 
 
 * **Result**  
-Sign in form is working as planned and the input is being verified correctly with the stored information of the database.
+Sign-in form is working as planned and the input is being verified correctly with the stored information of the database.
 Redirection to the correct dashboard works as well as planned so the user can either add a dog on the blank dashboard or view its previously inserted information.
-Tested the sign in form on various browers and devices and the form is responsive and userfriendly. 
+Tested the sign-in form on various browers and devices and the form is responsive and userfriendly. 
 Feedback provided to the user stands out nicely. 
 
 * **Verdict**    
@@ -431,7 +431,7 @@ A summary of the dog profile will be displayed on the dashboard overview.
 * **Implementation**  
 I have created a form with the various input fields where the user can fill in the information. 
 I have only made the dog_name field required as for the other fields, the user might not want to fill in this information. Some user might not know the date of birth etc so he/she might not want to fill this in. 
-For the image, I worked with an url that has to be filled in. I don't have the required knowledge and skills yet to enable the user to upload an image from its device. 
+For the image, I worked with an url that has to be filled in. I don't have the required knowledge and skills yet to enable the user to upload an image from its device and/or cloud.
 This will be implemented at a later stage when I have the required knowledge and skills. See [Features to be implemented](#features-to-be-implemented)
 For the date of birth, I have implemented the datepicker from materialize so the user can select the date on the calendar. 
 The range for years, goes until 30 years back (Research told me that the oldest dog in the world was 29 years old). 
@@ -447,7 +447,13 @@ Cancel button works as planned and takes the user back to the dashboard after re
 In order to display the correct dogs for the user, I have addded the _id of the user as a hidden inputfield for the add dog which is stored in the database.
 
 When testing this on mobile devices (iPhoneSE and iPhone8), I noticed that the datepicker was not working how it should.
-After conducting various reseach, I have come up with solution which you can find under [Bugs](#bugs)
+After conducting various reseach, I have come up with solution which you can find under [Bugs](#bugs).
+
+After various testing, I came to the conclusion that it didn't make sense that the user was able to add dog profiles with the same name.
+When the user adds a dog, I now first check if the user already has a dog profile with that name and the correct feedback is being shown to the user. 
+Implementing this, brought another issue along with the cancel add button in case the user has more than 1 dog already added to its profile. 
+When the user now wants to create another profile with the same name, receives feedback that the profile already exists and then clicks 'cancel', 
+the user will be taken to the profile for which he/she wanted to create a profile. 
 
 * **Result**  
 Adding a profile for the dog works as planned and looks good across various browsers and devices. 
@@ -485,7 +491,7 @@ Also here I added a cancel button in case the user wants to go back to the dashb
 
 * **Test**  
 I have tested the form on various browsers and devices and it works as planned. 
-The correct input is stores in the logs collection in the database. 
+The correct input is stored in the logs collection in the database. 
 In order to be able to display the relevant logs of the dog, I have added 2 hidden fields on the form: user_id and dog_id. 
 This information is also being stored in the database and through this, I'm able to display the logs of a specific dog from the user. 
 Cancel button brings the user back to the dashboard as planned. 
@@ -511,7 +517,7 @@ Whenever the user has multiple dogs, I want that the user is able to select the 
 This will be displayed above the dog profile on small devices and on top of the dashboard for large screen. 
 The dashboard should be very clear and intuitive to use.   
 
-When the user doesn't have any dog yet added to its useraccount, a blank dashboard will be displayed with a very clear call-to-action to add the first dog. 
+When the user doesn't have any dog yet added to its user account, a blank dashboard will be displayed with a very clear call-to-action to add the first dog. 
 On the place where normally the logs would show, I will the following text: "After you added your dog, come here to start tracking!"
 
 * **Implementation**  
@@ -520,15 +526,15 @@ My dashboard exists out of 2 main parts, the dog profile and the logs display.
     *Dog profile*  
     Here it shows all the submitted information about the dog, including the image which gives a personal feeling to the user. 
     When the user hasn't filled in the url, it shows 'Click here to add an image' which takes the user to the edit dog profile page. 
-    Left on top it has a plus button where the user can click to add another dog. 
+    Left on top it has a add-dog-button where the user can click to add another dog. 
     Below the profile it shows an edit button and a delete button. 
     When the user doesn't have a dog added yet, it will display an empty profile with a call-to-action to add a dog profile.
 
     *Logs display*   
     The logs that will be displayed are from the dog profile selected. 
     When no dog profile is added yet, here it will show that as soon as they added a dog, they can come here to start tracking.
-    When a dog profile is added but no logs are submitted yet, it shows 'Click here or on the plus sign right below to add your first log" which takes you to the logs page. 
-    From the moment the user has at least submitted 1 log, another button will appear above the logs with the following text: Click here to search dogs by date'. 
+    When a dog profile is added but no logs are submitted yet, it shows 'Click here or on the add button right below to add your first log" which takes you to the logs page. 
+    From the moment the user has at least submitted 1 log, another button will appear above the logs with the following text: Click here to search logs by date'. 
     This will take the user to the search logs page where a search can be performed by date. 
     For medium devices and up I have included a floating action button which is displayed right below on the screen. 
     Even if the user is in the middle of the screen, the button will be displayed, giving the user the possibility the add a log without having to scroll up to the top. 
@@ -556,7 +562,7 @@ This was not going correctly as I had set a different format for the date, with 
 The logs were being sorted incorrectly because of this. See [Bugs](#bugs) for the solution to this problem.
 
 For some of my friends/family who have tested the website, it was not very clear what was the difference between the 2 + buttons. 
-Therefor I have updated the add dog button to display a dog icon with a plus and the add log button, I changed to a playlist_add icon. 
+Therefore I have updated the add dog button to display a dog icon with a plus and the add log button, I changed to a playlist_add icon. 
 This to improve the user experience and prevent confusion for the user. 
 
 * **Result**  
@@ -624,7 +630,7 @@ In the select box I added a default option with the text: Select the dog profile
 The option that the user can choose will depend on the amount of dogs added to the profile, the names of the dogs will be displayed as the value. 
 
     In order to accomplish the above, I have decidede to add the dog_id to the dashboard url. 
-    Whenever the users clicks on the dog name in the select box, the form will automatically submit (with the help of javascript) and load the dog profile and logs of the selected dog. 
+    Whenever the user clicks on the dog name in the select box, the form will automatically submit (with the help of javascript) and load the dog profile and logs of the selected dog. 
     Implementing the above solution meant as well that I had to rewrite a big part of my other functions. 
     This to make sure that everytime there was a redirect to the dashboard, the correct dog_id had to be included. 
 
@@ -685,21 +691,21 @@ The test has passed all the criteria and works like planned.
 #### User story: As a user, I want to have the possibiltiy to delete a log as well when no longer relevant. 
 
 * **Plan**  
-* Log  
-In case the user made a mistake or the information is no longer relevant, the user should be able to delete a log. 
-There will be a delete button (delete icon) which the user can use. The relevant log will be removed from the database and the user will stay on the relevant dashboard. 
+    * Log  
+    In case the information is no longer relevant, the user should be able to delete a log. 
+    There will be a delete button (delete icon) which the user can use. The relevant log will be removed from the database and the user will stay on the relevant dashboard. 
 
-* Dog 
-The user should be able to delete the dog profile, even though there would only be 1 dog remaning. 
-If the last dog has been removed, the user will be taken again to the blank dashboard where the user can decide to add a dog. 
-The reason why I created a seperate dashboard for this is because the view dashboard url functions with the user id and the dog id, there always needs to be at least 1 dog added to the profile. 
-Therefor I created a blank dashboard which doesn't take the dog_id as a parameter with the same structure as the view_dashboard.
-When the user still has multiple dog and deletes a profile, the dashboard of the (one of the) remaining dog(s) will be displayed.
+    * Dog   
+    The user should be able to delete the dog profile, even though there would only be 1 dog remaning. 
+    If the last dog has been removed, the user will be taken again to the blank dashboard where the user can decide to add a dog. 
+    The reason why I created a seperate dashboard for this is because the view dashboard url functions with the user id and the dog id, there always needs to be at least 1 dog added to the profile. 
+    Therefore I created a blank dashboard which doesn't take the dog_id as a parameter with the same structure as the view_dashboard.
+    When the user still has multiple dog and deletes a profile, the dashboard of the (one of the) remaining dog(s) will be displayed.
 
 * **Implementation**  
 I have added the delete button to every log, next to the edit button. 
-I have worked with selfexplanatory icons which improves the overall look of the dashboard. 
-When the users clicks on the button, the log with the relevant log_id will be removed from the database and is being redirected to the correct dashboard.
+I have worked with self explanatory icons which improves the overall look of the dashboard. 
+When the user clicks on the button, the log with the relevant log_id will be removed from the database and is being redirected to the correct dashboard.
 Below each dog profile, the same delete icon is being displayed. 
 
 * **Test**  
@@ -708,13 +714,13 @@ When delete button of the dog profile has been clicked, the relevant dog is bein
 When user removes last dog, the user being redirect to the blank_dashboard.
 When the user has multiple dogs in its profile and removes 1, user is redirected to view_dashboard of (one of) the remaining dog(s).
 
-While I was testing the delete functionality, I realised that by deleting a complete dog profile, you will lose all the profile info and all of the logs associated with that profile. 
-To make sure that the user doesn't click the delete button by accident, I have included a modal to confirm that the user would like to proceed with deleting the dog profile. 
+    While I was testing the delete functionality, I realised that by deleting a complete dog profile or a log, you will lose all the profile info / log info. 
+    To make sure that the user doesn't click the delete button by accident, I have included a modal to confirm that the user would like to proceed with deleting the dog profile / log.
 
 * **Result**  
 The delete funtionality works as planned across various browsers and devices. 
-The modal opens up when the button is clicked asking the user if they are sure they would like to delete the profile. 
-When no is selected, the user is taken back the dashboard. When yes, the dog_profile is deleted from the database. 
+The modal opens up when the button is clicked asking the user if they are sure they would like to delete the profile / log. 
+When no is selected, the user is taken back the dashboard. When yes, the dog_profile or log is deleted from the database. 
 The delete button for the dog profile is correctly being displayed and works as planned.
 
 * **Verdict**  
@@ -736,6 +742,7 @@ When the user clicks the button, it will remove the user_id from the session and
 
 * **Test**  
 When clicking the button, the user is being logged out and the home.html is being loaded. 
+I have tested this functionality on each page where logging out is possible.
 
 * **Result**  
 Log out function workes as planned across various devices and browsers. 
@@ -754,12 +761,12 @@ The test has passed all the criteria and works like planned.
 When the user opens the add another dog (already having at least one dog under its account), a cancel button is provided to the user in case he doesn't want to proceed.
 This button was set up like my other 'cancel' buttons with an anchor link that takes the user back to the dashboard. 
 
-To add another dog, you will not 'send' a dog_id in the url but only the user_id. The dog_id will be created when the user has added the dog. 
-To load the view_dashboard, you need a user_id AND a dog_id in order to display the dashboard of a certain dog. 
-This was not working as the dog_id will not be generated in case the add dog was cancelled. 
+    To add another dog, you will not 'send' a dog_id in the url but only the user_id. The dog_id will be created when the user has added the dog. 
+    To load the view_dashboard, you need a user_id AND a dog_id in order to display the dashboard of a certain dog. 
+    This was not working as the dog_id will not be generated in case the add dog was cancelled. 
 
-When the user would add a dog, coming from the blank dashboard there was no issue as the blank dashboard doesn't require a dog_id. 
-Here I could just implement my redirect to the blank dashboard function. 
+    When the user would add a dog, coming from the blank dashboard there was no issue as the blank dashboard doesn't require a dog_id. 
+    Here I could just implement my redirect to the blank dashboard function. 
 
 * **Fix**       
 After some research on how to approach this, I have decided to use the javascript window.history.back() which resolved the issue. 
@@ -768,7 +775,7 @@ This might not be the best solution for this problem but it resolves the bug and
 * **Verdict**    
 Cancel add dog button is now working as planned. 
 
-### **Dashboard of first dog of user always displaying after adding/editing logs for other profile**
+### **Dashboard of first dog of the user is always displaying after adding/editing logs for other dog profile**
 
 * **Bug**  
 When I had multiple dogs added to a user account and I wanted to add/edit a log or edit the dog profile, the user was redirected to the dashboard. 
@@ -776,13 +783,13 @@ Instead of displaying the dashboard of the dog for which you just performed a ch
 
 * **Fix**       
 In order to have this resolved, I have decided to include the dog_id in the dashboard url and add a hidden field in the forms that takes the dog_id. 
-The dog_id would be posted along with the other fields and stores in the database. 
+The dog_id would be posted along with the other fields and stored in the database. 
 For the dashboard view, I would then use that id to display the profile of the dog for which the change was made. 
 
 * **Verdict**   
 The fix resolved the issue and the dashboard of the dog for which the change was made is being shown after submitting the form.
 
-### **Logs and profile of dog with same name appearing in different useraccounts**
+### **Logs and profile of dog with same name appearing in different user accounts**
 
 * **Bug**  
 When I had multiple user accounts which had dogs with the same name, often the information like logs, profile description etc of the dog with the same name from another user account was being displayed. 
@@ -803,14 +810,14 @@ I had implemented a floating action button on the dashboard which allowed the us
 This was used to prevent that the user had to scroll back to the top in order to add a log. 
 However when I was testing this implementation I noticed that on mobile devices, it was working rather confusing. 
 As the display of the dog_profile takes up full view height, the floating action button was being displayed on top of the dog_profile. 
-The user might have gotten confused this button with the add dog button which is not good for user experience.
+The user might have gotten confused the add log button with the add dog button which is not good for user experience.
 
 * **Fix**       
 My first idea was to only show the floating action button as off the moment the user scrolled down to the logs section but I was unable to implemented this. 
 As a result, I have decided to hide the floating action button on small devices and added a fixed button right under the search button where the user can click to add a log. 
 
 * **Verdict**   
-It doesn't give the same user experience as the floating action button on medium and large devices but it still provides a better user experience that the floating action button being displayed on the dog profile. 
+It doesn't give the same user experience as the floating action button on medium and large devices but it still provides a better user experience than the floating action button being displayed on top of the dog profile. 
 
 ### **Removing last dog of a user account**
 
@@ -874,8 +881,8 @@ I wanted to make the field of log_date required as a log without a date doesn't 
 The required attribute was not working as planned, allowing the user to add a log without a log date.
 
 * **Fix**
-As I have disabled manual input by adding the readonly attribute, the required attribute didn't work anymore. 
-I have found an way around to still not allow manual input but through javascript instead of the readonly attribute. 
+As I have disabled manual input by adding the read-only attribute, the required attribute didn't work anymore. 
+I have found a way around to still not allow manual input but through javascript instead of the read-only attribute. 
 
 * **Verdict**
 It is now working as planned. Manual input is disabled while the input is still required for the user. 
@@ -886,11 +893,12 @@ It is now working as planned. Manual input is disabled while the input is still 
 * **Bug**
 When I go the the last year available in the datepicker which is 1990 in this case, the back arrow is still available and can be clicked. 
 The year displayed keeps on being 1990 but when you select a day, you will see in the inputfield that the datipicker can go more than 30 years back. 
+Also when you click the next button when you are in the year 2020, it will jump to 1990. 
 
 * **Verdict**
 For now I haven't found a fix yet for this issue.
 Luckily this doesn't influence the user experience as normally the user wouldn't go that far back. 
-Nonetheless I would still like to resolve this under future releases by disabling the back arrow when the user is 30 years in the past. 
+Nonetheless I would still like to resolve this under future releases by disabling the back and forward arrow when the user is 30 years in the past or in the current year and month.
 
 
 ### **Loading time css**
@@ -900,7 +908,7 @@ I noticed that in some cases where the internet speed is not optimal that my sty
 This results in the colors of Materialize showing for a split second before the colors of style.css are loaded.
 
 * **Verdict**
-If have double checked if I have placed my links in my head element in the correct order which is the takes. 
+I have double checked if I placed my links in my head element in the correct order which is the case. 
 For now no concrete solution yet but more research will be done on this and be updated in future releases.
 
 [Back to Top](#table-of-contents)
@@ -911,7 +919,7 @@ For now no concrete solution yet but more research will be done on this and be u
 
 ### Local Deployment
 
-I have created the Dog Health Tracker project using Github, from there I used Gitpod to write my code. 
+I have created the Dog Health Tracker project using Github, from there I used [Gitpod](https://gitpod.io/) to write my code. 
 Then I used commits to git followed by "git push" to my GitHub repository. 
 I've deployed this project to Heroku and used "git push heroku master" to make sure my pushes to GitHub were also made to Heroku. 
 
@@ -935,10 +943,10 @@ To clone the project:
     pip3 install -r requirements.txt
     ```
 
-1. Sign in or sign up to [MongoDB](https://www.mongodb.com/) and create a new cluster
+1. Sign-in or sign-up to [MongoDB](https://www.mongodb.com/) and create a new cluster
     * Within the Sandbox, click the collections button and after click Create Database (Add My Own Data) called dog_health_tracker
     * Set up the following collections: users, dogs, logs, food_metrics and weigth_metrics [Click here to see the exact Database Structure](#database-structure)
-    * Under food_metrics and weigth_metrics, add your preferred metrics in the collection with the following structure: 
+    * Under ***food_metrics*** and ***weigth_metrics***, add your preferred metrics in the collection with the following structure: 
         ```
         Key             | Value
         ----------------|-----------
@@ -963,7 +971,9 @@ To clone the project:
     os.environ["MONGO_DBNAME"]= "DATABASE_NAME" 
     ```
 
-    Please note that you will need to update the SECRET_KEY with your own secret key, as well as the MONGO_URI and MONGO_DBNAME variables with those provided by MongoDB.
+    Please note that you will need to update the **SECRET_KEY** with your own secret key, as well as the **MONGO_URI** and **MONGO_DBNAME** variables with those provided by MongoDB.
+    Tip for your SECRET_KEY, you can use a [Password Generator](https://passwordsgenerator.net/) in order to have a secure secret key. 
+    I personlly recommend a length of 24 characters and exclude Symbols.
     To find your MONGO_URI, go to your clusters and click on connect. Choose connect your application and copy the link provided. 
     Don't forget to update the necessary fields like password and database name. 
 
@@ -1019,7 +1029,7 @@ To clone the project:
 
 * While I was developing this website, I ran into some difficulties that I didn't know how to tackle. I want to thank the [Stackoverflow](https://stackoverflow.com/) community for making their useful content available online. 
 
-* [The Art of Routing in Flask](https://hackersandslackers.com/flask-routes/) Documentation has also helped me understanding the concept of routing (register, sign in, error handling etc) and how to best implement this into my project.
+* [The Art of Routing in Flask](https://hackersandslackers.com/flask-routes/) Documentation has also helped me understanding the concept of routing (register, sign-in, error handling etc) and how to best implement this into my project.
 
 * I would like to thank my mentor Simen [Eventyret_mentor](https://github.com/Eventyret) for his endless support and guiding me into becomming a better developer!
 

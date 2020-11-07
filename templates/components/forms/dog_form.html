@@ -29,9 +29,13 @@
     {% if add == True %}
     <button type="submit" class="form-buttons" id="add-dog-submit">Add dog</button>
         {% if count_dogs != 0 %}
-        <a href="#" onclick="goBack()" class="form-buttons">Cancel</a>
+            {% if existing_dog_profile == True %}
+                <a href="{{url_for('view_dashboard', user_id=user_id, dog_id=dog_id)}}" class="form-buttons">Cancel</a>
+            {% else%}
+                <a href="#" onclick="goBack()" class="form-buttons">Cancel</a>
+            {% endif %}
         {% else %}
-        <a href="{{url_for('blank_dashboard', user_id=user_id)}}" class="form-buttons">Cancel</a>
+            <a href="{{url_for('blank_dashboard', user_id=user_id)}}" class="form-buttons">Cancel</a>
         {% endif %}
     {% else %}
     <button type="submit" name="action" class="form-buttons">Update dog profile</button>

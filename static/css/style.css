@@ -11,6 +11,7 @@ body {
     font-size: 2rem;
     font-family: "Cormorant Garamond", Arial, Helvetica, sans-serif;
     color: #284B63;
+    min-height: 100vh;
 }
 
 input,
@@ -49,6 +50,7 @@ button:focus {
 
 .container {
     margin-bottom: 5rem;
+    max-width: 100%;
 }
 
 .heading{
@@ -231,7 +233,9 @@ button:focus {
     margin-left: 0;
     box-shadow: 0.2rem -0.3rem 0.2rem #c7c7c7;
     margin-bottom: 1rem;
+    min-height: 88vh !important;
 }
+
 
 /* Select dog profile when multiple dogs */
 
@@ -382,6 +386,10 @@ button:focus {
     }
 
     /* Display of logs */
+    #log-display {
+        position: relative;
+    }
+
     .log {
         background-color: #F5F5F5   ;
         padding: 1rem 1rem 0 1rem;
@@ -559,7 +567,9 @@ color: #284B63;
 #footer a {
     text-decoration: none;
     color: #f5f5f5;
+    width: 100%;
 }
+
 
 /* Media Queries */  
 
@@ -571,7 +581,7 @@ color: #284B63;
 
 @media (min-width: 768px) {
     .container {
-    width: 90%;
+        width: 90% !important;
     }
 
     .logo {
@@ -616,5 +626,14 @@ color: #284B63;
 @media (min-width: 1200px) {
     #log-day {
         margin: 0 3rem;
+    }
+} 
+
+@media (min-width: 1600px) {
+    .container {
+        width: 70% !important;
+    }
+    .btn-floating {
+        margin-right: 13vw;
     }
 } 

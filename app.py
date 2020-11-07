@@ -201,24 +201,39 @@ def add_dog(user_id):
     Redirects the user to the dashboard of that dog profile
     """
     if request.method == 'POST':
-        dogs = mongo.db.dogs.find({"user_id": user_id})
-        dog_profile = {
-            'user_id': request.form.get('user_id'),
-            'dog_name': request.form.get('dog_name'),
-            'dog_breed': request.form.get('dog_breed'),
-            'date_of_birth': request.form.get('date_of_birth'),
-            'dog_description': request.form.get('dog_description'),
-            'dog_image': request.form.get('dog_image')
-        }
-        mongo.db.dogs.insert_one(dog_profile)
-        dog_profile = mongo.db.dogs.find_one({
-             "dog_name": request.form.get('dog_name'),
-             "user_id": request.form.get('user_id')})
-        dog_id = dog_profile["_id"]
-        count_dogs = dogs.count()
-        return redirect(url_for("view_dashboard",
-                                user_id=user_id, dog_id=dog_id,
-                                count_dogs=count_dogs))
+        existing_dog_profile = mongo.db.dogs.find_one(
+                                {"user_id": user_id,
+                                 "dog_name": request.form.get("dog_name")})
+
+        if existing_dog_profile:
+            dog_id = existing_dog_profile["_id"]
+            dogs = mongo.db.dogs.find({"user_id": user_id})
+            count_dogs = dogs.count()
+            flash("You already have a profile for this dog")
+            return render_template("pages/dogprofile.html",  user_id=user_id,
+                                   count_dogs=count_dogs,
+                                   add=True, existing_dog_profile=True,
+                                   dog_id=dog_id)
+
+        else:
+            dogs = mongo.db.dogs.find({"user_id": user_id})
+            dog_profile = {
+                'user_id': request.form.get('user_id'),
+                'dog_name': request.form.get('dog_name'),
+                'dog_breed': request.form.get('dog_breed'),
+                'date_of_birth': request.form.get('date_of_birth'),
+                'dog_description': request.form.get('dog_description'),
+                'dog_image': request.form.get('dog_image')
+            }
+            mongo.db.dogs.insert_one(dog_profile)
+            dog_profile = mongo.db.dogs.find_one({
+                "dog_name": request.form.get('dog_name'),
+                "user_id": request.form.get('user_id')})
+            dog_id = dog_profile["_id"]
+            count_dogs = dogs.count()
+            return redirect(url_for("view_dashboard",
+                                    user_id=user_id, dog_id=dog_id,
+                                    count_dogs=count_dogs))
 
     dogs = mongo.db.dogs.find({"user_id": user_id})
     count_dogs = dogs.count()

@@ -54,7 +54,7 @@ $(document).ready(function(){
     $('select').formSelect();
     
     /**
-     * Modal to open when user wants to delete dog profile
+     * Modal to open when user wants to delete dog profile or log
      */
     $('.modal').modal();
 });
