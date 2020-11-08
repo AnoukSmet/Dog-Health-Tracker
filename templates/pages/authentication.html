@@ -6,6 +6,7 @@
 
     <div class="container" id="register">
         <h2 class="heading">Register here to start tracking your dog's health!</h2>
+        {% include 'components/flash_messages/flash_messages.html' %}
         {% include 'components/forms/authentication.html' %}
     </div>
 
@@ -13,11 +14,9 @@
 
     <div class="container" id="sign-in">
         <h2 class="heading">Sign in to your account</h2>
+        {% include 'components/flash_messages/flash_messages.html' %}
         {% include 'components/forms/authentication.html' %}
     </div>
 
     {% endif %}
-
-    {% include 'components/flash_messages/flash_messages.html' %}
-
 {% endblock %}

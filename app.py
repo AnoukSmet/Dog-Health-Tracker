@@ -255,11 +255,11 @@ def edit_dog(user_id, dog_id):
                                 "_id": ObjectId(dog_id)})
 
     if request.method == "POST":
-        if dog_profile_to_edit["dog_name"] == request.form.get(
+        if dog_profile_to_edit["dog_name"].lower() == request.form.get(
                 'dog_name').lower():
             mongo.db.dogs.update({'_id': ObjectId(dog_id)}, {
                 'user_id': request.form.get('user_id'),
-                'dog_name': request.form.get('dog_name'),
+                'dog_name': request.form.get('dog_name').lower(),
                 'dog_breed': request.form.get('dog_breed'),
                 'date_of_birth': request.form.get('date_of_birth'),
                 'dog_description': request.form.get('dog_description'),
@@ -282,7 +282,7 @@ def edit_dog(user_id, dog_id):
                 dog_id = dog_profile["_id"]
                 count_dogs = dogs.count()
                 flash("You already have a profile for {}".format(
-                        request.form.get("dog_name")))
+                    request.form.get("dog_name")))
 
                 return render_template("pages/dogprofile.html",
                                        user_id=user_id,
