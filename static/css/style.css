@@ -240,7 +240,7 @@ button:focus {
     margin-top: 1rem;
     margin-left: 0;
     box-shadow: 0.2rem -0.3rem 0.2rem #c7c7c7;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     min-height: 80vh !important;
 }
 
@@ -597,7 +597,7 @@ color: #284B63;
 @media (min-width: 768px) {
     .container {
         width: 90% !important;
-        margin: 0 auto;
+        margin: 0 auto 5rem;
     }
 
     .logo {
