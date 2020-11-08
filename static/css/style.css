@@ -185,7 +185,8 @@ button:focus {
 
 #welcome-paragraph {
     font-size: 2rem;
-    font-weight: 700;
+    font-weight: 500;
+    font-family: "Play", Arial, Helvetica, sans-serif
 }
 .homepage-buttons {
     padding: 1rem 2rem;
@@ -627,7 +628,7 @@ color: #284B63;
     }
 
     #welcome-paragraph {
-        font-size: 3rem;
+        font-size: 2.6rem;
     }
 
     #register {
