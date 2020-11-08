@@ -11,7 +11,7 @@
                     <div class="row">
                         <div class="col s12">
                             <div class="add-dog">
-                                <a href="{{ url_for('add_dog', user_id=user_id)}}" title="Add another dog" class="add-dog-icon"></a>
+                                <a href="{{ url_for('add_dog', user_id=user_id)}}" title="Add another dog" class="add-dog-icon" aria-label="Add dog"></a>
                             </div>
                         </div>
                         <div class="col s12 image-container">
@@ -62,7 +62,7 @@
                 <div class="row">
                     <div class="col s12">
                         <div class="add-dog">
-                            <a href="{{ url_for('add_dog', user_id=user_id)}}" title="Add another dog" class="add-dog-icon"></a>
+                            <a href="{{ url_for('add_dog', user_id=user_id)}}" title="Add another dog" class="add-dog-icon" aria-label="Add dog"></a>
                         </div>
                     </div>
                     {% if dog_profile.dog_image ==  "" %}
@@ -136,7 +136,7 @@
                 {% endfor %}
                 {% endif %}
                 <div class="fixed-action-btn hide-on-small-only"> 
-                    <a class="btn-floating btn-large" href="{{ url_for('add_log',  dog_id=dog_id, user_id=user_id) }}" title="Add another log">
+                    <a class="btn-floating btn-large" href="{{ url_for('add_log',  dog_id=dog_id, user_id=user_id) }}" title="Add another log" aria-label="Add log">
                         <i class="material-icons bg-color">playlist_add</i>
                     </a>
                 </div>

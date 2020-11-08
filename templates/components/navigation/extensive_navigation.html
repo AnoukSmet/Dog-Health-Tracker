@@ -1,5 +1,5 @@
 <ul id="dropdown1" class="dropdown-content">
-    <li><a href="{{ url_for('log_out') }}">Log out</a></li>
+    <li><a href="{{ url_for('log_out') }}" aria-label="Log out">Log out</a></li>
 </ul>
 <nav class="navigation">
     <div>
@@ -11,7 +11,7 @@
         {% endif %}
         <ul class="right">
             <li>
-                <a class="dropdown-trigger btn" href="#" data-target="dropdown1" id="username-dropdown">
+                <a class="dropdown-trigger btn" href="#" data-target="dropdown1" id="username-dropdown" aria-label="account">
                     <i class="material-icons left" id="account-icon">account_circle</i>
                     <i class="material-icons right" id="dropdown-icon">arrow_drop_down</i>
                 </a>

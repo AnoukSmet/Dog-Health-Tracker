@@ -586,6 +586,12 @@ color: #284B63;
 }
 
 
+/* Modal */
+
+#delete-log-modal {
+    text-align: center;
+}
+
 /* Media Queries */  
 
 @media (min-width: 375px) {
