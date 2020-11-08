@@ -2,7 +2,11 @@
     <div class="container">
         <div class="row">
             <div class="col s12">
-                <a href="{{ url_for('view_dashboard', user_id=user_id, dog_id=dog_id) }}" class="brand-logo center" id="logo">Dog Health Tracker</a>
+                {% if count_dogs == 0 %}
+                    <a href="{{url_for('blank_dashboard', user_id=user_id)}}" class="brand-logo center">Dog Health Tracker</a>
+                {% else %}
+                    <a href="{{url_for('view_dashboard', user_id=user_id, dog_id=dog_id)}}" class="brand-logo center">Dog Health Tracker</a>
+                {% endif %}
             </div>
         </div>
     </div>

@@ -171,7 +171,7 @@ button:focus {
     -o-background-size: cover;
     background-size: cover;
     filter:opacity(70%);
-    height: 100vh;
+    height: calc(100vh - 56px);
 }
 
 #welcome-text {
@@ -601,6 +601,10 @@ color: #284B63;
 }
 
 @media (min-width: 768px) {
+    #dog-image {
+        height: calc(100vh - 64px);
+    }
+
     .container {
         width: 90% !important;
         margin: 0 auto 5rem;
