@@ -676,7 +676,11 @@ This way I made sure that the correct profile or log was updated.
 * **Test**  
 I have tested the edit functionality various times to make sure the data was being updated correctly. 
 After the submission of the form, the user is being redirected to the dashboard of the dog for which the changes were made. 
-Cancel button also takes the user back to the dashboard in case the user doesn't want to proceed with the changes. 
+Cancel button also takes the user back to the dashboard in case the user doesn't want to proceed with the changes.
+
+I noticed when testing that when the user would edit a dog profile and change the dog name to an already existing dog profile name, the user would still have 2 dog profiles with the same name. 
+Also here I now first check to see if the dog name already exists in the database for this user and if so, feedback is provided to the user and the form is not being processed. 
+The user can either choose a different name or cancel to go back to the dashboard.
 
 * **Result**  
 The edit functionality works as planned across various browsers and devices. 
