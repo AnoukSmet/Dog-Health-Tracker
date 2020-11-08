@@ -10,7 +10,7 @@ How much activity does your dog have? Have much does he/she eats? Is her weight 
 And on top of this, they tell you that your dog should actually lose some weight... Where to start?
 
 The Dog Health Tracker will make you're life much easier! 
-Instead writing down all the information about the activity, food, weigth etc. on paper, you can use DHT to track! 
+Instead writing down all the information about the activity, food, weight etc. on paper, you can use DHT to track! 
 By adding a daily log on the topics previously mentioned, you can easily track the progress of your dog. 
 
 Next time you go to the veterinarian, you choose nicely the progress you and your dog have made! 
@@ -79,7 +79,7 @@ If you have any feedback or questions, head over to my GitHub contact details an
 * As a user, I would like to be able to register for the website so I can have my personal environment.
 * As a user, I want to login after I created an account and see my previous inserted information.
 * As a user, I would like to have a personal profile for my dog. 
-* As a user, I would like to track activity, food and weigth. 
+* As a user, I would like to track activity, food and weight. 
 * As a user, I want to be able to add as many logs as I want, even multiple per day (morning and evening for example)
 * As a user, I would like to have a dashboard where I can have a good overview. 
 * As a user, I want to be able to search on date to get specific data. 
@@ -237,8 +237,8 @@ _id             | ObjectId
 dog_id          | String
 user_id         | String
 log_date        | String
-dog_weigth      | String
-weigth_metric   | String
+dog_weight      | String
+weight_metric   | String
 dog_activity    | String
 dog_food        | String
 food_metric     | String
@@ -251,7 +251,7 @@ Key             | Value
 _id             | ObjectId
 metric_name     | String
 
-#### **Weigth_metrics** ####
+#### **Weight_metrics** ####
 
 Key             | Value
 ----------------|-----------
@@ -468,14 +468,14 @@ The test has passed all the criteria and works like planned.
 
 ### **Add log**
 
-#### User story: As a user, I would like to track activity, food and weigth. 
+#### User story: As a user, I would like to track activity, food and weight. 
 
 * **Plan**  
 The user should be able to add logs with the various information that needs to be tracked.   
 From own experience, I have decided to include the following input fields:  
 *Date of the log*  
 *Activity*   
-*Weigth*  
+*wWight*  
 *Food*   
 *Other notes*   
 
@@ -487,7 +487,7 @@ The other fields are not required as some users might not want to track certain 
 I have made the decision to allow multiple logs per day as some users would like to create a log in the morning and one in the evening for example. 
 This can depend on the user wanting to add a log twice per day as he/she feeds the dog twice per day etc. 
 For the activity I have not added any metrics etc because it can vary a lot depending on the user and the dog (example: playing with a stick can also be seen as activity for some users)
-For the weigth I have inlucded metrics (kg, grams, pounds and ounces) which are the most important weight metrics being used. 
+For the weight I have inlucded metrics (kg, grams, pounds and ounces) which are the most important weight metrics being used. 
 For the food I have included the same metrics. 
 For other notes the user can choose what to fill in like comments on the behaviour of the dog, medication, vet's appointment etc. 
 Also here I added a cancel button in case the user wants to go back to the dashboard without submitting the log. 
@@ -967,8 +967,8 @@ To clone the project:
 
 1. Sign-in or sign-up to [MongoDB](https://www.mongodb.com/) and create a new cluster
     * Within the Sandbox, click the collections button and after click Create Database (Add My Own Data) called dog_health_tracker
-    * Set up the following collections: users, dogs, logs, food_metrics and weigth_metrics [Click here to see the exact Database Structure](#database-structure)
-    * Under ***food_metrics*** and ***weigth_metrics***, add your preferred metrics in the collection with the following structure: 
+    * Set up the following collections: users, dogs, logs, food_metrics and weight [Click here to see the exact Database Structure](#database-structure)
+    * Under ***food_metrics*** and ***weight_metrics***, add your preferred metrics in the collection with the following structure: 
         ```
         Key             | Value
         ----------------|-----------
