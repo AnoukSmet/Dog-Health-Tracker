@@ -241,7 +241,7 @@ button:focus {
     margin-left: 0;
     box-shadow: 0.2rem -0.3rem 0.2rem #c7c7c7;
     margin-bottom: 1rem;
-    min-height: 88vh !important;
+    min-height: 80vh !important;
 }
 
 
