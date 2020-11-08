@@ -3,7 +3,12 @@
 </ul>
 <nav class="navigation">
     <div>
-        <a href="{{url_for('view_dashboard', user_id=user_id, dog_id=dog_id)}}" class="brand-logo logo">Dog Health Tracker</a>
+        {% if count_dogs == 0 %}
+            <a href="{{url_for('blank_dashboard', user_id=user_id)}}" class="brand-logo logo">Dog Health Tracker</a>
+
+        {% else %}
+            <a href="{{url_for('view_dashboard', user_id=user_id, dog_id=dog_id)}}" class="brand-logo logo">Dog Health Tracker</a>
+        {% endif %}
         <ul class="right">
             <li>
                 <a class="dropdown-trigger btn" href="#" data-target="dropdown1" id="username-dropdown">
