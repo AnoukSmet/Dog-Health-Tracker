@@ -1,5 +1,5 @@
 /**
- * External js file from Materialize to resolve bugs select 
+ * External js file from Materialize to resolve select bug
  */
 
 (function($) {
