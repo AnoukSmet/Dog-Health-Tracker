@@ -179,6 +179,11 @@ button:focus {
     width: 90%;
 }
 
+#home-paragraph {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
 .homepage-buttons {
     padding: 1rem 2rem;
     font-size: 2.5rem;

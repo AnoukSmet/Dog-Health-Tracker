@@ -1,3 +1,7 @@
+/**
+ * External js file from Materialize to resolve bugs select 
+ */
+
 (function($) {
   'use strict';
 
