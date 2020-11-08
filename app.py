@@ -211,7 +211,7 @@ def add_dog(user_id):
             dogs = mongo.db.dogs.find({"user_id": user_id})
             count_dogs = dogs.count()
             flash("You already have a profile for {}".format(request.form.get(
-                "dog_name")))
+                "dog_name").capitalize()))
             return render_template("pages/dogprofile.html",  user_id=user_id,
                                    count_dogs=count_dogs,
                                    add=True, existing_dog_profile=True,
@@ -282,7 +282,7 @@ def edit_dog(user_id, dog_id):
                 dog_id = dog_profile["_id"]
                 count_dogs = dogs.count()
                 flash("You already have a profile for {}".format(
-                    request.form.get("dog_name")))
+                    request.form.get("dog_name").capitalize()))
 
                 return render_template("pages/dogprofile.html",
                                        user_id=user_id,
