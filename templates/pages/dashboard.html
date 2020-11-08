@@ -50,7 +50,7 @@
                     <select id="dog-dropdown" name="dog_name" onchange="submitForm()" aria-label="Select dog profile">
                         <option value="default" selected disabled aria-label="Select dog name" id="default-option">Select the dog profile you want to see</option>
                     {% for dog in dogs %}
-                        <option id="dog_name" value="{{dog.dog_name}}" aria-label="Dog Name">{{ dog.dog_name }}</option>
+                        <option id="dog_name" value="{{dog.dog_name}}" aria-label="Dog Name" class="capitalize">{{ dog.dog_name }}</option>
                     {% endfor %}
                     </select>
                 </div>

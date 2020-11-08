@@ -98,7 +98,7 @@ button:focus {
 } 
 
 .capitalize {
-    text-transform: capitalize;
+    text-transform: capitalize !important;
 }
 
 
@@ -185,7 +185,7 @@ button:focus {
 }
 
 #welcome-paragraph {
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: 700;
 }
 .homepage-buttons {
@@ -256,6 +256,7 @@ button:focus {
 
 .dropdown-content li>a, .dropdown-content li>span {
     color: #284B63 !important;
+    text-transform: capitalize;
 }
 
 .select-wrapper input.select-dropdown {
@@ -263,6 +264,12 @@ button:focus {
     font-size: 1.6rem;
     border-bottom: 0.1rem solid #284B63;
     }
+
+.select-dropdown li.disabled, 
+.select-dropdown li.disabled>span, 
+.select-dropdown li.optgroup {
+    text-transform: none;
+}
 
 .select-dropdown li.disabled:hover, 
 .select-dropdown li.disabled>span:hover
@@ -607,6 +614,10 @@ color: #284B63;
 
     .sub-heading {
         font-size: 2.5rem;
+    }
+
+    #welcome-paragraph {
+        font-size: 3rem;
     }
 
     #register {
