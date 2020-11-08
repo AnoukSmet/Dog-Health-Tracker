@@ -683,7 +683,7 @@ Cancel button also takes the user back to the dashboard in case the user doesn't
 
 I noticed when testing that when the user would edit a dog profile and change the dog name to an already existing dog profile name, the user would still have 2 dog profiles with the same name. 
 Also here I now first check to see if the dog name already exists in the database for this user and if so, feedback is provided to the user and the form is not being processed. 
-The user can either choose a different name or cancel to go back to the dashboard.
+The user can either choose a different name or cancel to go back to the dashboard. I still ran in quite some difficulties when implementing this. You can find more information in [Bugs](#bugs).
 
 * **Result**  
 The edit functionality works as planned across various browsers and devices. 
@@ -894,6 +894,21 @@ I have found a way around to still not allow manual input but through javascript
 * **Verdict**
 It is now working as planned. Manual input is disabled while the input is still required for the user. 
 
+### **Edit name of dog in dog profile"
+* **Bug** 
+As a user shouldn't have 2 dog profiles with the same name, I implemented a function that verifies if the name already exists and doesn't allow to add the dog with that name to the database. 
+When the user wants to edit the dog profile and tries to change the name to an already existing dog_profile, it shouldn't be possible. 
+This was working but due to this, the user was not able to submit any other changes to the profile becasuse the name already existed in the database which makes sense.
+
+* **Fix**
+I now check first if the dog_name of the form matches with the dog_name in the database, in that case, the user can proceed with the update.
+If not, I check if the new dog_name from the form already exists in the database of the user, if yes, feedback to the user is being displayed that a profile already exists for this dog. 
+If the name doesn't exists, the user can proceed with update. 
+In order to prevent the user making a profile with the same name but all small letters instead of capitalized, I have stored the dog_name in lowercase in the database. 
+
+* **Verdict** 
+User is not able to add a dog profile if the dog_name already exists while he/she is still able to update the dog_profile and change the name as long as it doesn't exist yet for that user. 
+Satisfied with the result and works now as planned. 
 
 ### **Year range for Datepicker**
 

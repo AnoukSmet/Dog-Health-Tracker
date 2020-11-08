@@ -97,6 +97,9 @@ button:focus {
     background-color: #152c3c;
 } 
 
+.capitalize:first-letter {
+    text-transform: capitalize;
+}
 
 /* Navigation */
 

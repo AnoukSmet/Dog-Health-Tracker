@@ -143,7 +143,7 @@ def view_dashboard(user_id, dog_id):
     if session.get('user_id'):
         if session['user_id'] == str(user["_id"]):
             if request.method == 'POST':
-                selected_profile = request.form.get('dog_name')
+                selected_profile = request.form.get('dog_name').lower()
                 dog_profile = mongo.db.dogs.find_one({
                                               "dog_name": selected_profile,
                                               "user_id": user_id})
@@ -203,13 +203,15 @@ def add_dog(user_id):
     if request.method == 'POST':
         existing_dog_profile = mongo.db.dogs.find_one(
                                 {"user_id": user_id,
-                                 "dog_name": request.form.get("dog_name")})
+                                 "dog_name": request.form.get(
+                                        "dog_name").lower()})
 
         if existing_dog_profile:
             dog_id = existing_dog_profile["_id"]
             dogs = mongo.db.dogs.find({"user_id": user_id})
             count_dogs = dogs.count()
-            flash("You already have a profile for this dog")
+            flash("You already have a profile for {}".format(request.form.get(
+                "dog_name")))
             return render_template("pages/dogprofile.html",  user_id=user_id,
                                    count_dogs=count_dogs,
                                    add=True, existing_dog_profile=True,
@@ -219,7 +221,7 @@ def add_dog(user_id):
             dogs = mongo.db.dogs.find({"user_id": user_id})
             dog_profile = {
                 'user_id': request.form.get('user_id'),
-                'dog_name': request.form.get('dog_name'),
+                'dog_name': request.form.get('dog_name').lower(),
                 'dog_breed': request.form.get('dog_breed'),
                 'date_of_birth': request.form.get('date_of_birth'),
                 'dog_description': request.form.get('dog_description'),
@@ -227,7 +229,7 @@ def add_dog(user_id):
             }
             mongo.db.dogs.insert_one(dog_profile)
             dog_profile = mongo.db.dogs.find_one({
-                "dog_name": request.form.get('dog_name'),
+                "dog_name": request.form.get('dog_name').lower(),
                 "user_id": request.form.get('user_id')})
             dog_id = dog_profile["_id"]
             count_dogs = dogs.count()
@@ -248,22 +250,13 @@ def edit_dog(user_id, dog_id):
     Allows the user to edit / update a dog profile
     Redirects the user to the dashboard of the updated dog profile
     """
-    if request.method == "POST":
-        existing_dog_profile = mongo.db.dogs.find_one({
+    dog_profile_to_edit = mongo.db.dogs.find_one({
                                 "user_id": user_id,
-                                "dog_name": request.form.get('dog_name')})
+                                "_id": ObjectId(dog_id)})
 
-        if existing_dog_profile:
-            dogs = mongo.db.dogs.find({"user_id": user_id})
-            dog_profile = mongo.db.dogs.find_one({"_id": ObjectId(dog_id)})
-            dog_id = dog_profile["_id"]
-            count_dogs = dogs.count()
-            flash("You already have a profile for this dog")
-            return render_template("pages/dogprofile.html",  user_id=user_id,
-                                   count_dogs=count_dogs,
-                                   dog_id=dog_id,
-                                   dog_profile=dog_profile)
-        else:
+    if request.method == "POST":
+        if dog_profile_to_edit["dog_name"] == request.form.get(
+                'dog_name').lower():
             mongo.db.dogs.update({'_id': ObjectId(dog_id)}, {
                 'user_id': request.form.get('user_id'),
                 'dog_name': request.form.get('dog_name'),
@@ -279,12 +272,46 @@ def edit_dog(user_id, dog_id):
                                     dog_id=dog_id,
                                     count_dogs=count_dogs))
 
-    dog_profile = mongo.db.dogs.find_one({"_id": ObjectId(dog_id)})
-    dog_id = dog_profile["_id"]
-    return render_template('pages/dogprofile.html',
-                           dog_id=dog_id,
-                           dog_profile=dog_profile,
-                           user_id=user_id)
+        else:
+            existing_dog_profile = mongo.db.dogs.find_one({
+                    'user_id': user_id,
+                    'dog_name': request.form.get('dog_name').lower()})
+            if existing_dog_profile:
+                dogs = mongo.db.dogs.find({"user_id": user_id})
+                dog_profile = mongo.db.dogs.find_one({"_id": ObjectId(dog_id)})
+                dog_id = dog_profile["_id"]
+                count_dogs = dogs.count()
+                flash("You already have a profile for {}".format(
+                        request.form.get("dog_name")))
+
+                return render_template("pages/dogprofile.html",
+                                       user_id=user_id,
+                                       count_dogs=count_dogs,
+                                       dog_id=dog_id,
+                                       dog_profile=dog_profile)
+
+            else:
+                mongo.db.dogs.update({'_id': ObjectId(dog_id)}, {
+                        'user_id': request.form.get('user_id'),
+                        'dog_name': request.form.get('dog_name').lower(),
+                        'dog_breed': request.form.get('dog_breed'),
+                        'date_of_birth': request.form.get('date_of_birth'),
+                        'dog_description': request.form.get('dog_description'),
+                        'dog_image': request.form.get('dog_image')
+                    })
+                dogs = mongo.db.dogs.find({"user_id": user_id})
+                count_dogs = dogs.count()
+                return redirect(url_for('view_dashboard',
+                                        user_id=user_id,
+                                        dog_id=dog_id,
+                                        count_dogs=count_dogs))
+    else:
+        dog_profile = mongo.db.dogs.find_one({"_id": ObjectId(dog_id)})
+        dog_id = dog_profile["_id"]
+        return render_template('pages/dogprofile.html',
+                               dog_id=dog_id,
+                               dog_profile=dog_profile,
+                               user_id=user_id)
 
 
 @app.route('/dog/delete/<user_id>/<dog_id>')
@@ -350,7 +377,6 @@ def edit_log(user_id, dog_id, log_id):
         mongo.db.logs.update({'_id': ObjectId(log_id)}, {
             'user_id': request.form.get('user_id'),
             'dog_id': request.form.get('dog_id'),
-            'dog_name': request.form.get('dog_name'),
             'log_date': request.form.get('log_date'),
             'dog_weight': request.form.get('dog_weight'),
             'weight_metric': request.form.get('weight_metric'),
