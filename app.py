@@ -110,7 +110,7 @@ def log_out():
     Allows the user to log out
     Takes user back to home
     """
-    session.pop('user_id', None)
+    session.clear()
     return render_template("pages/home.html")
 
 
