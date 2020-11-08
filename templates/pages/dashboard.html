@@ -57,7 +57,7 @@
             </form>
             {% endif %}
         </div>
-        <div id="{{dog_id}}" class="col s12 dashboard">
+        <div class="col s12 dashboard">
             <div class="col s12 m3 dog-profile">
                 <div class="row">
                     <div class="col s12">
@@ -87,16 +87,23 @@
                         <div class="profile-icons">
                             <a href="{{ url_for('edit_dog', dog_id = dog_id , user_id=user_id) }}" title="Edit dog profile"><i class="material-icons icons">edit</i></a>
                             <a href="#delete-dogprofile-modal" title="Delete dog profile" class="modal-trigger"><i class="material-icons icons">delete</i></a>
+                            {% include 'components/modals/delete_dogprofile_modal.html' %}
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="col s12 m9" id="log-display">
-                
-            {% if count_logs == 0 %}
-                <div class="default-log">Click <a href="{{ url_for('add_log', user_id=user_id, dog_id=dog_id)}}">here </a>to add your first log! </div>
-            {% else %}
+            <div class="col s12 m9" id="log-display">   
+                {% if count_logs == 0 %}
+                <div class="default-log">
+                    <span>
+                        Click 
+                        <a href="{{ url_for('add_log', user_id=user_id, dog_id=dog_id)}}">here</a>
+                        <span class="hide-on-small-only">or on the add button right below</span>
+                        to add your first log!
+                    </span>    
+                </div>
+                {% else %}
                 <div class="row">
                     <div id="search-button" class="col s12">
                         <a href="{{url_for('search_logs', dog_id=dog_id, user_id=user_id) }}" class="form-buttons">Click here to search logs by date</a>
@@ -106,9 +113,6 @@
                     </div>
                 </div>
                 {% for log in logs %}
-                    <!-- <p>
-                    {{ log.log_date[4:-2] }}
-                    </p> -->
                 <div class="log-container">
                     <div class="row log">
                         <div class="col s12 m3 log-date">
@@ -126,12 +130,11 @@
                             <a href="{{ url_for('edit_log', log_id = log._id , user_id=user_id, dog_id=dog_id) }}" title="Edit log"><i class="material-icons icons">edit</i></a>
                             <a href="#delete-log-modal" title="Delete log" class="modal-trigger"><i class="material-icons icons">delete</i></a>
                             {% include 'components/modals/delete_log_modal.html' %}
-
                         </div>
                     </div>
                 </div>
-        {% endfor %}
-        {% endif %}
+                {% endfor %}
+                {% endif %}
                 <div class="fixed-action-btn hide-on-small-only"> 
                     <a class="btn-floating btn-large" href="{{ url_for('add_log',  dog_id=dog_id, user_id=user_id) }}" title="Add another log">
                         <i class="material-icons bg-color">playlist_add</i>
@@ -142,7 +145,5 @@
     </div>
 </div>
 {% endif %}
-{% include 'components/modals/delete_dogprofile_modal.html' %}
-
 {% include 'components/footer/footer.html' %}
 {% endblock %}

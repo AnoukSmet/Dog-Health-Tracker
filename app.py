@@ -249,20 +249,35 @@ def edit_dog(user_id, dog_id):
     Redirects the user to the dashboard of the updated dog profile
     """
     if request.method == "POST":
-        mongo.db.dogs.update({'_id': ObjectId(dog_id)}, {
-            'user_id': request.form.get('user_id'),
-            'dog_name': request.form.get('dog_name'),
-            'dog_breed': request.form.get('dog_breed'),
-            'date_of_birth': request.form.get('date_of_birth'),
-            'dog_description': request.form.get('dog_description'),
-            'dog_image': request.form.get('dog_image')
-        })
-        dogs = mongo.db.dogs.find({"user_id": user_id})
-        count_dogs = dogs.count()
-        return redirect(url_for('view_dashboard',
-                                user_id=user_id,
-                                dog_id=dog_id,
-                                count_dogs=count_dogs))
+        existing_dog_profile = mongo.db.dogs.find_one({
+                                "user_id": user_id,
+                                "dog_name": request.form.get('dog_name')})
+
+        if existing_dog_profile:
+            dogs = mongo.db.dogs.find({"user_id": user_id})
+            dog_profile = mongo.db.dogs.find_one({"_id": ObjectId(dog_id)})
+            dog_id = dog_profile["_id"]
+            count_dogs = dogs.count()
+            flash("You already have a profile for this dog")
+            return render_template("pages/dogprofile.html",  user_id=user_id,
+                                   count_dogs=count_dogs,
+                                   dog_id=dog_id,
+                                   dog_profile=dog_profile)
+        else:
+            mongo.db.dogs.update({'_id': ObjectId(dog_id)}, {
+                'user_id': request.form.get('user_id'),
+                'dog_name': request.form.get('dog_name'),
+                'dog_breed': request.form.get('dog_breed'),
+                'date_of_birth': request.form.get('date_of_birth'),
+                'dog_description': request.form.get('dog_description'),
+                'dog_image': request.form.get('dog_image')
+            })
+            dogs = mongo.db.dogs.find({"user_id": user_id})
+            count_dogs = dogs.count()
+            return redirect(url_for('view_dashboard',
+                                    user_id=user_id,
+                                    dog_id=dog_id,
+                                    count_dogs=count_dogs))
 
     dog_profile = mongo.db.dogs.find_one({"_id": ObjectId(dog_id)})
     dog_id = dog_profile["_id"]
