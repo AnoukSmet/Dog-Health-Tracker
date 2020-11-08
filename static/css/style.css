@@ -325,16 +325,16 @@ button:focus {
     }
 
 
-    #add-dog-icon {
-        background: url('../images/add-dog-icon.png') no-repeat center center;
-        height: 6rem;
-        width: 6rem;
-        float: left;
+    .add-dog-icon {
+        background: url('../images/add-dog-icon.png') no-repeat center center !important;
+        height: 6rem !important;
+        width: 6rem !important;
+        float: left !important;
     }
 
-    #add-dog-icon:hover {
+    .add-dog-icon:hover {
         background-color: #F5F5F5 !important;
-        border-radius: 50%;    
+        border-radius: 50% !important;    
         }
        
 
@@ -612,6 +612,9 @@ color: #284B63;
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+    #blank-dashboard-container {
+        min-height: 80vh !important;
     }
     
     .log-date {

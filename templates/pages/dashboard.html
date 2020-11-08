@@ -5,13 +5,13 @@
 {% if count_dogs == 0 %}
 <div class="container">
     <div class="row">
-        <div class="col s12 dashboard" >
+        <div class="col s12 dashboard" id="blank-dashboard-container">
             <div class="row " id="blank-dashboard">
                 <div class="col s12 m3 dog-profile">
                     <div class="row">
                         <div class="col s12">
                             <div class="add-dog">
-                                <a href="{{ url_for('add_dog', user_id=user_id)}}" title="Add another dog"><i class="material-icons icons">add_circle</i></a>
+                                <a href="{{ url_for('add_dog', user_id=user_id)}}" title="Add another dog" class="add-dog-icon"></a>
                             </div>
                         </div>
                         <div class="col s12 image-container">
@@ -62,7 +62,7 @@
                 <div class="row">
                     <div class="col s12">
                         <div class="add-dog">
-                            <a href="{{ url_for('add_dog', user_id=user_id)}}" title="Add another dog" id="add-dog-icon"></a>
+                            <a href="{{ url_for('add_dog', user_id=user_id)}}" title="Add another dog" class="add-dog-icon"></a>
                         </div>
                     </div>
                     {% if dog_profile.dog_image ==  "" %}
